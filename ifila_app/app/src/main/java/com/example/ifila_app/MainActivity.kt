@@ -14,12 +14,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonRegistrar.setOnClickListener{ goToRegister(binding) }
+        binding.buttonRegistrar.setOnClickListener{ goToRegisterFinish(binding) }
     }
 
     fun goToRegister(binding: ActivityMainBinding){
         val context = binding.root.context
         val intent = Intent(context, RegisterScreen1::class.java)
+        context.startActivity(intent)
+    }
+
+    fun goToRegister2(binding: ActivityMainBinding){
+        val context = binding.root.context
+        val intent = Intent(context, RegisterScreen2::class.java)
+        context.startActivity(intent)
+    }
+
+    fun goToRegisterFinish(binding: ActivityMainBinding){
+        val context = binding.root.context
+        val intent = Intent(context, RegisterScreenFinish::class.java)
+        context.startActivity(intent)
+    }
+
+    fun goToRegisterFailed(binding: ActivityMainBinding){
+        val context = binding.root.context
+        val intent = Intent(context, RegisterScreenFailed::class.java)
         context.startActivity(intent)
     }
 }

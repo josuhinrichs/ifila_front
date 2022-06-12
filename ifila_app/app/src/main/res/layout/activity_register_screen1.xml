@@ -154,7 +154,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_registrar"
+        android:id="@+id/button_continuar"
         android:layout_width="216dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple_main"
