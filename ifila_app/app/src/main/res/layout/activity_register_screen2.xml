@@ -73,29 +73,28 @@
         android:id="@+id/linearlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:elevation="0dp"
         android:fadeScrollbars="false"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_field_email"
             android:layout_width="340dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.33dp"
             android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="56dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="textEmailAddress"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -103,15 +102,20 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_field_password"
             android:layout_width="340dp"
-            android:layout_height="50dp"
-            android:hint="Senha">
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            app:passwordToggleContentDescription="Exibir"
+            app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8.33dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="textPassword"
+                android:password="true"
                 android:textSize="14sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
 
@@ -120,12 +124,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_field_password2"
             android:layout_width="340dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:hint="Confirmar Senha">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8.33dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="textPassword"
@@ -145,7 +150,9 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/button_cancelar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_cancelar"

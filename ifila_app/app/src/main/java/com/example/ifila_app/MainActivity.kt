@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonRegistrar.setOnClickListener{ goToRegisterFinish(binding) }
+        binding.buttonRegistrar.setOnClickListener{ goToRegister(binding) }
     }
 
     fun goToRegister(binding: ActivityMainBinding){
@@ -23,11 +23,7 @@ class MainActivity : AppCompatActivity() {
         context.startActivity(intent)
     }
 
-    fun goToRegister2(binding: ActivityMainBinding){
-        val context = binding.root.context
-        val intent = Intent(context, RegisterScreen2::class.java)
-        context.startActivity(intent)
-    }
+
 
     fun goToRegisterFinish(binding: ActivityMainBinding){
         val context = binding.root.context
