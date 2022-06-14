@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ifila_app</string>
+    <string name="app_name">i.fila</string>
+    <string name="registrar">Registrar</string>
+    <string name="entrar_como_convidado">Entrar como convidado</string>
+    <string name="continuar">Continuar</string>
+    <string name="registrar_title">Registrar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

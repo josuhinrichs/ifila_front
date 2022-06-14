@@ -14,7 +14,7 @@ class RegisterScreen2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterScreen2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.buttonBack.setOnClickListener{ finish() }
+
         binding.buttonContinuar.setOnClickListener{ goToRegisterFinish(binding) }
         binding.buttonCancelar.setOnClickListener { cancel(binding) }
     }

@@ -12,18 +12,18 @@ class RegisterScreen1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterScreen1Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.buttonBack.setOnClickListener{ finish() }
+
         binding.buttonContinuar.setOnClickListener{ goToRegister2(binding) }
         binding.buttonCancelar.setOnClickListener { cancel(binding) }
     }
 
-    fun goToRegister2(binding: ActivityRegisterScreen1Binding){
+    private fun goToRegister2(binding: ActivityRegisterScreen1Binding){
         val context = binding.root.context
         val intent = Intent(context, RegisterScreen2::class.java)
         context.startActivity(intent)
     }
 
-    fun cancel(binding: ActivityRegisterScreen1Binding){
+    private fun cancel(binding: ActivityRegisterScreen1Binding){
         val context = binding.root.context
         val intent = Intent(context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

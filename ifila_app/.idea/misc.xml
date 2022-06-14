@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/josue/Documents/Dev/ifila_front/ifila_app/app/src/main/res/layout/activity_main.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/josue/Documents/Dev/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen1.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/josue/Documents/Dev/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/josue/Documents/Dev/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen_failed.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/josue/Documents/Dev/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen_finish.xml" value="0.19384057971014493" />
         <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen1.xml" value="0.33" />
         <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.33" />

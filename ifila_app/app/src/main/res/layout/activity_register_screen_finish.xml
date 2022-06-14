@@ -59,10 +59,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/text_sorry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/fredoka_medium"
         android:gravity="center"
         android:text="Parabéns!\nSeu cadastro foi feito com sucesso"
@@ -75,28 +75,30 @@
 
     <ImageView
         android:id="@+id/image_illustration_placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_error_has_occured"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/text_sorry"
         app:srcCompat="@drawable/sucess_starts" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/text_error_has_occured"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/fredoka_semibold"
         android:gravity="center"
         android:text="Você está preparado para uma nova\nforma de fazer filas?"
         android:textColor="@color/purple_main"
         android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_vamosla2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_illustration_placeholder" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
