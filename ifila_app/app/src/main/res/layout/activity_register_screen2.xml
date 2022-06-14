@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".RegisterScreen2">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
         android:background="#00FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/botao_voltar" />
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:max="100"
-        android:progress="50"
+        android:progress="66"
         android:progressBackgroundTint="#FFBF00"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -143,8 +143,9 @@
 
     <Button
         android:id="@+id/button_continuar"
-        android:layout_width="216dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:textSize="16sp"
         android:backgroundTint="@color/purple_main"
         android:text="Continuar"
         android:textColor="#FFFFFF"
@@ -157,8 +158,9 @@
     <Button
         android:id="@+id/button_cancelar"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="216dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:textSize="16sp"
         android:layout_marginBottom="36dp"
         android:text="Cancelar"
         android:textColor="@color/purple_main"
@@ -167,12 +169,5 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/purple_main" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
