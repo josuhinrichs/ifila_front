@@ -8,8 +8,8 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.widget.DatePicker
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
@@ -33,7 +33,8 @@ class RegisterScreen1 : AppCompatActivity() {
         binding.buttonContinuar.setOnClickListener{ goToRegister2(binding) }
         binding.buttonCancelar.setOnClickListener { cancel(binding) }
         binding.editTextPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-
+        val teste = Mask.insert(Mask.CPF_MASK, binding.editTextCpf)
+        binding.editTextCpf.addTextChangedListener( teste )
 
 
         binding.editTextBirth.inputType = InputType.TYPE_NULL;
@@ -143,6 +144,10 @@ class RegisterScreen1 : AppCompatActivity() {
             ) {
                 binding.inputFieldCpf.helperText = validCpf()
                 enableButton()
+
+                if (binding.editTextCpf.text.toString().length == 3){
+                    binding.editTextCpf.text?.append("-")
+                }
             }
         })
     }
@@ -153,7 +158,7 @@ class RegisterScreen1 : AppCompatActivity() {
         {
             return resources.getString(R.string.required)
         }
-        if (binding.editTextCpf.text.toString().length < 11)
+        if (binding.editTextCpf.text.toString().length < 14)
             return resources.getString(R.string.typeValidCpf)
         return null
     }
@@ -229,5 +234,90 @@ class RegisterScreen1 : AppCompatActivity() {
                 binding.inputFieldBirth.helperText == null)
     }
 
+}
+
+object Mask {
+    var CPF_MASK = "###.###.###-##"
+    var CELULAR_MASK = "(##) #### #####"
+    var CEP_MASK = "#####-###"
+    fun unmask(s: String): String {
+        return s.replace("[.]".toRegex(), "").replace("[-]".toRegex(), "")
+            .replace("[/]".toRegex(), "").replace("[(]".toRegex(), "")
+            .replace("[)]".toRegex(), "").replace(" ".toRegex(), "")
+            .replace(",".toRegex(), "")
+    }
+
+    fun isASign(c: Char): Boolean {
+        return c == '.' || c == '-' || c == '/' || c == '(' || c == ')' || c == ',' || c == ' '
+    }
+
+    fun mask(mask: String, text: String): String {
+        var i = 0
+        var mascara = ""
+        for (m in mask.toCharArray()) {
+            if (m != '#') {
+                mascara += m
+                continue
+            }
+            mascara += try {
+                text[i]
+            } catch (e: Exception) {
+                break
+            }
+            i++
+        }
+        return mascara
+    }
+
+    fun insert(mask: String, ediTxt: EditText): TextWatcher {
+        return object : TextWatcher {
+            var isUpdating = false
+            var old = ""
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                val str = unmask(s.toString())
+                var mascara = ""
+                if (isUpdating) {
+                    old = str
+                    isUpdating = false
+                    return
+                }
+                var index = 0
+                for (i in 0 until mask.length) {
+                    val m = mask[i]
+                    if (m != '#') {
+                        if (index == str.length && str.length < old.length) {
+                            continue
+                        }
+                        mascara += m
+                        continue
+                    }
+                    mascara += try {
+                        str[index]
+                    } catch (e: Exception) {
+                        break
+                    }
+                    index++
+                }
+                if (mascara.isNotEmpty()) {
+                    var last_char = mascara[mascara.length - 1]
+                    var hadSign = false
+                    while (isASign(last_char) && str.length == old.length) {
+                        mascara = mascara.substring(0, mascara.length - 1)
+                        last_char = mascara[mascara.length - 1]
+                        hadSign = true
+                    }
+                    if (mascara.isNotEmpty() && hadSign) {
+                        mascara = mascara.substring(0, mascara.length - 1)
+                    }
+                }
+                isUpdating = true
+                ediTxt.setText(mascara)
+                ediTxt.setSelection(mascara.length)
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable) {}
+        }
+    }
 }
 
