@@ -21,8 +21,8 @@ class RegisterScreen2 : AppCompatActivity() {
         passwdFocusListener(binding)
         confirmPasswdFocusListener(binding)
 
+        binding.buttonContinuar.isEnabled = false
         binding.buttonContinuar.setOnClickListener { goToRegisterFinish(binding) }
-
         binding.buttonCancelar.setOnClickListener { cancel(binding) }
     }
 
@@ -100,6 +100,7 @@ class RegisterScreen2 : AppCompatActivity() {
                 before: Int, count: Int
             ) {
                 binding.inputFieldEmail.helperText = validEmail()
+                enableButton()
             }
         })
     }
@@ -127,6 +128,7 @@ class RegisterScreen2 : AppCompatActivity() {
                 before: Int, count: Int
             ) {
                 binding.inputFieldPassword.helperText = validPasswd()
+                enableButton()
             }
         })
     }
@@ -157,6 +159,7 @@ class RegisterScreen2 : AppCompatActivity() {
                 before: Int, count: Int
             ) {
                 binding.inputFieldPassword2.helperText = validConfirmPasswd()
+                enableButton()
             }
         })
     }
@@ -168,5 +171,13 @@ class RegisterScreen2 : AppCompatActivity() {
         if ( binding.editTextPasswd.text.toString() != binding.editTextConfirmPasswd.text.toString() )
             return resources.getString(R.string.samePsswdSupportText)
         return null
+    }
+
+    private fun enableButton(){
+        binding.buttonContinuar.isEnabled =
+            (
+                binding.inputFieldEmail.helperText == null &&
+                        binding.inputFieldPassword.helperText == null &&
+                        binding.inputFieldPassword2.helperText == null)
     }
 }

@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_prim" />
+        app:srcCompat="@drawable/logo_primaria" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,7 +52,6 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/fredoka_medium"
         android:text="Suas informações estarão seguras!"
-        android:textColor="#9C444444"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,10 +61,10 @@
         android:id="@+id/form_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:elevation="0dp"
         android:fadeScrollbars="false"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/button_continuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_secure_info">
@@ -77,7 +76,7 @@
             android:layout_marginBottom="8.33dp"
             android:hint="@string/nome_completo"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextName"
@@ -100,7 +99,7 @@
             android:layout_marginBottom="8.33dp"
             android:hint="CPF"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextCpf"
@@ -122,7 +121,7 @@
             android:layout_marginBottom="8.33dp"
             android:hint="Telefone"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPhone"
@@ -145,7 +144,7 @@
             android:hint="Data de Nascimento"
             android:inputType="none"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextBirth"
@@ -169,25 +168,21 @@
         android:id="@+id/button_continuar"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:textSize="16sp"
-        android:backgroundTint="@color/purple_main"
         android:text="@string/continuar"
-        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/button_cancelar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_register"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_cancelar"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:textSize="16sp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/cancel"
         android:textColor="@color/purple_main"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

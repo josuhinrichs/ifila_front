@@ -28,9 +28,13 @@ class RegisterScreen1 : AppCompatActivity() {
         phoneFocusListener(binding)
         birthFocusListener(binding)
 
+        binding.buttonContinuar.isEnabled = false
+
         binding.buttonContinuar.setOnClickListener{ goToRegister2(binding) }
         binding.buttonCancelar.setOnClickListener { cancel(binding) }
         binding.editTextPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
+
 
         binding.editTextBirth.inputType = InputType.TYPE_NULL;
         binding.editTextBirth.setOnClickListener{ showDatePicker(binding) }
@@ -115,8 +119,10 @@ class RegisterScreen1 : AppCompatActivity() {
             ) {
                 if(binding.editTextName.text.toString() == "")
                     binding.inputFieldName.helperText = resources.getString(R.string.required)
-                else
+                else {
                     binding.inputFieldName.helperText = null
+                }
+                enableButton()
             }
         })
     }
@@ -136,6 +142,7 @@ class RegisterScreen1 : AppCompatActivity() {
                 before: Int, count: Int
             ) {
                 binding.inputFieldCpf.helperText = validCpf()
+                enableButton()
             }
         })
     }
@@ -166,6 +173,7 @@ class RegisterScreen1 : AppCompatActivity() {
                 before: Int, count: Int
             ) {
                 binding.inputFieldPhone.helperText = validPhone()
+                enableButton()
             }
         })
     }
@@ -204,10 +212,21 @@ class RegisterScreen1 : AppCompatActivity() {
             ) {
                 if(binding.editTextBirth.text.toString() == "")
                     binding.inputFieldBirth.helperText = resources.getString(R.string.required)
-                else
+                else {
                     binding.inputFieldBirth.helperText = null
+                }
+                enableButton()
             }
         })
+    }
+
+    private fun enableButton(){
+        binding.buttonContinuar.isEnabled =
+            (
+                binding.inputFieldName.helperText == null &&
+                binding.inputFieldCpf.helperText == null &&
+                binding.inputFieldPhone.helperText == null &&
+                binding.inputFieldBirth.helperText == null)
     }
 
 }

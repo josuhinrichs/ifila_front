@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ifila_front/ifila_app/app/src/main/res/drawable/logo_prim_alt.xml" value="0.1715" />
+        <entry key="..\:/ifila_front/ifila_app/app/src/main/res/drawable/sucess_starts.xml" value="0.3675" />
+        <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen1.xml" value="0.30085470085470084" />
         <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.30085470085470084" />
+        <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen_failed.xml" value="0.33" />
+        <entry key="..\:/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen_finish.xml" value="0.33" />
       </map>
     </option>
   </component>

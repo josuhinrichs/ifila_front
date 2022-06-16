@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:padding="16dp"
     tools:context=".MainActivity">
 
@@ -16,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_prim" />
+        app:srcCompat="@drawable/logo_primaria" />
 
     <ImageView
         android:id="@+id/image_illustration_rocket"

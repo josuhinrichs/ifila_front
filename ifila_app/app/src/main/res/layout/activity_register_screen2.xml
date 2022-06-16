@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_prim" />
+        app:srcCompat="@drawable/logo_primaria" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,7 +52,6 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/fredoka_medium"
         android:text="Defina suas informações de login"
-        android:textColor="#9C444444"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,10 +61,10 @@
         android:id="@+id/linearlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:elevation="0dp"
         android:fadeScrollbars="false"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/button_continuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_error_has_occured">
@@ -75,9 +74,9 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
+            android:hint="Email"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main"
-            android:hint="Email">
+            app:helperTextTextColor="@color/red_main">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextEmail"
@@ -95,11 +94,12 @@
             android:id="@+id/input_field_password"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8.33dp"
             android:hint="Senha"
-            app:passwordToggleContentDescription="Exibir"
-            app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
             app:helperText="@string/required"
             app:helperTextTextColor="@color/red_main"
+            app:passwordToggleContentDescription="Exibir"
+            app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +109,6 @@
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="textPassword"
-                android:password="true"
                 android:textSize="14sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
 
@@ -119,9 +118,9 @@
             android:id="@+id/input_field_password2"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
+            android:hint="Confirmar Senha"
             app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main"
-            android:hint="Confirmar Senha">
+            app:helperTextTextColor="@color/red_main">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextConfirmPasswd"
@@ -141,22 +140,18 @@
         android:id="@+id/button_continuar"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:backgroundTint="@color/purple_main"
         android:text="@string/continuar"
-        android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/button_cancelar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_cancelar"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/cancel"
         android:textColor="@color/purple_main"
         android:textSize="16sp"
