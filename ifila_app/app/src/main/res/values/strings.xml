@@ -6,7 +6,7 @@
     <string name="registrar_title">Registrar</string>
     <string name="cancel">Cancelar</string>
     <string name="samePsswdTitle">Erro ao finalizar registro</string>
-    <string name="samePsswdSupportText">Senha digitada difere da senha confirmada.</string>
+    <string name="samePsswdSupportText">*Senhas diferem</string>
     <string name="samePsswdDecline">Cancelar</string>
     <string name="samePsswdAccept">Aceitar</string>
     <string name="nome_completo">Nome Completo</string>
@@ -16,5 +16,6 @@
     <string name="typeValidCpf">*Digite um CPF válido de 11 caracteres</string>
     <string name="typeValidNumber">*Digite um número válido de 11 caracteres</string>
     <string name="typeOnlyDigits">*Apenas dígitos são permitidos</string>
+    <string name="minPasswd">*A senha deve conter no mínimo 6 caracteres com pelo menos 1 número</string>
 
 </resources>

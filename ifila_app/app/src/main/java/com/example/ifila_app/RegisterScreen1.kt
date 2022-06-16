@@ -142,6 +142,10 @@ class RegisterScreen1 : AppCompatActivity() {
 
     private fun validCpf(): String?
     {
+        if(binding.editTextCpf.text.toString() == "")
+        {
+            return resources.getString(R.string.required)
+        }
         if (binding.editTextCpf.text.toString().length < 11)
             return resources.getString(R.string.typeValidCpf)
         return null
@@ -169,15 +173,16 @@ class RegisterScreen1 : AppCompatActivity() {
     private fun validPhone(): String?
     {
         val phoneText = binding.editTextPhone.text.toString()
+
+        if(phoneText == "")
+        {
+            return resources.getString(R.string.required)
+        }
         if (phoneText.length < 13)
             return resources.getString(R.string.typeValidNumber)
         if(!phoneText.matches(".*[0-9].*".toRegex()))
         {
             return resources.getString(R.string.typeOnlyDigits)
-        }
-        if(phoneText == "")
-        {
-            return resources.getString(R.string.required)
         }
         return null
     }

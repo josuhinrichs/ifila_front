@@ -75,6 +75,8 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red_main"
             android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -96,13 +98,14 @@
             android:hint="Senha"
             app:passwordToggleContentDescription="Exibir"
             app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red_main"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPasswd"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginBottom="8.33dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="textPassword"
@@ -116,13 +119,14 @@
             android:id="@+id/input_field_password2"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red_main"
             android:hint="Confirmar Senha">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextConfirmPasswd"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginBottom="8.33dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="textPassword"
@@ -158,7 +162,6 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/purple_main" />
 

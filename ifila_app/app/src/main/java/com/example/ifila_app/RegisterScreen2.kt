@@ -2,7 +2,10 @@ package com.example.ifila_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -14,30 +17,43 @@ class RegisterScreen2 : AppCompatActivity() {
         binding = ActivityRegisterScreen2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonContinuar.setOnClickListener{
-            if (binding.editTextPasswd.text == binding.editTextConfirmPasswd.text )
-                goToRegisterFinish(binding)
-            else
-                samePasswdAlert(binding)
+        emailFocusListener(binding)
+        passwdFocusListener(binding)
+        confirmPasswdFocusListener(binding)
 
-        }
+        binding.buttonContinuar.setOnClickListener { goToRegisterFinish(binding) }
+
         binding.buttonCancelar.setOnClickListener { cancel(binding) }
     }
 
     private fun goToRegisterFinish(binding: ActivityRegisterScreen2Binding){
-        val extras = intent.extras
-        if (extras != null) {
-            val name = extras.getString("name")
-            val cpf = extras.getInt("cpf")
-            val phoneNumber = extras.getInt("phoneNumber")
-            val birth = extras.getString("birth")
-            //The key argument here must match that used in the other activity
-        }
 
+        val email = binding.editTextEmail.text.toString()
+        val passwd = binding.editTextPasswd.text.toString()
 
-        val context = binding.root.context
-        val intent = Intent(context, RegisterScreenFinish::class.java)
-        context.startActivity(intent)
+        if (binding.inputFieldEmail.helperText == null &&
+            binding.inputFieldPassword.helperText == null &&
+            binding.inputFieldPassword2.helperText == null)
+        {
+            val context = binding.root.context
+            val intent = Intent(context, RegisterScreenFinish::class.java)
+
+            val extras = intent.extras
+            val name = extras?.getString("name").toString()
+            val cpf = extras?.getInt("cpf").toString()
+            val phoneNumber = extras?.getInt("phoneNumber").toString()
+            val birth = extras?.getString("birth").toString()
+
+            intent.putExtra("name", name)
+            intent.putExtra("cpf", cpf)
+            intent.putExtra("phoneNumber", phoneNumber)
+            intent.putExtra("birth", birth)
+
+            intent.putExtra("email", email)
+            intent.putExtra("password", passwd)
+
+            context.startActivity(intent)
+        } else { incompleteFields(binding) }
     }
 
     private fun cancel(binding: ActivityRegisterScreen2Binding){
@@ -47,14 +63,110 @@ class RegisterScreen2 : AppCompatActivity() {
         context.startActivity(intent)
     }
 
-    private fun samePasswdAlert(binding: ActivityRegisterScreen2Binding){
+//    private fun samePasswdAlert(binding: ActivityRegisterScreen2Binding){
+//        MaterialAlertDialogBuilder(binding.root.context)
+//            .setTitle(resources.getString(R.string.samePsswdTitle))
+//            .setIcon(R.drawable.ic_baseline_error_outline_24)
+//            .setMessage(resources.getString(R.string.samePsswdSupportText))
+//            .setPositiveButton(resources.getString(R.string.samePsswdAccept)) { dialog, which ->
+//                // Respond to positive button press
+//            }
+//            .show()
+//    }
+
+    private fun incompleteFields(binding: ActivityRegisterScreen2Binding){
         MaterialAlertDialogBuilder(binding.root.context)
-            .setTitle(resources.getString(R.string.samePsswdTitle))
+            .setTitle(resources.getString(R.string.incompleteFieldsTitle))
             .setIcon(R.drawable.ic_baseline_error_outline_24)
-            .setMessage(resources.getString(R.string.samePsswdSupportText))
+            .setMessage(resources.getString(R.string.incompleteFields))
             .setPositiveButton(resources.getString(R.string.samePsswdAccept)) { dialog, which ->
                 // Respond to positive button press
             }
             .show()
+    }
+
+    private fun emailFocusListener( binding: ActivityRegisterScreen2Binding)
+    {
+        binding.editTextEmail.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                binding.inputFieldEmail.helperText = validEmail()
+            }
+        })
+    }
+
+    private fun validEmail(): String?
+    {
+        if (binding.editTextEmail.text.toString() == "")
+            return resources.getString(R.string.required)
+
+        return null
+    }
+
+    private fun passwdFocusListener( binding: ActivityRegisterScreen2Binding )
+    {
+        binding.editTextPasswd.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                binding.inputFieldPassword.helperText = validPasswd()
+            }
+        })
+    }
+
+    private fun validPasswd(): String?
+    {
+        if ( binding.editTextPasswd.text.toString() == "" )
+            return resources.getString(R.string.required)
+        if (binding.editTextPasswd.text.toString().length < 6)
+            return resources.getString(R.string.minPasswd)
+        if ( !binding.editTextPasswd.text.toString().contains( "[0-9]".toRegex() ) )
+            return resources.getString(R.string.minPasswd)
+        return null
+    }
+
+    private fun confirmPasswdFocusListener( binding: ActivityRegisterScreen2Binding )
+    {
+        binding.editTextConfirmPasswd.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                binding.inputFieldPassword2.helperText = validConfirmPasswd()
+            }
+        })
+    }
+
+    private fun validConfirmPasswd(): String?
+    {
+        if ( binding.editTextConfirmPasswd.text.toString() == "" )
+            return resources.getString(R.string.required)
+        if ( binding.editTextPasswd.text.toString() != binding.editTextConfirmPasswd.text.toString() )
+            return resources.getString(R.string.samePsswdSupportText)
+        return null
     }
 }
