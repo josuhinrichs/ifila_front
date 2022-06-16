@@ -5,25 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".RegisterScreen1">
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:max="100"
-        android:progress="33"
-        android:progressBackgroundTint="#FFBF00"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+    tools:context=".RegisterScreen2">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView3"
         android:layout_width="96dp"
         android:layout_height="36dp"
         android:layout_marginTop="28dp"
@@ -38,20 +23,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/fredoka_one"
-        android:text="@string/registrar_title"
+        android:text="Registrar"
         android:textColor="@color/purple_main"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:max="100"
+        android:progress="66"
+        android:progressBackgroundTint="#FFBF00"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/text_secure_info"
+        android:id="@+id/text_error_has_occured"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/fredoka_medium"
-        android:text="Suas informações estarão seguras!"
+        android:text="Defina suas informações de login"
         android:textColor="#9C444444"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,109 +59,77 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <LinearLayout
-        android:id="@+id/form_register"
+        android:id="@+id/linearlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:elevation="0dp"
         android:fadeScrollbars="false"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_secure_info">
+        app:layout_constraintTop_toBottomOf="@+id/text_error_has_occured">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_field_name"
+            android:id="@+id/input_field_email"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="@string/nome_completo"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
+            android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextName"
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
-                android:inputType="textPersonName"
-                android:maxLength="60"
-                android:textColorHint="#546E7A"
+                android:inputType="textEmailAddress"
                 android:textSize="16sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_field_cpf"
+            android:id="@+id/input_field_password"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8.33dp"
-            android:hint="CPF"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
+            android:hint="Senha"
+            app:passwordToggleContentDescription="Exibir"
+            app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextCpf"
+                android:id="@+id/editTextPasswd"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginBottom="8.33dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textSize="16sp"
+                android:inputType="textPassword"
+                android:password="true"
+                android:textSize="14sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_field_phone"
+            android:id="@+id/input_field_password2"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8.33dp"
-            android:hint="Telefone"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
+            android:hint="Confirmar Senha">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/editTextConfirmPasswd"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginBottom="8.33dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
-                android:inputType="phone"
-                android:maxLength="13"
-                android:phoneNumber="true"
-                android:textSize="16sp"
+                android:inputType="textPassword"
+                android:textSize="14sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_field_birth"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:hint="Data de Nascimento"
-            android:inputType="none"
-            app:helperText="@string/required"
-            app:helperTextTextColor="@color/red_main">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextBirth"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:drawableTint="#BC2A2A"
-                android:fontFamily="@font/roboto_medium"
-                android:inputType="none"
-                android:text=""
-                android:textSize="16sp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-        <!--<DatePicker
-            android:id="@+id/date_Picker"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/> -->
 
     </LinearLayout>
 
@@ -169,14 +137,14 @@
         android:id="@+id/button_continuar"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:textSize="16sp"
         android:backgroundTint="@color/purple_main"
         android:text="@string/continuar"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/button_cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_register"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -184,14 +152,14 @@
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:textSize="16sp"
         android:layout_marginBottom="36dp"
         android:text="@string/cancel"
         android:textColor="@color/purple_main"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/purple_main" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

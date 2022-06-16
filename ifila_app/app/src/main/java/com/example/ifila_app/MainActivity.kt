@@ -17,9 +17,16 @@ class MainActivity : AppCompatActivity() {
         binding.buttonRegistrar.setOnClickListener{ goToRegister(binding) }
     }
 
-    fun goToRegister(binding: ActivityMainBinding){
+    private fun goToRegister(binding: ActivityMainBinding){
         val context = binding.root.context
         val intent = Intent(context, RegisterScreen1::class.java)
+        context.startActivity(intent)
+    }
+
+
+    fun goToRegisterFailed(binding: ActivityMainBinding){
+        val context = binding.root.context
+        val intent = Intent(context, RegisterScreenFailed::class.java)
         context.startActivity(intent)
     }
 }
