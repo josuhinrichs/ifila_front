@@ -59,10 +59,10 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <LinearLayout
-        android:id="@+id/linearlayout"
+        android:id="@+id/form_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:elevation="0dp"
         android:fadeScrollbars="false"
         android:orientation="vertical"
@@ -75,15 +75,18 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="Nome Completo">
+            android:hint="@string/nome_completo"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red_main">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:maxLength="60"
+                android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="textPersonName"
+                android:maxLength="60"
                 android:textColorHint="#546E7A"
                 android:textSize="16sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
@@ -95,14 +98,18 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="CPF">
+            android:hint="CPF"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red_main">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCpf"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="number"
+                android:maxLength="11"
                 android:textSize="16sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
 
@@ -113,14 +120,18 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="Telefone">
+            android:hint="Telefone"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red_main">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPhone"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
                 android:inputType="phone"
+                android:maxLength="13"
                 android:phoneNumber="true"
                 android:textSize="16sp"
                 app:textInputLayoutFocusedRectEnabled="false" />
@@ -131,18 +142,26 @@
             android:id="@+id/input_field_birth"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:hint="Data de Nascimento">
+            android:hint="Data de Nascimento"
+            android:inputType="none"
+            app:helperText="@string/required"
+            app:helperTextTextColor="@color/red_main">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextBirth"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginBottom="8.33dp"
                 android:drawableTint="#BC2A2A"
                 android:fontFamily="@font/roboto_medium"
-                android:inputType="date"
+                android:inputType="none"
+                android:text=""
                 android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <!--<DatePicker
+            android:id="@+id/date_Picker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/> -->
 
     </LinearLayout>
 
@@ -157,7 +176,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
+        app:layout_constraintTop_toBottomOf="@+id/form_register"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button

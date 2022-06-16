@@ -78,6 +78,7 @@
             android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:drawableTint="#BC2A2A"
@@ -98,6 +99,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPasswd"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="8.33dp"
@@ -117,6 +119,7 @@
             android:hint="Confirmar Senha">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextConfirmPasswd"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="8.33dp"
