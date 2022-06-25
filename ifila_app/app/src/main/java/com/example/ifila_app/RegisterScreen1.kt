@@ -33,8 +33,8 @@ class RegisterScreen1 : AppCompatActivity() {
         binding.buttonContinuar2.setOnClickListener{ goToRegister2(binding) }
         binding.buttonCancelar2.setOnClickListener { cancel(binding) }
         binding.editTextPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-        val teste = Mask.insert(Mask.CPF_MASK, binding.editTextCpf)
-        binding.editTextCpf.addTextChangedListener( teste )
+        val cpfMask = Mask.insert(Mask.CPF_MASK, binding.editTextCpf)
+        binding.editTextCpf.addTextChangedListener( cpfMask )
 
 
         binding.editTextBirth.inputType = InputType.TYPE_NULL;

@@ -150,7 +150,6 @@
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
                     android:hint="Data de Nascimento"
-                    android:inputType="none"
                     app:helperText="@string/required">
 
                     <com.google.android.material.textfield.TextInputEditText
