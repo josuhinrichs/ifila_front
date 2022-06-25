@@ -16,7 +16,7 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="DialogTheme" parent="Theme.Material3.Light.Dialog">
+    <style name="DialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorAccent">@color/purple_main</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
         <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
