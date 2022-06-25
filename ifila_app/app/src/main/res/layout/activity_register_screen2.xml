@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -87,14 +88,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8.33dp"
                     android:hint="Email"
-                    app:helperText="@string/required"
-                    app:helperTextTextColor="@color/red_main">
+                    app:helperText="@string/required">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextEmail"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:drawableTint="#BC2A2A"
                         android:fontFamily="@font/roboto_medium"
                         android:inputType="textEmailAddress"
                         android:textSize="16sp"
@@ -109,7 +108,6 @@
                     android:layout_marginBottom="8.33dp"
                     android:hint="Senha"
                     app:helperText="@string/required"
-                    app:helperTextTextColor="@color/red_main"
                     app:passwordToggleContentDescription="Exibir"
                     app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
                     app:passwordToggleEnabled="true">
@@ -118,7 +116,6 @@
                         android:id="@+id/editTextPasswd"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:drawableTint="#BC2A2A"
                         android:fontFamily="@font/roboto_medium"
                         android:inputType="textPassword"
                         android:textSize="14sp"
@@ -131,14 +128,12 @@
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
                     android:hint="Confirmar Senha"
-                    app:helperText="@string/required"
-                    app:helperTextTextColor="@color/red_main">
+                    app:helperText="@string/required">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextConfirmPasswd"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:drawableTint="#BC2A2A"
                         android:fontFamily="@font/roboto_medium"
                         android:inputType="textPassword"
                         android:textSize="14sp"

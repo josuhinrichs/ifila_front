@@ -114,7 +114,6 @@
                         android:id="@+id/editTextCpf"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:drawableTint="#BC2A2A"
                         android:fontFamily="@font/roboto_medium"
                         android:inputType="number"
                         android:maxLength="14"
