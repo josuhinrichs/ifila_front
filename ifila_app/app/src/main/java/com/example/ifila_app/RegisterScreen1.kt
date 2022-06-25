@@ -28,10 +28,10 @@ class RegisterScreen1 : AppCompatActivity() {
         phoneFocusListener(binding)
         birthFocusListener(binding)
 
-        binding.buttonContinuar.isEnabled = false
+        binding.buttonContinuar2.isEnabled = false
 
-        binding.buttonContinuar.setOnClickListener{ goToRegister2(binding) }
-        binding.buttonCancelar.setOnClickListener { cancel(binding) }
+        binding.buttonContinuar2.setOnClickListener{ goToRegister2(binding) }
+        binding.buttonCancelar2.setOnClickListener { cancel(binding) }
         binding.editTextPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         val teste = Mask.insert(Mask.CPF_MASK, binding.editTextCpf)
         binding.editTextCpf.addTextChangedListener( teste )
@@ -226,7 +226,7 @@ class RegisterScreen1 : AppCompatActivity() {
     }
 
     private fun enableButton(){
-        binding.buttonContinuar.isEnabled =
+        binding.buttonContinuar2.isEnabled =
             (
                 binding.inputFieldName.helperText == null &&
                 binding.inputFieldCpf.helperText == null &&
