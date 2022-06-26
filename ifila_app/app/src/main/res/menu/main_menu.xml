@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:elevation="5dp"
+    >
+
+    <item
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Configurações" />
+    <item
+        android:icon="@drawable/ic_baseline_store_24"
+        android:title="Visualizar Pefil" />
+    <item
+        android:icon="@drawable/ic_baseline_store_24"
+        android:title="Sair" />
+</menu>
