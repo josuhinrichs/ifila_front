@@ -4,11 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.regex.Pattern
 
+val EMAIL_ADDRESS: Pattern = Pattern.compile(
+    "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+            "\\@" +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+            "(" +
+            "\\." +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+            ")+"
+)
 class RegisterScreen2 : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterScreen2Binding
 
@@ -109,8 +119,14 @@ class RegisterScreen2 : AppCompatActivity() {
     {
         if (binding.editTextEmail.text.toString() == "")
             return resources.getString(R.string.required)
+        else{
+            val pattern: Pattern = Patterns.EMAIL_ADDRESS
+            if (pattern.matcher(binding.editTextEmail.text.toString()).matches())
+                return null
+            else
+                return resources.getString(R.string.invalidEmailFormat)
+        }
 
-        return null
     }
 
     private fun passwdFocusListener( binding: ActivityRegisterScreen2Binding )

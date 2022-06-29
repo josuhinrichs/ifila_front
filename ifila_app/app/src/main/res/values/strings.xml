@@ -19,5 +19,6 @@
     <string name="minPasswd">*A senha deve conter no mínimo 6 caracteres com pelo menos 1 número</string>
     <string name="invalidBirth">*Você deve ter mais de 14 anos</string>
     <string name="invalidFutureDate">*Data inválida</string>
+    <string name="invalidEmailFormat">*Formato de email inválido</string>
 
 </resources>
