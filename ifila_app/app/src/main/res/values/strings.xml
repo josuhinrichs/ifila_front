@@ -20,5 +20,8 @@
     <string name="invalidBirth">*Você deve ter mais de 14 anos</string>
     <string name="invalidFutureDate">*Data inválida</string>
     <string name="invalidEmailFormat">*Formato de email inválido</string>
+    <string name="bem_vindo">Bem-Vindo!</string>
+    <string name="definaLogin">Defina suas informações de login</string>
+    <string name="buttonCadastrar">Cadastrar</string>
 
 </resources>
