@@ -23,5 +23,7 @@
     <string name="bem_vindo">Bem-Vindo!</string>
     <string name="definaLogin">Defina suas informações de login</string>
     <string name="buttonCadastrar">Cadastrar</string>
+    <string name="preCadastroFila">Em instantes, sua fila será cadastrada!</string>
+    <string name="criar_fila">Criar fila</string>
 
 </resources>
