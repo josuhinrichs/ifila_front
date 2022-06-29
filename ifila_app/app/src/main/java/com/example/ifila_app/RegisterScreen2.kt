@@ -10,15 +10,7 @@ import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.regex.Pattern
 
-val EMAIL_ADDRESS: Pattern = Pattern.compile(
-    "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-            "\\@" +
-            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-            "(" +
-            "\\." +
-            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-            ")+"
-)
+
 class RegisterScreen2 : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterScreen2Binding
 
@@ -123,8 +115,7 @@ class RegisterScreen2 : AppCompatActivity() {
             val pattern: Pattern = Patterns.EMAIL_ADDRESS
             if (pattern.matcher(binding.editTextEmail.text.toString()).matches())
                 return null
-            else
-                return resources.getString(R.string.invalidEmailFormat)
+            return resources.getString(R.string.invalidEmailFormat)
         }
 
     }

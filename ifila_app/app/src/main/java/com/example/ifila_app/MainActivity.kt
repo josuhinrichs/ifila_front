@@ -15,11 +15,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonRegistrar.setOnClickListener{ goToRegister(binding) }
+        binding.buttonEntrar.setOnClickListener{ goToLogin(binding) }
     }
 
     private fun goToRegister(binding: ActivityMainBinding){
         val context = binding.root.context
         val intent = Intent(context, RegisterScreen1::class.java)
+        context.startActivity(intent)
+    }
+
+    private fun goToLogin(binding: ActivityMainBinding){
+        val context = binding.root.context
+        val intent = Intent(context, LoginScreen::class.java)
         context.startActivity(intent)
     }
 
