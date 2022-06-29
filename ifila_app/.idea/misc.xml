@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_enter_code_screen.xml" value="0.2129115006412997" />
+        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_estab_without_queue_screen.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_login_screen.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_main.xml" value="0.16953762466001812" />
+        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_manage_queue.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen1.xml" value="0.16953762466001812" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.16953762466001812" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen_finish.xml" value="0.16953762466001812" />
