@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManageQueue1">
+
+
+    <TextView
+        android:id="@+id/nome_estabelecimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/nome_do_local"
+        android:textColor="@color/yellow_main"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="85dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/text_codigoFila"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Código - ABC1234"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_estabelecimento" />
+
+
+    <TextView
+        android:id="@+id/text_estadoFila"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="@string/fila_ativa"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_codigoFila" />
+
+    <TextView
+        android:id="@+id/text_tamFila"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="@string/tamanho_atual"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_estadoFila" />
+
+    <TextView
+        android:id="@+id/text_atendimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="@string/atendimento"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/chamar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.889" />
+
+    <Button
+        android:id="@+id/chamar"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:text="Chamar"
+        android:textColor="@color/purple_main"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_atender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/purple_main" />
+
+    <Button
+        android:id="@+id/button_atender"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@color/purple_main"
+        android:text="@string/atender"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_pular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_pular"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="50dp"
+        android:text="Pular"
+        android:textColor="@color/purple_main"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_fechar_fila"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/purple_main" />
+
+    <Button
+        android:id="@+id/button_fechar_fila"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/red_main"
+        android:text="Fechar fila"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="95dp" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

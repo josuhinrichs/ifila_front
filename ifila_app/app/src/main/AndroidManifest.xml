@@ -14,6 +14,18 @@
         android:theme="@style/Theme.Ifila_app"
         tools:targetApi="31">
         <activity
+            android:name=".ClientPosQueue3"
+            android:exported="false" />
+        <activity
+            android:name=".ClientPosQueue2"
+            android:exported="false" />
+        <activity
+            android:name=".ClientPosQueue1"
+            android:exported="false" />
+        <activity
+            android:name=".ManageQueue1"
+            android:exported="false" />
+        <activity
             android:name=".CreateQueueScreen"
             android:exported="false" />
         <activity

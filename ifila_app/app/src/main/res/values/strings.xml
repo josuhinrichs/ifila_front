@@ -25,5 +25,10 @@
     <string name="buttonCadastrar">Cadastrar</string>
     <string name="preCadastroFila">Em instantes, sua fila será cadastrada!</string>
     <string name="criar_fila">Criar fila</string>
+    <string name="nome_do_local">Nome do Local</string>
+    <string name="atender">Atender</string>
+    <string name="fila_ativa">Fila Ativa</string>
+    <string name="atendimento">Atendimento - 123</string>
+    <string name="tamanho_atual">Tamanho atual - XX</string>
 
 </resources>
