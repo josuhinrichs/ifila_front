@@ -1,7 +1,9 @@
 package com.example.ifila_app
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
@@ -9,9 +11,14 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.widget.DatePicker
 import android.widget.EditText
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatter.ofPattern
 import java.util.*
 
 
@@ -215,14 +222,24 @@ class RegisterScreen1 : AppCompatActivity() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                if(binding.editTextBirth.text.toString() == "")
-                    binding.inputFieldBirth.helperText = resources.getString(R.string.required)
-                else {
-                    binding.inputFieldBirth.helperText = null
-                }
+                binding.inputFieldBirth.helperText = validBirth()
+
                 enableButton()
             }
         })
+    }
+
+    private fun validBirth(): String?
+    {
+        if(binding.editTextBirth.text.toString() == "")
+            return resources.getString(R.string.required)
+        else{
+            val formatter = ofPattern("dd/MM/yyyy") //Formato da string recebida pela caixa de texto
+            val birthDate = LocalDate.parse(binding.editTextBirth.text.toString(), formatter) //Transformar em LocalDate
+            if (birthDate.plusYears(14).isAfter(LocalDate.now())) //Verificar se a pessoa já tem 14 anos
+                return resources.getString(R.string.invalidBirth)
+        }
+        return null
     }
 
     private fun enableButton(){

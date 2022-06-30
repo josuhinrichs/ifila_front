@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EnterCodeScreen">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
+        android:text="Entrar por código"
+        android:textColor="@color/purple_main"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <TextView
+        android:id="@+id/text_codeSolicitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Digite um código válido de\nestabelecimento"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="195dp" />
+
+    <LinearLayout
+        android:id="@+id/form_byCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:elevation="0dp"
+        android:fadeScrollbars="false"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_codeSolicitation">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_field_name"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.33dp"
+            android:hint="Código"
+            app:helperText="@string/required">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCode"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:drawableTint="#BC2A2A"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="text"
+                android:maxLength="60"
+                android:textColorHint="#546E7A"
+                android:textSize="16sp"
+                app:textInputLayoutFocusedRectEnabled="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--<DatePicker
+        android:id="@+id/date_Picker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/> -->
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_buscarEst"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:text="Buscar"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_byCode" />
+
+    <Button
+        android:id="@+id/button_cancelar2"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:text="@string/cancel"
+        android:textColor="@color/purple_main"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_buscarEst"
+        app:strokeColor="@color/purple_main" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

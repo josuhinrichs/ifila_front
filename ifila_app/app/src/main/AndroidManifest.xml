@@ -16,6 +16,18 @@
         android:theme="@style/Theme.Ifila_app"
         tools:targetApi="31">
         <activity
+            android:name=".CreateQueueScreen"
+            android:exported="false" />
+        <activity
+            android:name=".EstabWithoutQueueScreen"
+            android:exported="false" />
+        <activity
+            android:name=".EnterCodeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false" />
+        <activity
             android:name=".ManageQueue"
             android:exported="false"
             android:label="@string/title_activity_manage_queue"
