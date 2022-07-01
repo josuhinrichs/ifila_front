@@ -8,7 +8,7 @@
     tools:context=".RegisterScreenFinish">
 
     <Button
-        android:id="@+id/button_vamosla2"
+        android:id="@+id/button_vamosla"
         android:layout_width="220dp"
         android:layout_height="55dp"
         android:layout_marginBottom="36dp"
@@ -92,7 +92,7 @@
         android:text="Você está preparado para uma nova\nforma de fazer filas?"
         android:textColor="@color/purple_main"
         android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_vamosla2"
+        app:layout_constraintBottom_toTopOf="@+id/button_vamosla"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

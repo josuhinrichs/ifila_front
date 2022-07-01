@@ -4,15 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.IOException
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -30,6 +40,10 @@ val EMAIL_ADDRESS: Pattern = Pattern.compile(
 )
 class RegisterScreen2 : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterScreen2Binding
+
+    companion object {
+        const val URL_SETUP_USER = "http://ifila.com.br:8000/"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,29 +76,38 @@ class RegisterScreen2 : AppCompatActivity() {
     }
 
     private fun setupNewUser (jsonObject: JSONObject) {
-        val client = OkHttpClient()
-        val mediaType = "application/json; charset=utf-8".toMediaType()
-        val body = jsonObject.toString().toRequestBody(mediaType)
-        val request: Request = Request.Builder()
-            .url("http://ifila.com.br:8000/usuarios?role=user")
-            .post(body)
+        val jsonObjectString = jsonObject.toString()
+        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(URL_SETUP_USER)
             .build()
+        val service = retrofit.create(MainAPI::class.java)
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                print("COCOCOOCOPSKAOKSOAKOSKAO")
-                goToFailed()
-            }
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the POST request and get response
+            val response = service.createUser(requestBody)
 
-            override fun onResponse(call: Call, response: Response) {
-                print("COCOCOOCOPSKAOKSOAKOSKAO")
-                when(response.code) {
-                    201 -> goToSuccess()
-                    200 -> goToSuccess()
-                    else -> goToFailed()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d("Pretty Printed JSON :", prettyJson)
+                    goToSuccess()
+
+                } else {
+                    goToFailed()
                 }
             }
-        })
+        }
+
     }
 
     private fun goToRegisterFinish(binding: ActivityRegisterScreen2Binding){
@@ -126,6 +149,9 @@ class RegisterScreen2 : AppCompatActivity() {
     private fun goToSuccess(){
         val context = binding.root.context
         val intent = Intent(context, RegisterScreenFinish::class.java)
+
+        intent.putExtra("email", binding.editTextEmail.text.toString())
+        intent.putExtra("password", binding.editTextPasswd.text.toString())
         context.startActivity(intent)
     }
 
