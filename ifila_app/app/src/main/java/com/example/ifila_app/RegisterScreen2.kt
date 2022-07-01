@@ -8,8 +8,12 @@ import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.IOException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,17 +54,37 @@ class RegisterScreen2 : AppCompatActivity() {
             jsonObject.put("email", email)
             jsonObject.put("numeroCelular", phoneNumber)
             jsonObject.put("cpf", cpf)
-            val response = BackManager.postRequest(jsonObject)
-            val responseCode = response?.code
-            val responseBody = response?.body.toString()
-
-            when(responseCode){
-                201 -> goToSuccess()
-            }
         } catch (e: JSONException) {
             e.printStackTrace()
             goToFailed()
         }
+        setupNewUser(jsonObject)
+    }
+
+    private fun setupNewUser (jsonObject: JSONObject) {
+        val client = OkHttpClient()
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+        val body = jsonObject.toString().toRequestBody(mediaType)
+        val request: Request = Request.Builder()
+            .url("http://ifila.com.br:8000/usuarios?role=user")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                print("COCOCOOCOPSKAOKSOAKOSKAO")
+                goToFailed()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                print("COCOCOOCOPSKAOKSOAKOSKAO")
+                when(response.code) {
+                    201 -> goToSuccess()
+                    200 -> goToSuccess()
+                    else -> goToFailed()
+                }
+            }
+        })
     }
 
     private fun goToRegisterFinish(binding: ActivityRegisterScreen2Binding){
@@ -73,14 +97,14 @@ class RegisterScreen2 : AppCompatActivity() {
             binding.inputFieldPassword2.helperText == null)
         {
             val context = binding.root.context
-            val intent = Intent(context, RegisterScreenFinish::class.java)
-            val extras = intent.extras
-            val name = extras?.getString("name").toString()
-            val cpf = extras?.getInt("cpf").toString()
-            val phoneNumber = extras?.getInt("phoneNumber").toString()
-            val birth = extras?.getString("birth").toString()
-            val birthFormatted = formatDate(birth,"dd/mm/yyyy", "yyyy-mm-dd" ) ?: birth
-            print(birthFormatted)
+            val lastIntent = intent
+            val extras = lastIntent.extras
+            val name = extras?.get("name").toString()
+//            val name = extras?.getExtraString("name").toString()
+            val cpf = extras?.get("cpf").toString()
+            val phoneNumber = extras?.get("phoneNumber").toString()
+            val birth = extras?.get("birth").toString()
+            val birthFormatted = formatDate(birth,"dd/mm/yyyy", "yyyy-mm-dd" )
 //
 //            intent.putExtra("name", name)
 //            intent.putExtra("cpf", cpf)
@@ -89,7 +113,7 @@ class RegisterScreen2 : AppCompatActivity() {
 //
 //            intent.putExtra("email", email)
 //            intent.putExtra("password", passwd)
-            //sendForm(email, passwd, name, cpf, phoneNumber, birthFormatted)
+            sendForm(email, passwd, name, cpf, phoneNumber, birthFormatted)
         } else { incompleteFields(binding) }
     }
 
@@ -227,11 +251,10 @@ class RegisterScreen2 : AppCompatActivity() {
 
     @Throws(ParseException::class)
     fun formatDate(
-        daate: String,
+        date: String,
         initDateFormat: String,
         endDateFormat: String
-    ): String? {
-        val date = "18/09/2001"
+    ): String {
         val initDate: Date = SimpleDateFormat(initDateFormat).parse(date)
         val formatter = SimpleDateFormat(endDateFormat)
         return formatter.format(initDate)

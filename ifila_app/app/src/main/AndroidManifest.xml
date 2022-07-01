@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ifila_app"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".CreateQueueScreen"
@@ -27,11 +28,6 @@
         <activity
             android:name=".LoginScreen"
             android:exported="false" />
-        <activity
-            android:name=".ManageQueue"
-            android:exported="false"
-            android:label="@string/title_activity_manage_queue"
-            android:theme="@style/Theme.Ifila_app.NoActionBar" />
         <activity
             android:name=".RegisterScreenFailed"
             android:exported="false" />

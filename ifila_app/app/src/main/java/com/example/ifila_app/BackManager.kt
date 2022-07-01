@@ -1,12 +1,11 @@
 package com.example.ifila_app
 
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
+
 
 class BackManager {
     companion object Requester {
@@ -16,17 +15,37 @@ class BackManager {
         fun postRequest(jsonObject: JSONObject): Response? {
             val body = jsonObject.toString().toRequestBody(mediaType)
             val request: Request = Request.Builder()
-                .url("http://YOUR_URL/")
+                .url("http://ifila.com.br:8000/usuarios?role=user")
                 .post(body)
                 .build()
-            var response: Response? = null
-            try {
-                response = client.newCall(request).execute()
-                return response
-            } catch (e: IOException) {
-                e.printStackTrace()
-                return null
+            var responseRequest: Response? = null
+
+            client.newCall(request).enqueue(object :Callback{
+                override fun onFailure(call: Call, e: IOException) {
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    responseRequest = response
+                }
+            })
+            return responseRequest
+
             }
-        }
+//            try {
+//                client.newCall(request).enqueue(object : Callback {
+//                    override fun onResponse(call: Call, response: Response
+//                    ) {
+//                        responseRequest = response
+//                    }
+//
+//                    override fun onFailure(call: Call, e: IOException) {
+//                    }
+//                })
+//                return responseRequest?.code
+//            } catch (e: IOException) {
+//                e.printStackTrace()
+//                return null
+//            }
+
     }
 }
