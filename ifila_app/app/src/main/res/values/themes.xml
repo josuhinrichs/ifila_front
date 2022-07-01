@@ -29,4 +29,13 @@
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/yellow_main</item>
     </style>
+
+    <style name="Theme.Ifila_app.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Ifila_app.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Ifila_app.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

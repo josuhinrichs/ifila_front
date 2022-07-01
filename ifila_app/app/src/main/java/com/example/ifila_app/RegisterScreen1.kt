@@ -56,9 +56,9 @@ class RegisterScreen1 : AppCompatActivity() {
 
     private fun goToRegister2(binding: ActivityRegisterScreen1Binding){
         val name = binding.editTextName.text.toString()
-        val cpf = binding.editTextName.text.toString()
-        val phoneNumber = binding.editTextPhone.toString()
-        val birth = binding.editTextBirth.toString()
+        val cpf = binding.editTextCpf.text.toString()
+        val phoneNumber = binding.editTextPhone.text.toString()
+        val birth = binding.editTextBirth.text.toString()
 
         if (binding.inputFieldName.helperText == null &&
             binding.inputFieldCpf.helperText == null &&

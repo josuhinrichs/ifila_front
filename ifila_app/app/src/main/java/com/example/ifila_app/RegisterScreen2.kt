@@ -4,10 +4,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.IOException
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.regex.Pattern
 
 val EMAIL_ADDRESS: Pattern = Pattern.compile(
@@ -21,6 +40,10 @@ val EMAIL_ADDRESS: Pattern = Pattern.compile(
 )
 class RegisterScreen2 : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterScreen2Binding
+
+    companion object {
+        const val URL_SETUP_USER = "http://ifila.com.br:8000/"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +59,57 @@ class RegisterScreen2 : AppCompatActivity() {
         binding.buttonCancelar.setOnClickListener { cancel(binding) }
     }
 
+    private fun sendForm(email: String, passwd: String, name: String, cpf: String, phoneNumber: String, birth: String){
+        val jsonObject = JSONObject()
+        try {
+            jsonObject.put("nome", name)
+            jsonObject.put("dataDeNascimento", birth)
+            jsonObject.put("senha", passwd)
+            jsonObject.put("email", email)
+            jsonObject.put("numeroCelular", phoneNumber)
+            jsonObject.put("cpf", cpf)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+            goToFailed()
+        }
+        setupNewUser(jsonObject)
+    }
+
+    private fun setupNewUser (jsonObject: JSONObject) {
+        val jsonObjectString = jsonObject.toString()
+        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the POST request and get response
+            val response = service.createUser(requestBody)
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d("Pretty Printed JSON :", prettyJson)
+                    goToSuccess()
+
+                } else {
+                    goToFailed()
+                }
+            }
+        }
+
+    }
+
     private fun goToRegisterFinish(binding: ActivityRegisterScreen2Binding){
 
         val email = binding.editTextEmail.text.toString()
@@ -46,24 +120,39 @@ class RegisterScreen2 : AppCompatActivity() {
             binding.inputFieldPassword2.helperText == null)
         {
             val context = binding.root.context
-            val intent = Intent(context, RegisterScreenFinish::class.java)
-
-            val extras = intent.extras
-            val name = extras?.getString("name").toString()
-            val cpf = extras?.getInt("cpf").toString()
-            val phoneNumber = extras?.getInt("phoneNumber").toString()
-            val birth = extras?.getString("birth").toString()
-
-            intent.putExtra("name", name)
-            intent.putExtra("cpf", cpf)
-            intent.putExtra("phoneNumber", phoneNumber)
-            intent.putExtra("birth", birth)
-
-            intent.putExtra("email", email)
-            intent.putExtra("password", passwd)
-
-            context.startActivity(intent)
+            val lastIntent = intent
+            val extras = lastIntent.extras
+            val name = extras?.get("name").toString()
+//            val name = extras?.getExtraString("name").toString()
+            val cpf = extras?.get("cpf").toString()
+            val phoneNumber = extras?.get("phoneNumber").toString()
+            val birth = extras?.get("birth").toString()
+            val birthFormatted = formatDate(birth,"dd/mm/yyyy", "yyyy-mm-dd" )
+//
+//            intent.putExtra("name", name)
+//            intent.putExtra("cpf", cpf)
+//            intent.putExtra("phoneNumber", phoneNumber)
+//            intent.putExtra("birth", birth)
+//
+//            intent.putExtra("email", email)
+//            intent.putExtra("password", passwd)
+            sendForm(email, passwd, name, cpf, phoneNumber, birthFormatted)
         } else { incompleteFields(binding) }
+    }
+
+    private fun goToFailed(){
+        val context = binding.root.context
+        val intent = Intent(context, RegisterScreenFailed::class.java)
+        context.startActivity(intent)
+    }
+
+    private fun goToSuccess(){
+        val context = binding.root.context
+        val intent = Intent(context, RegisterScreenFinish::class.java)
+
+        intent.putExtra("email", binding.editTextEmail.text.toString())
+        intent.putExtra("password", binding.editTextPasswd.text.toString())
+        context.startActivity(intent)
     }
 
     private fun cancel(binding: ActivityRegisterScreen2Binding){
@@ -72,17 +161,6 @@ class RegisterScreen2 : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         context.startActivity(intent)
     }
-
-//    private fun samePasswdAlert(binding: ActivityRegisterScreen2Binding){
-//        MaterialAlertDialogBuilder(binding.root.context)
-//            .setTitle(resources.getString(R.string.samePsswdTitle))
-//            .setIcon(R.drawable.ic_baseline_error_outline_24)
-//            .setMessage(resources.getString(R.string.samePsswdSupportText))
-//            .setPositiveButton(resources.getString(R.string.samePsswdAccept)) { dialog, which ->
-//                // Respond to positive button press
-//            }
-//            .show()
-//    }
 
     private fun incompleteFields(binding: ActivityRegisterScreen2Binding){
         MaterialAlertDialogBuilder(binding.root.context)
@@ -195,5 +273,16 @@ class RegisterScreen2 : AppCompatActivity() {
                 binding.inputFieldEmail.helperText == null &&
                         binding.inputFieldPassword.helperText == null &&
                         binding.inputFieldPassword2.helperText == null)
+    }
+
+    @Throws(ParseException::class)
+    fun formatDate(
+        date: String,
+        initDateFormat: String,
+        endDateFormat: String
+    ): String {
+        val initDate: Date = SimpleDateFormat(initDateFormat).parse(date)
+        val formatter = SimpleDateFormat(endDateFormat)
+        return formatter.format(initDate)
     }
 }
