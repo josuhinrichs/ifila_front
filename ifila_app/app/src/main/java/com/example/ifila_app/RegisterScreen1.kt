@@ -103,8 +103,8 @@ class RegisterScreen1 : AppCompatActivity() {
 
         val datePicker = DatePickerDialog(binding.root.context,R.style.DialogTheme,
             { _: DatePicker, mYear, mMonth, mDay ->
-                val newDay = if(day < 10) "0$mDay" else mDay.toString()
-                val newMonth = if(mMonth < 10) "0${mMonth+1}" else (mMonth+1).toString()
+                val newDay = if(mDay < 10) "0$mDay" else mDay.toString()
+                val newMonth = if(mMonth < 9) "0${mMonth+1}" else (mMonth+1).toString()
 
                 binding.editTextBirth.setText("$newDay/$newMonth/$mYear")
             }, year, month, day )
