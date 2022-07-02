@@ -119,7 +119,7 @@ class RegisterScreen2 : AppCompatActivity() {
             val cpf = extras?.get("cpf").toString()
             val phoneNumber = extras?.get("phoneNumber").toString()
             val birth = extras?.get("birth").toString()
-            val birthFormatted = formatDate(birth,"dd/mm/yyyy", "yyyy-mm-dd" )
+            
 //
 //            intent.putExtra("name", name)
 //            intent.putExtra("cpf", cpf)
@@ -128,7 +128,7 @@ class RegisterScreen2 : AppCompatActivity() {
 //
 //            intent.putExtra("email", email)
 //            intent.putExtra("password", passwd)
-            sendForm(email, passwd, name, cpf, phoneNumber, birthFormatted)
+            sendForm(email, passwd, name, cpf, phoneNumber, birth)
         } else { incompleteFields(binding) }
     }
 
