@@ -10,7 +10,7 @@
         android:id="@+id/image_ifila_logo"
         android:layout_width="128dp"
         android:layout_height="48dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,12 +35,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/fredoka_medium"
-        android:text="@string/definaLogin"
+        android:text="Faça login na sua conta"
         android:textColor="@color/gray_main"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bem_vindo" />
+
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="wrap_content"
@@ -58,8 +59,7 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="Email"
-            app:helperText="@string/required">
+            android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextEmail"
@@ -78,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
             android:hint="Senha"
-            app:helperText="@string/required"
             app:passwordToggleContentDescription="Exibir"
             app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
             app:passwordToggleEnabled="true">
@@ -100,28 +99,25 @@
         android:id="@+id/button_entrar"
         android:layout_width="220dp"
         android:layout_height="55dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="@color/yellow_main"
         android:text="Entrar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
-        tools:layout_editor_absoluteY="665dp" />
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout" />
 
     <Button
-        android:id="@+id/button_cancelar"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="220dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/buttonCadastrar"
-        android:textColor="@color/purple_main"
-        android:textSize="16sp"
+        android:id="@+id/button_cadastrar"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Não tem uma conta? Cadastre aqui"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_entrar"
-        app:strokeColor="@color/purple_main" />
+        app:layout_constraintTop_toBottomOf="@+id/button_entrar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

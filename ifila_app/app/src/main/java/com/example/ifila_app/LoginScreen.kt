@@ -3,10 +3,7 @@ package com.example.ifila_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.JsonToken
-import android.util.Log
 import com.example.ifila_app.databinding.ActivityLoginScreenBinding
-import com.example.ifila_app.databinding.ActivityRegisterScreenFinishBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
