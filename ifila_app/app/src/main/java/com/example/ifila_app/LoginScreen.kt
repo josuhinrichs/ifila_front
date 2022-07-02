@@ -1,8 +1,9 @@
 package com.example.ifila_app
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityLoginScreenBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -24,6 +25,7 @@ class LoginScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonEntrar.setOnClickListener { startLogin() }
+        binding.buttonCadastrar.setOnClickListener { signUp() }
     }
 
     private fun startLogin(){
@@ -79,6 +81,7 @@ class LoginScreen : AppCompatActivity() {
                     }
 
                 } else {
+                    binding.textLoginInvalido.visibility = View.VISIBLE
                 }
             }
         }
@@ -90,6 +93,7 @@ class LoginScreen : AppCompatActivity() {
         val intent = Intent(context, EnterCodeScreen::class.java)
 
         intent.putExtra("token", token)
+        finish()
         context.startActivity(intent)
     }
 
@@ -98,6 +102,15 @@ class LoginScreen : AppCompatActivity() {
         val intent = Intent(context, EstabWithoutQueueScreen::class.java)
 
         intent.putExtra("token", token)
+        context.startActivity(intent)
+    }
+
+    fun signUp(){
+        val context = binding.root.context
+        val intent = Intent(context, RegisterScreen1::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        finish()
         context.startActivity(intent)
     }
 }
