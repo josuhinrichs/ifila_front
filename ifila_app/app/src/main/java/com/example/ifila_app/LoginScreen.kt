@@ -10,8 +10,6 @@ import android.util.Patterns
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityLoginScreenBinding
-import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
-import com.example.ifila_app.databinding.ActivityRegisterScreenFinishBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
@@ -122,7 +120,7 @@ class LoginScreen : AppCompatActivity() {
     private fun validEmail(): String?
     {
         if (binding.editTextEmail.text.toString() == "")
-            return resources.getString(R.string.required)
+            return resources.getString(R.string.digite_email)
         else{
             val pattern: Pattern = Patterns.EMAIL_ADDRESS
             if (pattern.matcher(binding.editTextEmail.text.toString()).matches())
@@ -155,7 +153,7 @@ class LoginScreen : AppCompatActivity() {
     private fun validPasswd(): String?
     {
         if ( binding.editTextPasswd.text.toString() == "" )
-            return resources.getString(R.string.required)
+            return resources.getString(R.string.digite_senha)
         return null
     }
 

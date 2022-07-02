@@ -59,6 +59,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
+            app:helperText="Digite o seu email"
             android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -80,6 +81,7 @@
             android:hint="Senha"
             app:passwordToggleContentDescription="Exibir"
             app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
+            app:helperText="Digite a sua senha"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -99,8 +101,8 @@
         android:id="@+id/button_entrar"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:layout_marginTop="100dp"
-        android:backgroundTint="@color/yellow_main"
+        android:layout_marginTop="80dp"
+        android:enabled="false"
         android:text="Entrar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
@@ -116,6 +118,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_medium"
         android:text="Não tem uma conta? Cadastre aqui"
+        android:textColor="@color/yellow_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_entrar" />

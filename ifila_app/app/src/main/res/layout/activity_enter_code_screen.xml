@@ -7,6 +7,20 @@
     tools:context=".EnterCodeScreen">
 
     <TextView
+        android:id="@+id/text_ou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Ou"
+        android:textAlignment="center"
+        android:textColor="@color/gray_main"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_buscarEst" />
+
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +40,8 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/fredoka_medium"
         android:text="@string/digite_um_codigo_valido_de_estabelecimento"
+        android:textAlignment="center"
+        android:textColor="@color/gray_main"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,11 +61,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_field_name"
-            android:layout_width="340dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="@string/codigo"
-            app:helperText="@string/required">
+            android:hint="@string/codigo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextCode"
@@ -77,7 +92,7 @@
         android:id="@+id/button_buscarEst"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:text="@string/buscar"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,16 +100,16 @@
         app:layout_constraintTop_toBottomOf="@+id/form_byCode" />
 
     <Button
-        android:id="@+id/button_cancelar2"
-        style="?attr/materialButtonOutlinedStyle"
+        android:id="@+id/button_escanear"
+        style="@style/Widget.Material3.Button.Icon"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:text="@string/cancel"
-        android:textColor="@color/purple_main"
+        android:layout_marginTop="24dp"
+        android:text="Escanear QR Code"
         android:textSize="16sp"
+        app:icon="@drawable/ic_baseline_qr_code_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_buscarEst"
-        app:strokeColor="@color/purple_main" />
+        app:layout_constraintTop_toBottomOf="@+id/text_ou" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

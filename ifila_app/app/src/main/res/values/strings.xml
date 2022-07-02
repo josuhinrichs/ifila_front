@@ -37,5 +37,7 @@
     <string name="limite_de_pessoas">Limite de Pessoas</string>
     <string name="limite_de_horario">Limite de Horário</string>
     <string name="finalizar">Finalizar</string>
+    <string name="digite_email">Digite o seu email</string>
+    <string name="digite_senha">Digite a sua senha</string>
 
 </resources>
