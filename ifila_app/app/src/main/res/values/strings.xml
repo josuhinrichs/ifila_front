@@ -30,5 +30,12 @@
     <string name="fila_ativa">Fila Ativa</string>
     <string name="atendimento">Atendimento - 123</string>
     <string name="tamanho_atual">Tamanho atual - XX</string>
+    <string name="codigo">Código</string>
+    <string name="entrar_por_codigo">Entrar por código</string>
+    <string name="digite_um_codigo_valido_de_estabelecimento">Digite um código válido de\nestabelecimento</string>
+    <string name="buscar">Buscar</string>
+    <string name="limite_de_pessoas">Limite de Pessoas</string>
+    <string name="limite_de_horario">Limite de Horário</string>
+    <string name="finalizar">Finalizar</string>
 
 </resources>

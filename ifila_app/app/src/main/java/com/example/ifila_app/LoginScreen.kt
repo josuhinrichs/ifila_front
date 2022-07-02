@@ -3,9 +3,13 @@ package com.example.ifila_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.JsonToken
 import android.util.Log
+import android.util.Patterns
 import com.example.ifila_app.databinding.ActivityLoginScreenBinding
+import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.example.ifila_app.databinding.ActivityRegisterScreenFinishBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -17,6 +21,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
+import java.util.regex.Pattern
 
 class LoginScreen : AppCompatActivity() {
     private lateinit var binding: ActivityLoginScreenBinding
@@ -25,6 +30,9 @@ class LoginScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        emailFocusListener()
+        passwdFocusListener()
 
         binding.buttonEntrar.setOnClickListener { startLogin() }
     }
@@ -87,6 +95,73 @@ class LoginScreen : AppCompatActivity() {
         }
 
     }
+
+    private fun emailFocusListener()
+    {
+        binding.editTextEmail.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                binding.inputFieldEmail.helperText = validEmail()
+                enableButton()
+            }
+        })
+    }
+
+    private fun validEmail(): String?
+    {
+        if (binding.editTextEmail.text.toString() == "")
+            return resources.getString(R.string.required)
+        else{
+            val pattern: Pattern = Patterns.EMAIL_ADDRESS
+            if (pattern.matcher(binding.editTextEmail.text.toString()).matches())
+                return null
+            return resources.getString(R.string.invalidEmailFormat)
+        }
+
+    }
+
+    private fun passwdFocusListener()
+    {
+        binding.editTextPasswd.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                binding.inputFieldPassword.helperText = validPasswd()
+                enableButton()
+            }
+        })
+    }
+
+    private fun validPasswd(): String?
+    {
+        if ( binding.editTextPasswd.text.toString() == "" )
+            return resources.getString(R.string.required)
+        return null
+    }
+
+    private fun enableButton(){
+        binding.buttonEntrar.isEnabled =
+            (binding.inputFieldEmail.helperText == null &&
+                            binding.inputFieldPassword.helperText == null)
+    }
+
 
     fun loginUser(token:String){
         val context = binding.root.context

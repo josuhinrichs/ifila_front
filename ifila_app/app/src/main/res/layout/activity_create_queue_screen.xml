@@ -57,7 +57,7 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="Limite de Pessoas"
+            android:hint="@string/limite_de_pessoas"
             app:helperText="@string/required">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -76,7 +76,7 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="Limite de Horário"
+            android:hint="@string/limite_de_horario"
             app:helperText="@string/required"
             app:passwordToggleContentDescription="Exibir"
             app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
@@ -99,15 +99,15 @@
         android:id="@+id/button_finalizar"
         android:layout_width="220dp"
         android:layout_height="55dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/yellow_main"
-        android:text="Finalizar"
+        android:text="@string/finalizar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/linearlayout"
-        tools:layout_editor_absoluteY="665dp" />
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/button_cancelar"
