@@ -144,6 +144,8 @@ class RegisterScreen2 : AppCompatActivity() {
 
         intent.putExtra("email", binding.editTextEmail.text.toString())
         intent.putExtra("password", binding.editTextPasswd.text.toString())
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        finish()
         context.startActivity(intent)
     }
 

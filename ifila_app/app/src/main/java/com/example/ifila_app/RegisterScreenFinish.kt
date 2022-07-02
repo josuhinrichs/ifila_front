@@ -1,11 +1,8 @@
 package com.example.ifila_app
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.JsonToken
-import android.util.Log
-import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityRegisterScreenFinishBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -91,6 +88,8 @@ class RegisterScreenFinish : AppCompatActivity() {
         val intent = Intent(context, EnterCodeScreen::class.java)
 
         intent.putExtra("token", token)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        finish()
         context.startActivity(intent)
     }
 
