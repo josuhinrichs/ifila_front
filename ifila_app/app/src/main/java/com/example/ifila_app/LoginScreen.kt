@@ -166,11 +166,11 @@ class LoginScreen : AppCompatActivity() {
 
     fun loginUser(token:String){
         val context = binding.root.context
-        val intent = Intent(context, EnterCodeScreen::class.java)
+        val new_intent = Intent(context, UserHome::class.java)
 
-        intent.putExtra("token", token)
+        new_intent.putExtra("token", token)
         finish()
-        context.startActivity(intent)
+        context.startActivity(new_intent)
     }
 
     fun loginBusiness(token: String){

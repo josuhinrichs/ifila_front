@@ -85,7 +85,7 @@ class RegisterScreenFinish : AppCompatActivity() {
 
     fun loginUser(token:String){
         val context = binding.root.context
-        val intent = Intent(context, EnterCodeScreen::class.java)
+        val intent = Intent(context, UserHome::class.java)
 
         intent.putExtra("token", token)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
