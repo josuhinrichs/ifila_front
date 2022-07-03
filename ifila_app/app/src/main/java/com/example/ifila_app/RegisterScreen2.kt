@@ -119,7 +119,7 @@ class RegisterScreen2 : AppCompatActivity() {
             val cpf = extras?.get("cpf").toString()
             val phoneNumber = extras?.get("phoneNumber").toString()
             val birth = extras?.get("birth").toString()
-            
+
 //
 //            intent.putExtra("name", name)
 //            intent.putExtra("cpf", cpf)
@@ -144,6 +144,8 @@ class RegisterScreen2 : AppCompatActivity() {
 
         intent.putExtra("email", binding.editTextEmail.text.toString())
         intent.putExtra("password", binding.editTextPasswd.text.toString())
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        finish()
         context.startActivity(intent)
     }
 

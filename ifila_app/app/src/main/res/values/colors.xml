@@ -15,6 +15,6 @@
     <color name="white_main">#FFFFFF</color>
     <color name="yellow_main">#FFBF00</color>
     <color name="purple_main">#AE41D9</color>
-    <color name="gray_main">#303030</color>
+    <color name="gray_main">#999999</color>
     <color name="red_main">#B3261E</color>
 </resources>

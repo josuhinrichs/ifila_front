@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.17074275362318841" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue1.xml" value="0.33" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue2.xml" value="0.3489583333333333" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue3.xml" value="0.3489583333333333" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_enter_code_screen.xml" value="0.3489583333333333" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_estab_without_queue_screen.xml" value="0.3489583333333333" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_login_screen.xml" value="0.33" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen1.xml" value="0.3489583333333333" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.2863247863247863" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue1.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue2.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue3.xml" value="0.2129115006412997" />
