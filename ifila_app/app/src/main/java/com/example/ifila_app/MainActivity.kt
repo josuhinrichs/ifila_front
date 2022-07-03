@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonRegistrar.setOnClickListener{ goToRegister(binding) }
         binding.buttonEntrar.setOnClickListener { goToLogin() }
+        binding.buttonConvidado.setOnClickListener { goToEstabWishotQueue() }
     }
 
     private fun goToRegister(binding: ActivityMainBinding){
@@ -30,9 +31,15 @@ class MainActivity : AppCompatActivity() {
         context.startActivity(intent)
     }
 
-    fun goToRegisterFailed(binding: ActivityMainBinding){
+    fun goToConvidado(){
         val context = binding.root.context
-        val intent = Intent(context, RegisterScreenFailed::class.java)
+        val intent = Intent(context, EnterCodeScreen::class.java)//Coloquei pra ir pra tela de inserir código
+        context.startActivity(intent)
+    }
+
+    private fun goToEstabWishotQueue(){
+        val context = binding.root.context
+        val intent = Intent(context, EstabWithoutQueueScreen::class.java)
         context.startActivity(intent)
     }
 }
