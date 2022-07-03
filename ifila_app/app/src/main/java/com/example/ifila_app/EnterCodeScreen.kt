@@ -1,6 +1,8 @@
 package com.example.ifila_app
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityEnterCodeScreenBinding
@@ -26,6 +28,10 @@ class EnterCodeScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEnterCodeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.buttonBuscarEst.isEnabled = false
+        codeFocusListener()
+
         binding.buttonBuscarEst.setOnClickListener { startCodRequest() }
 
     }
@@ -100,6 +106,33 @@ class EnterCodeScreen : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun codeFocusListener( )
+    {
+        binding.editTextCode.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+
+                enableButton()
+            }
+        })
+    }
+
+    private fun enableButton() {
+        binding.buttonBuscarEst.isEnabled =
+            (
+                    binding.editTextCode.text != null
+                    )
     }
 
 }

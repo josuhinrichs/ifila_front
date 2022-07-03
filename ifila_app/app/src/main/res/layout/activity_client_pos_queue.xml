@@ -24,50 +24,38 @@
         android:id="@+id/nome_estabelecimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/fredoka_one"
         android:text="@string/nome_do_local"
         android:textColor="@color/yellow_main"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aguardando"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/text_clienteAtual"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/fredoka_medium"
-        android:text="Cliente atual - XX"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_clientePos" />
-
-    <TextView
         android:id="@+id/text_estimativaEspera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/fredoka_medium"
-        android:text="Estimativa de espera - XX min"
+        android:text="@string/confirma_presença"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_clienteAtual" />
+        app:layout_constraintTop_toBottomOf="@+id/text_clientePos" />
 
     <TextView
         android:id="@+id/text_clientePos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/fredoka_medium"
         android:text="Sua posição - XX"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nome_estabelecimento" />
 
@@ -84,19 +72,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/text_confirme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
-        android:fontFamily="@font/fredoka_medium"
-        android:text="Confirme a sua presença abaixo\npara ser atendido"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_clientePos" />
-
     <Button
         android:id="@+id/button_confirmar_presenca"
         android:layout_width="220dp"
@@ -109,31 +84,6 @@
         app:layout_constraintBottom_toTopOf="@+id/button_sair_fila"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_prossiga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
-        android:fontFamily="@font/fredoka_medium"
-        android:text="Prossiga de acordo com as informações\ndo balcão"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.63"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/text_estaConfirmou"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:fontFamily="@font/fredoka_medium"
-        android:text="O estabelecimento confirmou\nseu atendimento!"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome_estabelecimento" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

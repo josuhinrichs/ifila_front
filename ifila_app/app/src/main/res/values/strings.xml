@@ -39,5 +39,6 @@
     <string name="finalizar">Finalizar</string>
     <string name="digite_email">Digite o seu email</string>
     <string name="digite_senha">Digite a sua senha</string>
+    <string name="confirma_presença">Confirme a sua presença abaixo\npara ser atendido</string>
 
 </resources>

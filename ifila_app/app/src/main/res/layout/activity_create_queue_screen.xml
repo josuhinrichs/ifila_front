@@ -57,8 +57,7 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="@string/limite_de_pessoas"
-            app:helperText="@string/required">
+            android:hint="@string/limite_de_pessoas">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLimitePessoas"
@@ -76,8 +75,7 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="@string/limite_de_horario"
-            app:helperText="@string/required">
+            android:hint="@string/limite_de_horario">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLimiteTempo"
@@ -97,7 +95,6 @@
         android:layout_width="220dp"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/yellow_main"
         android:text="@string/finalizar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
