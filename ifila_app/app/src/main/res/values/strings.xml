@@ -40,5 +40,9 @@
     <string name="digite_email">Digite o seu email</string>
     <string name="digite_senha">Digite a sua senha</string>
     <string name="confirma_presença">Confirme a sua presença abaixo\npara ser atendido</string>
+    <string name="priority_title">Verificação de prioridade</string>
+    <string name="priority_content">Você faz parte do grupo de atendimento prioritário?</string>
+    <string name="priority_yes">Sim</string>
+    <string name="priority_no">Não</string>
 
 </resources>
