@@ -1,22 +1,23 @@
 package com.example.ifila_app
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityEnterCodeScreenBinding
-import com.example.ifila_app.databinding.ActivityRegisterScreen2Binding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
+
 
 class EnterCodeScreen : AppCompatActivity() {
     private lateinit var binding: ActivityEnterCodeScreenBinding
@@ -48,13 +49,21 @@ class EnterCodeScreen : AppCompatActivity() {
         val jsonObjectString = jsonObject.toString()
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
 
+        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(Interceptor { chain ->
+            val newRequest: Request = chain.request().newBuilder()
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+            chain.proceed(newRequest)
+        }).build()
+
         val retrofit = Retrofit.Builder()
+            .client(client)
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
         val service = retrofit.create(MainAPI::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getBusiness(requestBody,binding.editTextCode.text.toString())
+            val response = service.getBusiness(binding.editTextCode.text.toString())
 
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -67,33 +76,34 @@ class EnterCodeScreen : AppCompatActivity() {
                         )
                     )
 
-                    val parts = prettyJson
-                        .replace("\n","")
-                        .replace("{","")
-                        .replace("}","")
-                        .replace("\"","")
-                        .replace(" ","")
-
-                    val map = parts.split(",").associate {
-                        val(left, right) = it.split(":")
-                        left to right
-                    }.toMutableMap()
-
-                    val id = map["id"] ?: ""
-                    val nome = map["nome"] ?: ""
-                    val endereco = map["endereco"] ?: ""
-                    val telefone = map["telefone"] ?: ""
-                    val cnpj = map["cnpj"] ?: ""
-                    val descricacao = map["descricacao"] ?: ""
-                    val horarioAbertura = map["horarioAbertura"] ?: ""
-                    val horarioFechamento = map["horarioFechamento"] ?: ""
-                    val dataDeCriacao = map["dataDeCriacao"] ?: ""
-                    val statusFila = map["statusFila"] ?: ""
+//                    val parts = prettyJson
+//                        .replace("\n","")
+//                        .replace("{","")
+//                        .replace("}","")
+//                        .replace("\"","")
+//                        .replace(" ","")
+//
+//                    val map = parts.split(",").associate {
+//                        val(left, right) = it.split(":")
+//                        left to right
+//                    }.toMutableMap()
+//
+//                    val id = map["id"] ?: ""
+//                    val nome = map["nome"] ?: ""
+//                    val endereco = map["endereco"] ?: ""
+//                    val telefone = map["telefone"] ?: ""
+//                    val cnpj = map["cnpj"] ?: ""
+//                    val descricacao = map["descricacao"] ?: ""
+//                    val horarioAbertura = map["horarioAbertura"] ?: ""
+//                    val horarioFechamento = map["horarioFechamento"] ?: ""
+//                    val dataDeCriacao = map["dataDeCriacao"] ?: ""
+//                    val statusFila = map["statusFila"] ?: ""
 
                     Log.d("josue",prettyJson)
 
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE
+                    Log.d("josue","num deu bom")
                 }
             }
         }
