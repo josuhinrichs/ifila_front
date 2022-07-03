@@ -2,9 +2,9 @@ package com.example.ifila_app
 
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface MainAPI {
 
@@ -14,4 +14,9 @@ interface MainAPI {
     @POST("auth/login")
     suspend fun loginUser(@Body requestBody: RequestBody): Response<ResponseBody>
 
+    //@GET("estabelecimentos/${id}")
+    //suspend fun getBusiness(@Body requestBody: RequestBody, id: String): Response<ResponseBody>
+
+    @GET("estabelecimentos/{id}")
+    fun getBusiness(@Header requestBody: RequestBody, @Path("id") id: String): Response<ResponseBody>
 }
