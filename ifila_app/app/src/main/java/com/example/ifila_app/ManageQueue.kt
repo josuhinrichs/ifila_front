@@ -3,6 +3,7 @@ package com.example.ifila_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.ifila_app.databinding.ActivityCreateQueueScreenBinding
 import com.example.ifila_app.databinding.ActivityManageQueueBinding
 
 class ManageQueue : AppCompatActivity() {
@@ -11,7 +12,8 @@ class ManageQueue : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manage_queue)
+        binding = ActivityManageQueueBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.buttonFecharFila.setOnClickListener { goToEstabWithouQueue() }
 

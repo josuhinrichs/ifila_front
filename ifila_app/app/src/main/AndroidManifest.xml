@@ -26,7 +26,7 @@
             android:name=".ClientPosQueue2"
             android:exported="false" />
         <activity
-            android:name=".ClientPosQueue1"
+            android:name=".ClientPosQueue"
             android:exported="false" />
         <activity
             android:name=".ManageQueue"

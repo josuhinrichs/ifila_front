@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonRegistrar.setOnClickListener{ goToRegister(binding) }
         binding.buttonEntrar.setOnClickListener { goToLogin() }
-        binding.buttonConvidado.setOnClickListener { goToEstabWishotQueue() }
+        binding.buttonConvidado.setOnClickListener { goToConvidado() }
     }
 
     private fun goToRegister(binding: ActivityMainBinding){
@@ -37,10 +37,5 @@ class MainActivity : AppCompatActivity() {
         context.startActivity(intent)
     }
 
-    private fun goToEstabWishotQueue(){
-        val context = binding.root.context
-        val intent = Intent(context, EstabWithoutQueueScreen::class.java)
-        context.startActivity(intent)
-    }
 }
 
