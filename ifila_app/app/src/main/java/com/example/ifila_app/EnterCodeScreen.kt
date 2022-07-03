@@ -49,21 +49,13 @@ class EnterCodeScreen : AppCompatActivity() {
         val jsonObjectString = jsonObject.toString()
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
 
-        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(Interceptor { chain ->
-            val newRequest: Request = chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer $token")
-                .build()
-            chain.proceed(newRequest)
-        }).build()
-
         val retrofit = Retrofit.Builder()
-            .client(client)
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
         val service = retrofit.create(MainAPI::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getBusiness(binding.editTextCode.text.toString())
+            val response = service.getBusiness(binding.editTextCode.text.toString(), "Bearer $token")
 
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
