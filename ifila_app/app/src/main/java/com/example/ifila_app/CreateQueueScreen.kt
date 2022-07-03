@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import com.example.ifila_app.databinding.ActivityCreateQueueScreenBinding
 import com.example.ifila_app.databinding.ActivityEstabWithoutQueueScreenBinding
 import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
+import com.google.android.material.timepicker.TimeFormat
 
 class CreateQueueScreen : AppCompatActivity() {
     private lateinit var binding: ActivityCreateQueueScreenBinding
@@ -18,6 +19,8 @@ class CreateQueueScreen : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonFinalizar.isEnabled = false
+
+        //binding.editTextLimiteTempo.addTextChangedListener()
 
         limitPeopleFocusListener()
         limitTimeFocusListener()

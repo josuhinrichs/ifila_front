@@ -77,14 +77,12 @@
             android:layout_marginBottom="8.33dp"
             android:hint="@string/limite_de_horario">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.vicmikhailau.maskededittext.MaskedEditText
                 android:id="@+id/editTextLimiteTempo"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:fontFamily="@font/roboto_medium"
+                android:layout_height="wrap_content"
                 android:inputType="number"
-                android:textSize="16sp"
-                app:textInputLayoutFocusedRectEnabled="false" />
+                app:mask="##:##"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
