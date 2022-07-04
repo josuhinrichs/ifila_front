@@ -8,7 +8,8 @@
     <item android:title="Fila"
         android:icon="@drawable/nav_bar_queue_selector"
         android:id="@+id/nav_queue"/>
-    <item android:title="Opções"
+    <item
+        android:id="@+id/nav_profile"
         android:icon="@drawable/nav_bar_settings_selector"
-        android:id="@+id/nav_profile"/>
+        android:title="Perfil" />
 </menu>

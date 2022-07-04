@@ -1,14 +1,18 @@
 package com.example.ifila_app
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.example.ifila_app.databinding.FragmentUserCodeQueueBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -54,6 +58,7 @@ class UserCodeQueueFragment : Fragment() {
         val botao = view_view.findViewById<Button>(R.id.button_buscarEst)
         botao.setOnClickListener { startCodRequest()}
         token = arguments?.getString("token")
+        codeFocusListener()
         return view_view
     }
 
@@ -89,7 +94,8 @@ class UserCodeQueueFragment : Fragment() {
         val service = retrofit.create(MainAPI::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getBusiness(view?.findViewById<TextView>(R.id.editTextCode)?.text.toString(), "Bearer $token")
+            val input_code = view?.findViewById<TextView>(R.id.editTextCode)?.text.toString()
+            val response = service.getBusiness(input_code, "Bearer $token")
 
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -102,30 +108,39 @@ class UserCodeQueueFragment : Fragment() {
                         )
                     )
 
-//                    val parts = prettyJson
-//                        .replace("\n","")
-//                        .replace("{","")
-//                        .replace("}","")
-//                        .replace("\"","")
-//                        .replace(" ","")
-//
-//                    val map = parts.split(",").associate {
-//                        val(left, right) = it.split(":")
-//                        left to right
-//                    }.toMutableMap()
-//
-//                    val id = map["id"] ?: ""
-//                    val nome = map["nome"] ?: ""
-//                    val endereco = map["endereco"] ?: ""
-//                    val telefone = map["telefone"] ?: ""
-//                    val cnpj = map["cnpj"] ?: ""
-//                    val descricacao = map["descricacao"] ?: ""
-//                    val horarioAbertura = map["horarioAbertura"] ?: ""
-//                    val horarioFechamento = map["horarioFechamento"] ?: ""
-//                    val dataDeCriacao = map["dataDeCriacao"] ?: ""
-//                    val statusFila = map["statusFila"] ?: ""
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","")
 
-                    Log.d("josue",prettyJson)
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+
+                    val id = map["id"] ?: ""
+                    val nome = map["nome"] ?: ""
+                    val endereco = map["endereco"] ?: ""
+                    val telefone = map["telefone"] ?: ""
+                    val cnpj = map["cnpj"] ?: ""
+                    val descricao = map["descricacao"] ?: ""
+                    val horarioAbertura = map["horarioAbertura"] ?: ""
+                    val horarioFechamento = map["horarioFechamento"] ?: ""
+                    val dataDeCriacao = map["dataDeCriacao"] ?: ""
+                    val statusFila = map["statusFila"] ?: ""
+
+                    Log.d("josue",nome + statusFila)
+
+                    val fragment = UserQueueFragment()
+                    val bundle = Bundle()
+                    bundle.putString("token", token)
+                    bundle.putString("nome_estabelecimento", nome)
+                    bundle.putString("descricao", descricao)
+                    bundle.putString("fila_status", statusFila)
+                    fragment.arguments = bundle
+                    replaceFragment(fragment)
 
                 } else {
                     view?.findViewById<TextView>(R.id.text_invalid_business_code)?.visibility = View.VISIBLE
@@ -133,5 +148,40 @@ class UserCodeQueueFragment : Fragment() {
             }
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
+    private fun replaceFragment( fragment: Fragment){
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout_code_queue, fragment)
+        fragmentTransaction.commit()
+    }
+
+    private fun codeFocusListener()
+    {
+        view?.findViewById<EditText>(R.id.editTextCode)?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                enableButton()
+            }
+        })
+    }
+
+    private fun enableButton(){
+        view?.findViewById<EditText>(R.id.editTextCode)?.isEnabled   =
+            (view?.findViewById<EditText>(R.id.editTextCode)?.text.toString()  != "" )
     }
 }

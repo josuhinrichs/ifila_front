@@ -1,11 +1,14 @@
 package com.example.ifila_app
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import com.example.ifila_app.databinding.FragmentUserCodeQueueBinding
 import com.example.ifila_app.databinding.FragmentUserQueueBinding
 
@@ -21,8 +24,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class UserQueueFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var token: String? = null
-    private var param2: String? = null
+    private var TOKEN: String? = null
+    private var BUSINESS_NAME: String? = null
+    private var QUEUE_STATUS: String? = null
     private lateinit var binding: FragmentUserQueueBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +43,19 @@ class UserQueueFragment : Fragment() {
         val view_view = inflater.inflate(R.layout.fragment_user_queue, container, false)
         //val botao = view_view.findViewById<Button>(R.id.button_buscarEst)
         //botao.setOnClickListener { startCodRequest()}
-        token = arguments?.getString("token")
+        TOKEN = arguments?.getString("token")
+        BUSINESS_NAME = arguments?.getString("nome_estabelecimento")
+        QUEUE_STATUS = arguments?.getString("fila_status")
 
+        val business_name = view_view.findViewById<TextView>(R.id.text_business_name)
+        val business_status = view_view.findViewById<TextView>(R.id.text_business_status)
+        business_name.text = BUSINESS_NAME
+        if(QUEUE_STATUS.toBoolean()){
+            business_status.text = "Aberto"
+        }else {
+            business_status.text = "Fechado"
+            business_status.setTextColor(resources.getColor(R.color.red_main))
+        }
 
 
         return view_view

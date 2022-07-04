@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_layout_code_queue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserCodeQueueFragment">
@@ -36,7 +37,6 @@
             android:textSize="19sp"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_codeSolicitation" />
 
@@ -56,7 +56,7 @@
             style="@style/Widget.Material3.Button.Icon"
             android:layout_width="220dp"
             android:layout_height="55dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="Escanear QR Code"
             android:textSize="16sp"
             app:icon="@drawable/ic_baseline_qr_code_24"
@@ -81,7 +81,7 @@
             android:id="@+id/text_ou"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/fredoka_medium"
             android:text="Ou"
             android:textAlignment="center"

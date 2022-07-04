@@ -2,6 +2,7 @@ package com.example.ifila_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -67,6 +68,10 @@ class UserHome : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        supportFragmentManager.popBackStack()
+    }
+
     private fun replaceFragment( fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -75,15 +80,16 @@ class UserHome : AppCompatActivity() {
     }
 
     private fun checkIfQueue(token:String): Boolean {
-        sendGetMeRequest(token)
-        return true
+        return false
+//        return sendGetMeRequest(token)
     }
 
-    private fun sendGetMeRequest(token: String){
+    private fun sendGetMeRequest(token: String): Boolean {
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
         val service = retrofit.create(MainAPI::class.java)
+        var inQueue = false.toString()
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.getUserMe("Bearer $token")
@@ -99,14 +105,25 @@ class UserHome : AppCompatActivity() {
                         )
                     )
 
-                    Log.d("josue",prettyJson)
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+                    inQueue = map["emFila"] ?: ""
 
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE
-                    Log.d("josue","num deu bom")
                 }
             }
         }
+        return inQueue.toBoolean()
 
     }
 }
