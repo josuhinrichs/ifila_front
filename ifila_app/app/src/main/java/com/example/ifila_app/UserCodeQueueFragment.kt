@@ -83,12 +83,6 @@ class UserCodeQueueFragment : Fragment() {
 
     private fun sendCodRequest(token: String){
 
-        val jsonObject = JSONObject()
-        jsonObject.put("token", token)
-
-        val jsonObjectString = jsonObject.toString()
-        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
-
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -134,8 +128,7 @@ class UserCodeQueueFragment : Fragment() {
                     Log.d("josue",prettyJson)
 
                 } else {
-                    //binding.textCodigoInvalido.visibility = View.VISIBLE
-                    Log.d("josue","num deu bom")
+                    view?.findViewById<TextView>(R.id.text_invalid_business_code)?.visibility = View.VISIBLE
                 }
             }
         }

@@ -77,6 +77,7 @@ class RegisterScreenFinish : AppCompatActivity() {
                     val role = map["role"] ?: ""
                     loginUser(token)
                 } else {
+
                 }
             }
         }

@@ -24,6 +24,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+        <TextView
+            android:id="@+id/text_invalid_business_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/fredoka_regular"
+            android:text="Código inválido"
+            android:textAlignment="center"
+            android:textColor="@color/red_main"
+            android:textSize="19sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_codeSolicitation" />
+
         <Button
             android:id="@+id/button_buscarEst"
             android:layout_width="220dp"
@@ -52,7 +68,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="64dp"
             android:fontFamily="@font/fredoka_one"
             android:text="@string/entrar_por_codigo"
             android:textColor="@color/purple_main"
@@ -79,7 +95,7 @@
             android:id="@+id/form_byCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="50dp"
             android:elevation="0dp"
             android:fadeScrollbars="false"
             android:orientation="vertical"
