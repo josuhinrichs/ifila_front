@@ -17,7 +17,7 @@ interface MainAPI {
     //@GET("estabelecimentos/${id}")
     //suspend fun getBusiness(@Body requestBody: RequestBody, id: String): Response<ResponseBody>
 
-    @GET("estabelecimentos/{id}")
+    @GET("estabelecimentos/codigo/{id}")
     suspend fun getBusiness(@Path("id") id: String, @Header("Authorization") auth:String): Response<ResponseBody>
 
     @GET("usuarios/me")

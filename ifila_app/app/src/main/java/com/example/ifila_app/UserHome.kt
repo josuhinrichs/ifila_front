@@ -80,8 +80,7 @@ class UserHome : AppCompatActivity() {
     }
 
     private fun checkIfQueue(token:String): Boolean {
-        return false
-//        return sendGetMeRequest(token)
+        return sendGetMeRequest(token)
     }
 
     private fun sendGetMeRequest(token: String): Boolean {

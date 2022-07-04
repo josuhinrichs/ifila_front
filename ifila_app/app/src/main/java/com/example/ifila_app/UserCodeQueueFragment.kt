@@ -113,33 +113,39 @@ class UserCodeQueueFragment : Fragment() {
                         .replace("{","")
                         .replace("}","")
                         .replace("\"","")
-                        .replace(" ","")
+                        .replace(" ","+")
+                        .replace("++","")
 
                     val map = parts.split(",").associate {
                         val(left, right) = it.split(":")
                         left to right
                     }.toMutableMap()
 
-                    val id = map["id"] ?: ""
                     val nome = map["nome"] ?: ""
                     val endereco = map["endereco"] ?: ""
                     val telefone = map["telefone"] ?: ""
-                    val cnpj = map["cnpj"] ?: ""
-                    val descricao = map["descricacao"] ?: ""
+                    val descricao = map["descricao"] ?: ""
                     val horarioAbertura = map["horarioAbertura"] ?: ""
                     val horarioFechamento = map["horarioFechamento"] ?: ""
-                    val dataDeCriacao = map["dataDeCriacao"] ?: ""
+                   // val dataDeCriacao = map["dataDeCriacao"] ?: ""
                     val statusFila = map["statusFila"] ?: ""
+                    val categoria = map["categoria"] ?: ""
+                    val link_imagem= map["linkImagem"] ?: ""
+                    val code = map["codigo"] ?: ""
 
-                    Log.d("josue",nome + statusFila)
+                    Log.d("TEST 1",prettyJson)
 
                     val fragment = UserQueueFragment()
                     val bundle = Bundle()
-                    bundle.putString("token", token)
-                    bundle.putString("nome_estabelecimento", nome)
-                    bundle.putString("descricao", descricao)
-                    bundle.putString("fila_status", statusFila)
+                    bundle.putString("token", token.drop(1))
+                    bundle.putString("codigo", code.drop(1))
+                    bundle.putString("nome_estabelecimento", nome.drop(1).replace("+"," "))
+                    bundle.putString("descricao", descricao.drop(1))
+                    bundle.putString("fila_status", statusFila.drop(1))
+                    bundle.putString("categoria", categoria.drop(1))
+                    bundle.putString("link_imagem", link_imagem.drop(1))
                     fragment.arguments = bundle
+                    Log.d("TEST 2", map.toString())
                     replaceFragment(fragment)
 
                 } else {
