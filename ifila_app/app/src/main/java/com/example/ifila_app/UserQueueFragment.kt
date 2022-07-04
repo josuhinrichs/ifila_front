@@ -79,7 +79,7 @@ class UserQueueFragment : Fragment() {
         view_view.findViewById<TextView>(R.id.text_business_type).text = BUSINESS_TYPE
 
         val image_view = view_view.findViewById<ImageView>(R.id.image_business_to_link)
-        Picasso.get().load("IMAGE_LINK").into(image_view)
+        Picasso.get().load(IMAGE_LINK).into(image_view)
         BUSINESS_NAME?.let { Log.d("TESTE", it) }
         return view_view
     }
