@@ -57,4 +57,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation("io.github.vicmikhailau:MaskedEditText:4.0.7")
 }

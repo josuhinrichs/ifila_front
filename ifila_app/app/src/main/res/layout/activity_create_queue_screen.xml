@@ -57,8 +57,7 @@
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="@string/limite_de_pessoas"
-            app:helperText="@string/required">
+            android:hint="@string/limite_de_pessoas">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLimitePessoas"
@@ -72,24 +71,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_field_limitTime"
+            android:id="@+id/input_field_limite_tempo"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8.33dp"
-            android:hint="@string/limite_de_horario"
-            app:helperText="@string/required"
-            app:passwordToggleContentDescription="Exibir"
-            app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
-            app:passwordToggleEnabled="true">
+            android:hint="@string/limite_de_horario">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextLimitTime"
+            <com.vicmikhailau.maskededittext.MaskedEditText
+                android:id="@+id/editTextLimiteTempo"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:fontFamily="@font/roboto_medium"
-                android:inputType="time"
-                android:textSize="14sp"
-                app:textInputLayoutFocusedRectEnabled="false" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:mask="##:##"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +93,6 @@
         android:layout_width="220dp"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/yellow_main"
         android:text="@string/finalizar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
@@ -115,7 +107,7 @@
         android:layout_width="220dp"
         android:layout_height="55dp"
         android:layout_marginTop="8dp"
-        android:text="@string/buttonCadastrar"
+        android:text="@string/cancel"
         android:textColor="@color/purple_main"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

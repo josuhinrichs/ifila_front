@@ -257,7 +257,7 @@ class RegisterScreen1 : AppCompatActivity() {
 object Mask {
     var CPF_MASK = "###.###.###-##"
     var CELULAR_MASK = "(##) #### #####"
-    var CEP_MASK = "#####-###"
+    var TIME_MASK = "##:##"
     fun unmask(s: String): String {
         return s.replace("[.]".toRegex(), "").replace("[-]".toRegex(), "")
             .replace("[/]".toRegex(), "").replace("[(]".toRegex(), "")

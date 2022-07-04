@@ -20,16 +20,19 @@
             android:name=".UserHome"
             android:exported="false" />
         <activity
+            android:name=".ManageQueue2"
+            android:exported="false" />
+        <activity
             android:name=".ClientPosQueue3"
             android:exported="false" />
         <activity
             android:name=".ClientPosQueue2"
             android:exported="false" />
         <activity
-            android:name=".ClientPosQueue1"
+            android:name=".ClientPosQueue"
             android:exported="false" />
         <activity
-            android:name=".ManageQueue1"
+            android:name=".ManageQueue"
             android:exported="false" />
         <activity
             android:name=".CreateQueueScreen"
