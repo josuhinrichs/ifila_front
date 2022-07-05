@@ -12,14 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityLoginScreenBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.regex.Pattern
 
 class LoginScreen : AppCompatActivity() {
@@ -44,6 +42,55 @@ class LoginScreen : AppCompatActivity() {
         sendLoginRequest(email, password)
     }
 
+    private fun sendGetMeRequestBusiness(token: String): Boolean {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        var statusFila = AtomicBoolean()
+        statusFila.set(false)
+
+        runBlocking {
+            withContext(Dispatchers.Default) {
+                val response = service.getBusinessMe("Bearer $token")
+                if (response.isSuccessful) {
+                    // Convert raw JSON to pretty JSON using GSON library
+
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d("TEST",prettyJson)
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+
+                    Log.d("TEST", map.toString())
+                    if(map["statusFila"] == "true"){
+                        statusFila.set(true)
+                    }
+                    Log.d("DENTRO", statusFila.toString())
+                } else {
+                    //binding.textCodigoInvalido.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        Log.d("FORA", statusFila.toString())
+        return statusFila.toString().toBoolean()
+    }
+    
     private fun sendLoginRequest(email: String, password:String){
         val jsonObject = JSONObject()
         jsonObject.put("email", email)
@@ -81,12 +128,16 @@ class LoginScreen : AppCompatActivity() {
                         val(left, right) = it.split(":")
                         left to right
                     }.toMutableMap()
+
                     val token = map["token"] ?: ""
                     val role = map["role"] ?: ""
+
                     if(role == "usuario"){
                         loginUser(token)
                     }else{
-                        loginBusiness(token)
+                        val status = sendGetMeRequestBusiness(token)
+                        Log.d("TesteX",status.toString())
+                        loginBusiness(token, status)
                     }
 
                 } else {
@@ -173,13 +224,25 @@ class LoginScreen : AppCompatActivity() {
         context.startActivity(new_intent)
     }
 
-    fun loginBusiness(token: String){
-        val context = binding.root.context
-        val intent = Intent(context, EstabWithoutQueueScreen::class.java)
+    fun loginBusiness(token: String, statusFila: Boolean){
 
-        intent.putExtra("token", token)
-        finish()
-        context.startActivity(intent)
+        Log.d("TESTEstatus",statusFila.toString())
+
+        if (statusFila){
+            val context = binding.root.context
+            val intent = Intent(context, ManageQueue::class.java)
+            intent.putExtra("token", token)
+            finish()
+            context.startActivity(intent)
+        }
+        else{
+            val context = binding.root.context
+            val intent = Intent(context, EstabWithoutQueueScreen::class.java)
+            intent.putExtra("token", token)
+            finish()
+            context.startActivity(intent)
+        }
+
 
     }
 

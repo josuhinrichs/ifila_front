@@ -55,7 +55,6 @@ class CreateQueueScreen : AppCompatActivity() {
 
     fun startCreateQueue(){
 
-        val context = binding.root.context
         val lastIntent = intent
         val extras = lastIntent.extras
         val token = extras?.get("token").toString()
@@ -66,6 +65,9 @@ class CreateQueueScreen : AppCompatActivity() {
 
         jsonObject.put("capacidadeMaxima", limit_people)
         jsonObject.put("horarioMaximoEntrada", limit_time)
+
+        Log.d("TEST",limit_people  + "||" + limit_time)
+        Log.d("TEST TOKEN",token)
 
         val jsonObjectString = jsonObject.toString()
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())

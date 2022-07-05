@@ -91,10 +91,10 @@ class UserHome : AppCompatActivity() {
     }
 
     private fun checkIfQueue(token:String): Boolean {
-        return sendGetMeRequest(token)
+        return sendGetMeRequestUser(token)
     }
 
-    private fun sendGetMeRequest(token: String): Boolean {
+    private fun sendGetMeRequestUser(token: String): Boolean {
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
