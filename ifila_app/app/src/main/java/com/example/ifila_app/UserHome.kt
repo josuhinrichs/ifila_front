@@ -69,7 +69,7 @@ class UserHome : AppCompatActivity() {
 
     override fun onBackPressed() {
         val builder = MaterialAlertDialogBuilder(binding.root.context)
-        builder.setTitle("Sair?")
+        builder.setTitle("Sair")
 
         builder.setMessage("Você deseja realmente sair?")
 

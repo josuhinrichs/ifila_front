@@ -28,4 +28,7 @@ interface MainAPI {
 
     @POST("fila/abrir")
     suspend fun createQueue(@Header("Authorization") auth:String, @Body requestBody: RequestBody): Response<ResponseBody>
+
+    @PUT("fila/sair")
+    suspend fun leaveQueue(@Header("Authorization") auth:String): Response<ResponseBody>
 }

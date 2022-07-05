@@ -1,12 +1,19 @@
 package com.example.ifila_app
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import com.example.ifila_app.databinding.FragmentQueuePositionBinding
 import com.example.ifila_app.databinding.FragmentUserQueueBinding
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.*
+import retrofit2.Retrofit
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +48,8 @@ class QueuePositionFragment : Fragment() {
         BUSINESS_NAME = arguments?.getString("nome_estabelecimento")
         CODE = arguments?.getString("codigo")
 
+        view_view.findViewById<Button>(R.id.button_sair_fila2).setOnClickListener { leaveQueue() }
+
         return view_view
     }
 
@@ -62,5 +71,42 @@ class QueuePositionFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun leaveQueue(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        runBlocking {
+            withContext(Dispatchers.Default) {
+                val response = service.leaveQueue("Bearer $TOKEN")
+                if (response.isSuccessful) {
+                    // Convert raw JSON to pretty JSON using GSON library
+
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d("TEST",prettyJson)
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+                } else {
+                    //binding.textCodigoInvalido.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 }

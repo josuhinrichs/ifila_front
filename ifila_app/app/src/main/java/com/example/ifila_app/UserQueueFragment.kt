@@ -99,15 +99,16 @@ class UserQueueFragment : Fragment() {
     private fun confirmPopUp(){
         val builder = MaterialAlertDialogBuilder(binding.root.context)
         builder.setTitle("Confirmar entrada na fila?")
+        var priority = false
 
         val confirmBox = arrayOf("Entrar como grupo prioritário")
         val checkedBox = booleanArrayOf(false)
         builder.setMultiChoiceItems(confirmBox, checkedBox) { dialog, which, isChecked ->
-            enterQueue(true)
+            priority = true
         }
 
         builder.setPositiveButton("Confirmar") { dialog, which ->
-            enterQueue(false)
+            enterQueue(priority)
         }
 
         builder.setNegativeButton("Cancelar", null)
@@ -160,7 +161,8 @@ class UserQueueFragment : Fragment() {
     private fun replaceFragment( fragment: Fragment){
         val fragmentManager = parentFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout_code_queue, fragment)
+        fragmentTransaction.replace(R.id.frame_layout_view_business, fragment)
+        //fragmentTransaction.replace(R.id.frame_layout_code_queue, fragment)
         activity?.supportFragmentManager?.popBackStack()
         fragmentTransaction.commit()
     }
