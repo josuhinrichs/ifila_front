@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.ifila_app.databinding.FragmentQueuePositionBinding
 import com.example.ifila_app.databinding.FragmentUserQueueBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.*
@@ -73,53 +74,6 @@ class QueuePositionFragment : Fragment() {
             }
     }
 
-//    fun checkPositionAndCall(){
-//        var mustConfirm:Boolean = false
-//
-//        while(true){
-//            val retrofit = Retrofit.Builder()
-//                .baseUrl(RegisterScreen2.URL_SETUP_USER)
-//                .build()
-//            val service = retrofit.create(MainAPI::class.java)
-//
-//            runBlocking {
-//                withContext(Dispatchers.Default) {
-//                    delay(5000)
-//                    val response = service.leaveQueue("Bearer $TOKEN")
-//                    if (response.isSuccessful) {
-//                        // Convert raw JSON to pretty JSON using GSON library
-//
-//                        val gson = GsonBuilder().setPrettyPrinting().create()
-//                        val prettyJson = gson.toJson(
-//                            JsonParser.parseString(
-//                                response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
-//                            )
-//                        )
-//                        Log.d("TEST",prettyJson)
-//                        val parts = prettyJson
-//                            .replace("\n","")
-//                            .replace("{","")
-//                            .replace("}","")
-//                            .replace("\"","")
-//                            .replace(" ","")
-//
-//                        val map = parts.split(",").associate {
-//                            val(left, right) = it.split(":")
-//                            left to right
-//                        }.toMutableMap()
-//
-//                        mustConfirm = map["deveConfirmarPresenca"].toBoolean()
-//                    } else {
-//                        //binding.textCodigoInvalido.visibility = View.VISIBLE
-//                    }
-//                }
-//            }
-//            if(mustConfirm)
-//                view?.findViewById<Button>(R.id.button_confirmar_presenca2)?.isEnabled = true
-//                break
-//        }
-//    }
-
     private fun leaveQueue(){
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
@@ -175,6 +129,7 @@ class QueuePositionFragment : Fragment() {
                             response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
                         )
                     )
+                    confirmPopUpConfirm()
                     Log.d("TEST PRESENCA",prettyJson)
 //                    val parts = prettyJson
 //                        .replace("\n","")
@@ -189,10 +144,88 @@ class QueuePositionFragment : Fragment() {
 //                    }.toMutableMap()
 
                 } else {
+                    confirmPopUpConfirmErro()
                     Log.d("TEST PRESENCA","erro - estabelecimento não chamou")
 //                    binding.textCodigoInvalido.visibility = View.VISIBLE
                 }
             }
         }
     }
+
+    private fun confirmPopUpConfirm() {
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Presença Confirmada!")
+
+        builder.setMessage("Você já será atendido.")
+
+        builder.setPositiveButton("OK") { dialog, which ->
+
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun confirmPopUpConfirmErro(){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Aguarde um momento")
+
+        builder.setMessage("Ainda não é sua vez. Em breve você será chamado!")
+
+        builder.setPositiveButton("OK") { dialog, which ->
+
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+//    fun checkPositionAndCall(){
+//        var mustConfirm:Boolean = false
+//
+//        while(true){
+//            val retrofit = Retrofit.Builder()
+//                .baseUrl(RegisterScreen2.URL_SETUP_USER)
+//                .build()
+//            val service = retrofit.create(MainAPI::class.java)
+//
+//            runBlocking {
+//                withContext(Dispatchers.Default) {
+//                    delay(5000)
+//                    val response = service.leaveQueue("Bearer $TOKEN")
+//                    if (response.isSuccessful) {
+//                        // Convert raw JSON to pretty JSON using GSON library
+//
+//                        val gson = GsonBuilder().setPrettyPrinting().create()
+//                        val prettyJson = gson.toJson(
+//                            JsonParser.parseString(
+//                                response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+//                            )
+//                        )
+//                        Log.d("TEST",prettyJson)
+//                        val parts = prettyJson
+//                            .replace("\n","")
+//                            .replace("{","")
+//                            .replace("}","")
+//                            .replace("\"","")
+//                            .replace(" ","")
+//
+//                        val map = parts.split(",").associate {
+//                            val(left, right) = it.split(":")
+//                            left to right
+//                        }.toMutableMap()
+//
+//                        mustConfirm = map["deveConfirmarPresenca"].toBoolean()
+//                    } else {
+//                        //binding.textCodigoInvalido.visibility = View.VISIBLE
+//                    }
+//                }
+//            }
+//            if(mustConfirm)
+//                view?.findViewById<Button>(R.id.button_confirmar_presenca2)?.isEnabled = true
+//                break
+//        }
+//    }
+
 }

@@ -84,7 +84,8 @@ class ManageQueue : AppCompatActivity() {
 
                     confirmPopUpCall(nome.drop(1).replace("+", " "), cpf.drop(1), numero_celular.drop(1))
                 } else {
-                    Log.d("ERROR", token)
+                    confirmPopUpCallErro()
+                    Log.d("ERRORcall", token)
                 }
             }
         }
@@ -188,6 +189,7 @@ class ManageQueue : AppCompatActivity() {
                     confirmPopUpSkip(nome.drop(1).replace("+", " "), cpf.drop(1), numero_celular.drop(1))
 
                 } else {
+                    confirmPopUpSkipErro()
                     Log.d("ERROR skip", token)
                 }
             }
@@ -254,6 +256,21 @@ class ManageQueue : AppCompatActivity() {
 
     }
 
+    private fun confirmPopUpCallErro(){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Não foi possível chamar")
+
+        builder.setMessage("Esta fila está vazia.")
+
+        builder.setPositiveButton("OK") { dialog, which ->
+
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
     private fun confirmPopUpAttend(nome: String, cpf: String, numero_celular: String){
         val builder = MaterialAlertDialogBuilder(binding.root.context)
         builder.setTitle("Cliente Atendido!")
@@ -283,4 +300,21 @@ class ManageQueue : AppCompatActivity() {
         dialog.show()
 
     }
+
+    private fun confirmPopUpSkipErro(){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Não foi possível pular")
+
+        builder.setMessage("O cliente da vez ainda não foi chamado.")
+
+        builder.setPositiveButton("OK") { dialog, which ->
+
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+
 }
