@@ -32,6 +32,7 @@ class ManageQueue : AppCompatActivity() {
         binding.buttonChamar.setOnClickListener { goToCallNextUser() }
         binding.buttonAtender.setOnClickListener { goToAttendNextUser() }
         binding.buttonPular.setOnClickListener { goToSkipUser() }
+        binding.buttonAtender.isEnabled = false
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
@@ -60,6 +61,7 @@ class ManageQueue : AppCompatActivity() {
                     )
                     Log.d("Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = false
+                    binding.buttonAtender.isEnabled = true
 
                 } else {
                     Log.d("ERROR", token)
