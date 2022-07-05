@@ -62,7 +62,7 @@ class ManageQueue : AppCompatActivity() {
                     )
                     Log.d("Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = false
-                    binding.buttonAtender.isEnabled = true
+                    binding.buttonAtender.isEnabled = false
                     binding.buttonPular.isEnabled = true
 
                 } else {
