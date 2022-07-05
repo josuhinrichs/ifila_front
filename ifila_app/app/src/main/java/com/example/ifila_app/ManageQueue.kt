@@ -31,7 +31,9 @@ class ManageQueue : AppCompatActivity() {
         binding.buttonFecharFila.setOnClickListener { goToEstabWithouQueue() }
         binding.buttonChamar.setOnClickListener { goToCallNextUser() }
         binding.buttonAtender.setOnClickListener { goToAttendNextUser() }
+        binding.buttonPular.setOnClickListener { goToSkipUser() }
         binding.buttonAtender.isEnabled = false
+        binding.buttonPular.isEnabled = false
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
@@ -60,6 +62,8 @@ class ManageQueue : AppCompatActivity() {
                     )
                     Log.d("Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = false
+                    binding.buttonAtender.isEnabled = true
+                    binding.buttonPular.isEnabled = true
 
                 } else {
                     Log.d("ERROR", token)
@@ -76,7 +80,7 @@ class ManageQueue : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             // Do the POST request and get response
-            val response = service.callNextUser(token)
+            val response = service.attendNextUser("0","Bearer $token")
 
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -89,12 +93,46 @@ class ManageQueue : AppCompatActivity() {
                                 ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
                         )
                     )
-                    Log.d("Pretty Printed JSON :", prettyJson)
+                    Log.d("Attend Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = true
                     binding.buttonAtender.isEnabled = false
+                    binding.buttonPular.isEnabled = false
 
                 } else {
-                    Log.d("ERROR", token)
+                    Log.d("ERROR attend", token)
+                }
+            }
+        }
+    }
+
+    fun goToSkipUser(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the POST request and get response
+            val response = service.attendNextUser("1","Bearer $token")
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d(" Skip Pretty Printed JSON :", prettyJson)
+                    binding.buttonChamar.isEnabled = true
+                    binding.buttonAtender.isEnabled = false
+                    binding.buttonPular.isEnabled = false
+
+                } else {
+                    Log.d("ERROR skip", token)
                 }
             }
         }
