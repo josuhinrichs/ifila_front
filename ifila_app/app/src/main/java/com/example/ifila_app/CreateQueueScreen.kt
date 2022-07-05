@@ -42,9 +42,6 @@ class CreateQueueScreen : AppCompatActivity() {
 
     fun goToManageQueue(){
         startCreateQueue()
-        val context = binding.root.context
-        val intent = Intent(context, ManageQueue::class.java)
-        context.startActivity(intent)
     }
 
     private fun goToCreateQueue(){
@@ -55,7 +52,6 @@ class CreateQueueScreen : AppCompatActivity() {
 
     fun startCreateQueue(){
 
-        val context = binding.root.context
         val lastIntent = intent
         val extras = lastIntent.extras
         val token = extras?.get("token").toString()

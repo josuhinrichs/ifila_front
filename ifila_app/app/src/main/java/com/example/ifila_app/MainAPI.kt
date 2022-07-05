@@ -17,6 +17,9 @@ interface MainAPI {
     //@GET("estabelecimentos/${id}")
     //suspend fun getBusiness(@Body requestBody: RequestBody, id: String): Response<ResponseBody>
 
+    @GET("estabelecimentos/me")
+    suspend fun getBusinessMe(@Header("Authorization") auth:String): Response<ResponseBody>
+
     @GET("estabelecimentos/codigo/{id}")
     suspend fun getBusiness(@Path("id") id: String, @Header("Authorization") auth:String): Response<ResponseBody>
 
@@ -28,4 +31,7 @@ interface MainAPI {
 
     @POST("fila/abrir")
     suspend fun createQueue(@Header("Authorization") auth:String, @Body requestBody: RequestBody): Response<ResponseBody>
+
+    @PUT("fila/fechar")
+    suspend fun closeQueue(@Header("Authorization") auth:String): Response<ResponseBody>
 }
