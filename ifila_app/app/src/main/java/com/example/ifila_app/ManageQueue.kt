@@ -20,12 +20,13 @@ import retrofit2.Retrofit
 class ManageQueue : AppCompatActivity() {
 
     private lateinit var binding: ActivityManageQueueBinding
+    lateinit var token:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityManageQueueBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        token = intent.extras?.get("token").toString()
         binding.buttonFecharFila.setOnClickListener { goToEstabWithouQueue() }
 
     }
@@ -34,16 +35,14 @@ class ManageQueue : AppCompatActivity() {
     fun goToEstabWithouQueue(){
         startCloseQueue()
 //        val context = binding.root.context
-//       val intent = Intent(context, EstabWithoutQueueScreen::class.java)//Coloquei pra ir pra tela de ir pra Estabelecimento sem fila
+//        val intent = Intent(context, EstabWithoutQueueScreen::class.java)//Coloquei pra ir pra tela de ir pra Estabelecimento sem fila
+//        intent.putExtra("token", token)
+//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        finish()
 //        context.startActivity(intent)
     }
 
     fun startCloseQueue(){
-
-        val lastIntent = intent
-        val extras = lastIntent.extras
-        val token = extras?.get("token").toString()
-
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -74,7 +73,6 @@ class ManageQueue : AppCompatActivity() {
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     finish()
                     context.startActivity(intent)
-
 
                 } else {
                     Log.d("TEST","ERRO ERRO ")
