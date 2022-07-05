@@ -42,8 +42,9 @@ interface MainAPI {
     suspend fun callNextUser(@Header("Authorization") auth:String): Response<ResponseBody>
 
     @PUT("fila/atendercliente")
-    suspend fun attendNextUser(@Header("Authorization") auth:String): Response<ResponseBody>
+    suspend fun attendNextUser(@Query("pular") pular: String, @Header("Authorization") auth:String): Response<ResponseBody>
 
     @PUT("fila/confirmarpresenca")
     suspend fun confirmPresence(@Header("Authorization") auth:String): Response<ResponseBody>
+    
 }
