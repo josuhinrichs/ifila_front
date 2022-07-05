@@ -106,7 +106,6 @@ class UserQueueFragment : Fragment() {
         builder.setMultiChoiceItems(confirmBox, checkedBox) { dialog, which, isChecked ->
             priority = true
         }
-
         builder.setPositiveButton("Confirmar") { dialog, which ->
             enterQueue(priority)
         }

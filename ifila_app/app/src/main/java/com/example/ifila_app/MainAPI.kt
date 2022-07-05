@@ -27,7 +27,7 @@ interface MainAPI {
     suspend fun getUserMe(@Header("Authorization") auth:String): Response<ResponseBody>
 
     @PUT("fila/entrar/{code}")
-    suspend fun enterQueue(@Path("code") code: String, @Query("Tipo de Fila") priority:String, @Header("Authorization") auth:String): Response<ResponseBody>
+    suspend fun enterQueue(@Path("code") code: String, @Query("tipoFila") priority:String, @Header("Authorization") auth:String): Response<ResponseBody>
 
     @POST("fila/abrir")
     suspend fun createQueue(@Header("Authorization") auth:String, @Body requestBody: RequestBody): Response<ResponseBody>
