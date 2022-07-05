@@ -19,8 +19,13 @@ class EstabWithoutQueueScreen : AppCompatActivity() {
     }
 
     private fun goToCreateQueue(){
+        val token = intent.extras?.get("token").toString()
         val context = binding.root.context
         val intent = Intent(context, CreateQueueScreen::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.putExtra("token", token)
+        finish()
         context.startActivity(intent)
+
     }
 }

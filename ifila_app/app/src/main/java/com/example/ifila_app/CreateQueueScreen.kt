@@ -42,9 +42,9 @@ class CreateQueueScreen : AppCompatActivity() {
 
     fun goToManageQueue(){
         startCreateQueue()
-        val context = binding.root.context
-        val intent = Intent(context, ManageQueue::class.java)
-        context.startActivity(intent)
+//        val context = binding.root.context
+//        val intent = Intent(context, ManageQueue::class.java)
+//        context.startActivity(intent)
     }
 
     private fun goToCreateQueue(){
@@ -75,7 +75,7 @@ class CreateQueueScreen : AppCompatActivity() {
             .build()
         val service = retrofit.create(MainAPI::class.java)
 
-        //Log.d("ANTES", TOKEN.toString())
+//        Log.d("ANTES", token)
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.createQueue("Bearer $token",requestBody)
@@ -103,7 +103,7 @@ class CreateQueueScreen : AppCompatActivity() {
 
 
                 } else {
-                    Log.d("TEST","ERRO ERRO ")
+                    Log.d("ERROR","FILA JÁ ESTÁ ABERTA")
                 }
             }
         }
