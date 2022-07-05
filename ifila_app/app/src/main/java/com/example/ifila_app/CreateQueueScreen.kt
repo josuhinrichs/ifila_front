@@ -23,6 +23,9 @@ import retrofit2.Retrofit
 
 class CreateQueueScreen : AppCompatActivity() {
     private lateinit var binding: ActivityCreateQueueScreenBinding
+    lateinit var token:String
+    lateinit var business_name:String
+    lateinit var business_code:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,9 @@ class CreateQueueScreen : AppCompatActivity() {
 
         limitPeopleFocusListener()
         limitTimeFocusListener()
+        token = intent.extras?.get("token").toString()
+        business_name = intent.extras?.get("business_name").toString()
+        business_code = intent.extras?.get("business_code").toString()
 
         binding.buttonFinalizar.setOnClickListener { goToManageQueue() }
         binding.buttonCancelar.setOnClickListener { goToCreateQueue() }
@@ -50,15 +56,14 @@ class CreateQueueScreen : AppCompatActivity() {
     private fun goToCreateQueue(){
         val context = binding.root.context
         val intent = Intent(context, EstabWithoutQueueScreen::class.java)
+        intent.putExtra("token", token)
+        intent.putExtra("business_name", business_name)
+        intent.putExtra("business_code", business_code)
+        finish()
         context.startActivity(intent)
     }
 
     fun startCreateQueue(){
-
-        val lastIntent = intent
-        val extras = lastIntent.extras
-        val token = extras?.get("token").toString()
-
         val limit_people = binding.editTextLimitePessoas.text.toString()
         val limit_time = binding.editTextLimiteTempo.text.toString()
         val jsonObject = JSONObject()
@@ -99,6 +104,8 @@ class CreateQueueScreen : AppCompatActivity() {
                     val intent = Intent(context, ManageQueue::class.java)
 
                     intent.putExtra("token", token)
+                    intent.putExtra("business_name", business_name)
+                    intent.putExtra("business_code", business_code)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     finish()
                     context.startActivity(intent)

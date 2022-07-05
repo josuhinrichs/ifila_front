@@ -42,7 +42,7 @@
 
         <Button
             android:id="@+id/button_buscarEst"
-            android:layout_width="220dp"
+            android:layout_width="260dp"
             android:layout_height="55dp"
             android:layout_marginTop="8dp"
             android:text="@string/buscar"
@@ -54,7 +54,7 @@
         <Button
             android:id="@+id/button_escanear"
             style="@style/Widget.Material3.Button.Icon"
-            android:layout_width="220dp"
+            android:layout_width="260dp"
             android:layout_height="55dp"
             android:layout_marginTop="24dp"
             android:text="Escanear QR Code"

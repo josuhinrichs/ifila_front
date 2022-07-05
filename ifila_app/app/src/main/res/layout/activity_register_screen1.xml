@@ -171,7 +171,7 @@
 
             <Button
                 android:id="@+id/button_continuar2"
-                android:layout_width="220dp"
+                android:layout_width="260dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/continuar"
@@ -183,7 +183,7 @@
             <Button
                 android:id="@+id/button_cancelar2"
                 style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="220dp"
+                android:layout_width="260dp"
                 android:layout_height="55dp"
                 android:text="@string/cancel"
                 android:textColor="@color/purple_main"

@@ -21,14 +21,20 @@ class ManageQueue : AppCompatActivity() {
 
     private lateinit var binding: ActivityManageQueueBinding
     lateinit var token:String
+    lateinit var business_name : String
+    lateinit var business_code: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityManageQueueBinding.inflate(layoutInflater)
         setContentView(binding.root)
         token = intent.extras?.get("token").toString()
+        business_name = intent.extras?.get("business_name").toString()
+        business_code = intent.extras?.get("business_code").toString()
         binding.buttonFecharFila.setOnClickListener { goToEstabWithouQueue() }
 
+        binding.nomeEstabelecimento.text = business_name
+        binding.textCodigoFila.text = business_code
     }
 
 
@@ -70,6 +76,8 @@ class ManageQueue : AppCompatActivity() {
                     val intent = Intent(context, EstabWithoutQueueScreen::class.java)
 
                     intent.putExtra("token", token)
+                    intent.putExtra("business_name", business_name)
+                    intent.putExtra("business_code", business_code)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     finish()
                     context.startActivity(intent)

@@ -33,7 +33,7 @@
 
     <Button
         android:id="@+id/button_entrar"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:backgroundTint="@color/yellow_main"
         android:text="Entrar"
@@ -45,7 +45,7 @@
 
     <Button
         android:id="@+id/button_registrar"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:backgroundTint="@color/purple_main"
         android:text="@string/registrar"
@@ -58,7 +58,7 @@
     <Button
         android:id="@+id/button_convidado"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:layout_marginBottom="36dp"
         android:text="@string/entrar_como_convidado"

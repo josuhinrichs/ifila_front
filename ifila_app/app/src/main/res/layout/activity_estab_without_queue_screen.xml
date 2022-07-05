@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/logo_primaria" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/text_business_name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -34,21 +34,22 @@
         android:id="@+id/text_criarFilaSolicitation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/fredoka_medium"
         android:text="Seu estabelecimento, no momento,\nnão tem uma fila cadastrada."
         android:textAlignment="center"
+        android:textColor="@color/gray_main"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/text_business_name2" />
 
     <Button
         android:id="@+id/button_criarFila"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:text="+ Criar fila"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

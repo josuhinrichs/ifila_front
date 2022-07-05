@@ -22,6 +22,8 @@ import java.util.regex.Pattern
 
 class LoginScreen : AppCompatActivity() {
     private lateinit var binding: ActivityLoginScreenBinding
+    var business_name = ""
+    var business_code = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,6 @@ class LoginScreen : AppCompatActivity() {
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
         val service = retrofit.create(MainAPI::class.java)
-
         var statusFila = AtomicBoolean()
         statusFila.set(false)
 
@@ -80,6 +81,8 @@ class LoginScreen : AppCompatActivity() {
                     if(map["statusFila"] == "true"){
                         statusFila.set(true)
                     }
+                    business_name = map["nome"].toString()
+                    business_code = map["codigo"].toString()
                     Log.d("DENTRO", statusFila.toString())
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE
@@ -232,6 +235,8 @@ class LoginScreen : AppCompatActivity() {
             val context = binding.root.context
             val intent = Intent(context, ManageQueue::class.java)
             intent.putExtra("token", token)
+            intent.putExtra("business_name", business_name)
+            intent.putExtra("business_code", business_code)
             finish()
             context.startActivity(intent)
         }
@@ -239,6 +244,8 @@ class LoginScreen : AppCompatActivity() {
             val context = binding.root.context
             val intent = Intent(context, EstabWithoutQueueScreen::class.java)
             intent.putExtra("token", token)
+            intent.putExtra("business_name", business_name)
+            intent.putExtra("business_code", business_code)
             finish()
             context.startActivity(intent)
         }

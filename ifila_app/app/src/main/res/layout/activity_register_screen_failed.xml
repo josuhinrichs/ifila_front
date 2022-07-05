@@ -85,7 +85,7 @@
 
     <Button
         android:id="@+id/button_retornar"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:layout_marginBottom="36dp"
         android:text="Retornar"
