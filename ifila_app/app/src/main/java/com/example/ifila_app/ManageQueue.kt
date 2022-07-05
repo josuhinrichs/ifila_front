@@ -12,9 +12,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 import retrofit2.Retrofit
 
 class ManageQueue : AppCompatActivity() {
@@ -32,11 +29,76 @@ class ManageQueue : AppCompatActivity() {
         business_name = intent.extras?.get("business_name").toString()
         business_code = intent.extras?.get("business_code").toString()
         binding.buttonFecharFila.setOnClickListener { goToEstabWithouQueue() }
+        binding.buttonChamar.setOnClickListener { goToCallNextUser() }
+        binding.buttonAtender.setOnClickListener { goToAttendNextUser() }
+        binding.buttonAtender.isEnabled = false
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
     }
 
+    private fun goToCallNextUser(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the POST request and get response
+            val response = service.callNextUser("Bearer $token")
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d("Pretty Printed JSON :", prettyJson)
+                    binding.buttonChamar.isEnabled = false
+
+                } else {
+                    Log.d("ERROR", token)
+                }
+            }
+        }
+    }
+
+    fun goToAttendNextUser(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the POST request and get response
+            val response = service.callNextUser(token)
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d("Pretty Printed JSON :", prettyJson)
+                    binding.buttonChamar.isEnabled = true
+                    binding.buttonAtender.isEnabled = false
+
+                } else {
+                    Log.d("ERROR", token)
+                }
+            }
+        }
+    }
 
     fun goToEstabWithouQueue(){
         startCloseQueue()

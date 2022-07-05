@@ -112,6 +112,7 @@ class CreateQueueScreen : AppCompatActivity() {
 
 
                 } else {
+                    Log.d("ERROR",token)
                     Log.d("ERROR","FILA JÁ ESTÁ ABERTA")
                 }
             }

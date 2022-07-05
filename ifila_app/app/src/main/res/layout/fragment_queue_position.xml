@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     tools:context=".QueuePositionFragment">
 
     <ScrollView
@@ -65,6 +66,7 @@
                 android:fontFamily="@font/fredoka_medium"
                 android:text="Sua posição - XX"
                 android:textSize="20sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -87,14 +89,13 @@
                 android:id="@+id/button_confirmar_presenca2"
                 android:layout_width="260dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="36dp"
-                android:enabled="false"
+                android:layout_marginTop="32dp"
                 android:text="Confirmar presença"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -105,6 +106,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_confirm_and_wait" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Erro - Você ainda não foi chamado. Tente novamente depois."
+                android:textAlignment="center"
+                android:textColor="@color/red_main"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

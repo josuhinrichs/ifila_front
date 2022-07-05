@@ -49,7 +49,7 @@ class QueuePositionFragment : Fragment() {
         CODE = arguments?.getString("codigo")
 
         view_view.findViewById<Button>(R.id.button_sair_fila2).setOnClickListener { leaveQueue() }
-
+        view_view.findViewById<Button>(R.id.button_confirmar_presenca2).setOnClickListener { goToConfirmPresence() }
         return view_view
     }
 
@@ -72,6 +72,53 @@ class QueuePositionFragment : Fragment() {
                 }
             }
     }
+
+//    fun checkPositionAndCall(){
+//        var mustConfirm:Boolean = false
+//
+//        while(true){
+//            val retrofit = Retrofit.Builder()
+//                .baseUrl(RegisterScreen2.URL_SETUP_USER)
+//                .build()
+//            val service = retrofit.create(MainAPI::class.java)
+//
+//            runBlocking {
+//                withContext(Dispatchers.Default) {
+//                    delay(5000)
+//                    val response = service.leaveQueue("Bearer $TOKEN")
+//                    if (response.isSuccessful) {
+//                        // Convert raw JSON to pretty JSON using GSON library
+//
+//                        val gson = GsonBuilder().setPrettyPrinting().create()
+//                        val prettyJson = gson.toJson(
+//                            JsonParser.parseString(
+//                                response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+//                            )
+//                        )
+//                        Log.d("TEST",prettyJson)
+//                        val parts = prettyJson
+//                            .replace("\n","")
+//                            .replace("{","")
+//                            .replace("}","")
+//                            .replace("\"","")
+//                            .replace(" ","")
+//
+//                        val map = parts.split(",").associate {
+//                            val(left, right) = it.split(":")
+//                            left to right
+//                        }.toMutableMap()
+//
+//                        mustConfirm = map["deveConfirmarPresenca"].toBoolean()
+//                    } else {
+//                        //binding.textCodigoInvalido.visibility = View.VISIBLE
+//                    }
+//                }
+//            }
+//            if(mustConfirm)
+//                view?.findViewById<Button>(R.id.button_confirmar_presenca2)?.isEnabled = true
+//                break
+//        }
+//    }
 
     private fun leaveQueue(){
         val retrofit = Retrofit.Builder()
@@ -105,6 +152,45 @@ class QueuePositionFragment : Fragment() {
                     }.toMutableMap()
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
+    private fun goToConfirmPresence(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.confirmPresence("Bearer $TOKEN")
+            withContext(Dispatchers.Default) {
+                if (response.isSuccessful) {
+                    // Convert raw JSON to pretty JSON using GSON library
+
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d("TEST PRESENCA",prettyJson)
+//                    val parts = prettyJson
+//                        .replace("\n","")
+//                        .replace("{","")
+//                        .replace("}","")
+//                        .replace("\"","")
+//                        .replace(" ","")
+//
+//                    val map = parts.split(",").associate {
+//                        val(left, right) = it.split(":")
+//                        left to right
+//                    }.toMutableMap()
+
+                } else {
+                    Log.d("TEST PRESENCA","erro - estabelecimento não chamou")
+//                    binding.textCodigoInvalido.visibility = View.VISIBLE
                 }
             }
         }

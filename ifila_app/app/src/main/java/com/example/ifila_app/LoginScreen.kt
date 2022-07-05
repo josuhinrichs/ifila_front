@@ -78,6 +78,8 @@ class LoginScreen : AppCompatActivity() {
                     }.toMutableMap()
 
                     Log.d("TEST", map.toString())
+
+                    Log.d("TEST", map.toString())
                     if(map["statusFila"] == "true"){
                         statusFila.set(true)
                     }

@@ -37,4 +37,13 @@ interface MainAPI {
 
     @PUT("fila/fechar")
     suspend fun closeQueue(@Header("Authorization") auth:String): Response<ResponseBody>
+
+    @PUT("fila/chamarcliente")
+    suspend fun callNextUser(@Header("Authorization") auth:String): Response<ResponseBody>
+
+    @PUT("fila/atendercliente")
+    suspend fun attendNextUser(@Header("Authorization") auth:String): Response<ResponseBody>
+
+    @PUT("fila/confirmarpresenca")
+    suspend fun confirmPresence(@Header("Authorization") auth:String): Response<ResponseBody>
 }
