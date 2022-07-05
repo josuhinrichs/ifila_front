@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.ifila_app.databinding.FragmentUserQueueBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import com.squareup.picasso.Picasso
@@ -67,7 +68,7 @@ class UserQueueFragment : Fragment() {
         }
 
         view_view.findViewById<TextView>(R.id.text_business_type).text = BUSINESS_TYPE
-        view_view.findViewById<TextView>(R.id.button_enter_queue).setOnClickListener{ startEnterQueue() }
+        view_view.findViewById<TextView>(R.id.button_enter_queue).setOnClickListener{ confirmPopUp() }
 
         val image_view = view_view.findViewById<ImageView>(R.id.image_business_to_link)
         Picasso.get().load(IMAGE_LINK).into(image_view)
@@ -95,7 +96,28 @@ class UserQueueFragment : Fragment() {
             }
     }
 
-    fun startEnterQueue(){
+    private fun confirmPopUp(){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Confirmar entrada na fila?")
+
+        val confirmBox = arrayOf("Entrar como grupo prioritário")
+        val checkedBox = booleanArrayOf(false)
+        builder.setMultiChoiceItems(confirmBox, checkedBox) { dialog, which, isChecked ->
+            enterQueue(true)
+        }
+
+        builder.setPositiveButton("Confirmar") { dialog, which ->
+            enterQueue(false)
+        }
+
+        builder.setNegativeButton("Cancelar", null)
+
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+    fun enterQueue(priority:Boolean){
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -104,8 +126,10 @@ class UserQueueFragment : Fragment() {
         Log.d("ANTES", CODE.toString())
         Log.d("ANTES", TOKEN.toString())
 
+        val priority_query = if(priority) "prioridade" else "principal"
+
         CoroutineScope(Dispatchers.IO).launch {
-            val response = service.enterQueue(CODE.toString(), "Bearer $TOKEN")
+            val response = service.enterQueue(CODE.toString(), priority_query,"Bearer $TOKEN")
 
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
@@ -120,17 +144,24 @@ class UserQueueFragment : Fragment() {
 
                     Log.d("TEST 1",prettyJson)
 
-//                    val fragment = UserQueueFragment()
-//                    val bundle = Bundle()
-//                    bundle.putString("token", token.drop(1))
-//                    fragment.arguments = bundle
-//                    Log.d("TEST 2", map.toString())
-//                    replaceFragment(fragment)
+                    val fragment = QueuePositionFragment()
+                    val bundle = Bundle()
+                    bundle.putString("token", TOKEN)
+                    fragment.arguments = bundle
+                    replaceFragment(fragment)
 
                 } else {
                     Log.d("TEST","ERRO ERRO ")
                 }
             }
         }
+    }
+
+    private fun replaceFragment( fragment: Fragment){
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout_code_queue, fragment)
+        activity?.supportFragmentManager?.popBackStack()
+        fragmentTransaction.commit()
     }
 }

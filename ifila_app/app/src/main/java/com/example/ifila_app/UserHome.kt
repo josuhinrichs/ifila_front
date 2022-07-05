@@ -8,16 +8,15 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.example.ifila_app.databinding.ActivityUserHomeBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
+import java.util.concurrent.atomic.AtomicBoolean
 
 class UserHome : AppCompatActivity() {
     private lateinit var binding: ActivityUserHomeBinding
@@ -51,7 +50,7 @@ class UserHome : AppCompatActivity() {
                         fragment.arguments = bundle
                         replaceFragment(fragment)
                     }else{
-                        val fragment = UserQueueFragment()
+                        val fragment = QueuePositionFragment()
                         bundle.putString("token", token)
                         fragment.arguments = bundle
                         replaceFragment(fragment)
@@ -69,7 +68,19 @@ class UserHome : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        supportFragmentManager.popBackStack()
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Sair?")
+
+        builder.setMessage("Você deseja realmente sair?")
+
+        builder.setPositiveButton("Confirmar") { dialog, which ->
+            super.onBackPressed()
+        }
+
+        builder.setNegativeButton("Cancelar", null)
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
     private fun replaceFragment( fragment: Fragment){
@@ -88,12 +99,13 @@ class UserHome : AppCompatActivity() {
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
         val service = retrofit.create(MainAPI::class.java)
-        var inQueue = false.toString()
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = service.getUserMe("Bearer $token")
+        var inQueue = AtomicBoolean()
+        inQueue.set(false)
 
-            withContext(Dispatchers.Main) {
+        runBlocking {
+            withContext(Dispatchers.Default) {
+                val response = service.getUserMe("Bearer $token")
                 if (response.isSuccessful) {
                     // Convert raw JSON to pretty JSON using GSON library
 
@@ -103,7 +115,7 @@ class UserHome : AppCompatActivity() {
                             response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
                         )
                     )
-
+                    Log.d("TEST",prettyJson)
                     val parts = prettyJson
                         .replace("\n","")
                         .replace("{","")
@@ -115,14 +127,19 @@ class UserHome : AppCompatActivity() {
                         val(left, right) = it.split(":")
                         left to right
                     }.toMutableMap()
-                    inQueue = map["emFila"] ?: ""
 
+                    Log.d("TEST", map.toString())
+                    if(map["emFila"] == "true"){
+                        inQueue.set(true)
+                    }
+                    Log.d("DENTRO", inQueue.toString())
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE
                 }
             }
         }
-        return inQueue.toBoolean()
 
+        Log.d("FORA", inQueue.toString())
+        return inQueue.toString().toBoolean()
     }
 }

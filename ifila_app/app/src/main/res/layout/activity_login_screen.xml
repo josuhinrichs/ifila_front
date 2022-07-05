@@ -101,13 +101,12 @@
         android:id="@+id/button_entrar"
         android:layout_width="220dp"
         android:layout_height="55dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:enabled="false"
         android:text="Entrar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearlayout" />
 
