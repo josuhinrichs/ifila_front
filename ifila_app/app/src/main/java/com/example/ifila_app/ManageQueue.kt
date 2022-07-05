@@ -129,6 +129,7 @@ class ManageQueue : AppCompatActivity() {
                     Log.d(" Skip Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = true
                     binding.buttonAtender.isEnabled = false
+                    binding.buttonPular.isEnabled = false
 
                 } else {
                     Log.d("ERROR skip", token)
