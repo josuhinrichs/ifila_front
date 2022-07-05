@@ -32,7 +32,6 @@ class ManageQueue : AppCompatActivity() {
         binding.buttonChamar.setOnClickListener { goToCallNextUser() }
         binding.buttonAtender.setOnClickListener { goToAttendNextUser() }
         binding.buttonPular.setOnClickListener { goToSkipUser() }
-        binding.buttonAtender.isEnabled = false
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
