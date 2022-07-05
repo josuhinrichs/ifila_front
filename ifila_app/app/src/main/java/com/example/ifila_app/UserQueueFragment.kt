@@ -34,6 +34,12 @@ class UserQueueFragment : Fragment() {
     private var CODE: String? = null
     private lateinit var binding: FragmentUserQueueBinding
 
+
+//    private var QUEUE_SIZE_PRINCIPAL: String? = null
+//    private var QUEUE_SIZE_PRIORITY: String? = null
+//    private var QUEUE_SIZE_PRINCIPAL: String? = null
+//    private var QUEUE_TIME_PRIORITY: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -46,19 +52,19 @@ class UserQueueFragment : Fragment() {
         //binding.buttonBuscarEst.setOnClickListener { startCodRequest()}
 
         val view_view = inflater.inflate(R.layout.fragment_user_queue, container, false)
-        //val botao = view_view.findViewById<Button>(R.id.button_buscarEst)
-        //botao.setOnClickListener { startCodRequest()}
         TOKEN = arguments?.getString("token")
         BUSINESS_NAME = arguments?.getString("nome_estabelecimento")
         QUEUE_STATUS = arguments?.getString("fila_status")
-
         DESCRIPTION = arguments?.getString("descricao")
         IMAGE_LINK= arguments?.getString("link_imagem")
         CODE= arguments?.getString("codigo")
         BUSINESS_TYPE= arguments?.getString("categoria")
 
+
         val business_name = view_view.findViewById<TextView>(R.id.text_business_name)
         val business_status = view_view.findViewById<TextView>(R.id.text_business_status)
+        //val business_size = view_view.findViewById<TextView>(R.id.text_queue_size)
+
         business_name.text = BUSINESS_NAME
         if(QUEUE_STATUS.toBoolean()){
             business_status.text = "Aberto"
