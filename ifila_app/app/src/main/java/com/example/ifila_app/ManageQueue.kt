@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.ifila_app.databinding.ActivityCreateQueueScreenBinding
 import com.example.ifila_app.databinding.ActivityManageQueueBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
@@ -56,13 +57,32 @@ class ManageQueue : AppCompatActivity() {
                     val prettyJson = gson.toJson(
                         JsonParser.parseString(
                             response.body()
-                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                                ?.string()
                         )
                     )
                     Log.d("Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = false
-                    binding.buttonAtender.isEnabled = false
+                    binding.buttonAtender.isEnabled = true
 
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","+")
+                        .replace("++","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+
+                    val nome = map["nome"] ?: ""
+                    val cpf = map["cpf"] ?: ""
+                    val numero_celular = map["numeroCelular"] ?: ""
+
+
+                    confirmPopUpCall(nome.drop(1).replace("+", " "), cpf.drop(1), numero_celular.drop(1))
                 } else {
                     Log.d("ERROR", token)
                 }
@@ -94,6 +114,26 @@ class ManageQueue : AppCompatActivity() {
                     Log.d("Attend Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = true
                     binding.buttonAtender.isEnabled = false
+
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","+")
+                        .replace("++","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+
+                    val nome = map["nome"] ?: ""
+                    val cpf = map["cpf"] ?: ""
+                    val numero_celular = map["numeroCelular"] ?: ""
+
+
+                    confirmPopUpAttend(nome.drop(1).replace("+", " "), cpf.drop(1), numero_celular.drop(1))
 
                 } else {
                     Log.d("ERROR attend", token)
@@ -127,6 +167,26 @@ class ManageQueue : AppCompatActivity() {
                     binding.buttonChamar.isEnabled = true
                     binding.buttonAtender.isEnabled = false
 
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","+")
+                        .replace("++","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+
+                    val nome = map["nome"] ?: ""
+                    val cpf = map["cpf"] ?: ""
+                    val numero_celular = map["numeroCelular"] ?: ""
+
+
+                    confirmPopUpSkip(nome.drop(1).replace("+", " "), cpf.drop(1), numero_celular.drop(1))
+
                 } else {
                     Log.d("ERROR skip", token)
                 }
@@ -136,12 +196,6 @@ class ManageQueue : AppCompatActivity() {
 
     fun goToEstabWithouQueue(){
         startCloseQueue()
-//        val context = binding.root.context
-//        val intent = Intent(context, EstabWithoutQueueScreen::class.java)//Coloquei pra ir pra tela de ir pra Estabelecimento sem fila
-//        intent.putExtra("token", token)
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        finish()
-//        context.startActivity(intent)
     }
 
     fun startCloseQueue(){
@@ -183,5 +237,50 @@ class ManageQueue : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun confirmPopUpCall(nome: String, cpf: String, numero_celular: String){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Cliente Chamado!")
+
+        builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
+
+        builder.setPositiveButton("Confirmar") { dialog, which ->
+
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+    private fun confirmPopUpAttend(nome: String, cpf: String, numero_celular: String){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Cliente Atendido!")
+
+        builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
+
+        builder.setPositiveButton("Confirmar") { dialog, which ->
+
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+    private fun confirmPopUpSkip(nome: String, cpf: String, numero_celular: String){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Cliente Pulado!")
+
+        builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
+
+        builder.setPositiveButton("Confirmar") { dialog, which ->
+
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+
     }
 }
