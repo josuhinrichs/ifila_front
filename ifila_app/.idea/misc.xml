@@ -3,49 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable-anydpi-v26/ic_launcher_background.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable-night/dummybg.xml" value="0.3495" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/dummybg.xml" value="0.1575" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.108" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_qr_code_24.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_store_24.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_transit_enterexit_24.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_visibility_24.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/ic_baseline_visibility_off_24.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/nav_bar_home_selection.xml" value="0.108" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/nav_bar_queue_selector.xml" value="0.108" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/drawable/nav_bar_settings_selector.xml" value="0.108" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue1.xml" value="0.25" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue1.xml" value="0.33" />
         <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue2.xml" value="0.3489583333333333" />
         <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue3.xml" value="0.3489583333333333" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_enter_code_screen.xml" value="0.1" />
+        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_enter_code_screen.xml" value="0.3489583333333333" />
         <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_estab_without_queue_screen.xml" value="0.3489583333333333" />
         <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_login_screen.xml" value="0.33" />
         <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen1.xml" value="0.3489583333333333" />
         <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.2863247863247863" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/activity_user_home.xml" value="0.33" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_code_queue.xml" value="0.22" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_home.xml" value="0.2858974358974359" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_queue.xml" value="0.33" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_settings.xml" value="0.25" />
-        <entry key="..\:/Repos/ifila_front/ifila_app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
-        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue.xml" value="0.259375" />
+        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue1.xml" value="0.12817028985507245" />
+        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/activity_create_queue_screen.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/activity_manage_queue.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_code_queue.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_queue.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/lulul/Documents/Faculdade/semestre 5/Engenharia de Software 1/ifila_front/ifila_app/app/src/main/res/layout/fragment_user_settings.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue1.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue2.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_client_pos_queue3.xml" value="0.2129115006412997" />
-        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_create_queue_screen.xml" value="0.16259057971014493" />
+        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_create_queue_screen.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_enter_code_screen.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_estab_without_queue_screen.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_login_screen.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_main.xml" value="0.16953762466001812" />
-        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_manage_queue.xml" value="0.136" />
+        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_manage_queue.xml" value="0.152" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_manage_queue1.xml" value="0.2129115006412997" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_manage_queue2.xml" value="0.25" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen1.xml" value="0.16953762466001812" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen2.xml" value="0.16953762466001812" />
-        <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen_failed.xml" value="0.2128205128205128" />
         <entry key="..\:/Users/sergi/Desktop/i.fila/ifila_front/ifila_app/app/src/main/res/layout/activity_register_screen_finish.xml" value="0.16953762466001812" />
         <entry key="..\:/ifila_front/ifila_app/app/src/main/res/drawable/ic_logo_prim.xml" value="0.3105" />
         <entry key="..\:/ifila_front/ifila_app/app/src/main/res/drawable/logo_logo_principal.xml" value="0.3105" />

@@ -178,7 +178,9 @@ class LoginScreen : AppCompatActivity() {
         val intent = Intent(context, EstabWithoutQueueScreen::class.java)
 
         intent.putExtra("token", token)
+        finish()
         context.startActivity(intent)
+
     }
 
     fun signUp(){

@@ -26,4 +26,6 @@ interface MainAPI {
     @PUT("fila/entrar/{code}")
     suspend fun enterQueue(@Path("code") code: String, @Header("Authorization") auth:String): Response<ResponseBody>
 
+    @POST("fila/abrir")
+    suspend fun createQueue(@Header("Authorization") auth:String, @Body requestBody: RequestBody): Response<ResponseBody>
 }
