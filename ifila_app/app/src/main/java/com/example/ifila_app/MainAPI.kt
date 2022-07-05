@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 interface MainAPI {
 
-    @POST("usuarios?role=user")
+    @POST("usuarios?role=usuario")
     suspend fun createUser(@Body requestBody: RequestBody): Response<ResponseBody>
 
     @POST("auth/login")
@@ -22,4 +22,8 @@ interface MainAPI {
 
     @GET("usuarios/me")
     suspend fun getUserMe(@Header("Authorization") auth:String): Response<ResponseBody>
+
+    @PUT("fila/entrar/{code}")
+    suspend fun enterQueue(@Path("code") code: String, @Header("Authorization") auth:String): Response<ResponseBody>
+
 }

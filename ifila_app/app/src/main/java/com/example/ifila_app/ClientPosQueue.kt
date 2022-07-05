@@ -14,12 +14,12 @@ class ClientPosQueue : AppCompatActivity() {
         binding = ActivityClientPosQueueBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonSairFila.setOnClickListener { goToEnteCode() }
+//        binding.buttonSairFila.setOnClickListener { goToEnteCode() }
     }
 
-    private fun goToEnteCode(){
-        val context = binding.root.context
-        val intent = Intent(context, EnterCodeScreen::class.java)//Coloquei pra ir pra tela de ir pra Estabelecimento sem fila
-        context.startActivity(intent)
-    }
+//    private fun goToEnterCode(){
+//        val context = binding.root.context
+//        //val intent = Intent(context, EnterCodeScreen::class.java)//Coloquei pra ir pra tela de ir pra Estabelecimento sem fila
+//        context.startActivity(intent)
+//    }
 }

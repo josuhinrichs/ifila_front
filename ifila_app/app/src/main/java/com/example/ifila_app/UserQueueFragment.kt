@@ -1,10 +1,6 @@
 package com.example.ifila_app
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,25 +9,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.ifila_app.databinding.FragmentUserQueueBinding
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.delay
-import java.io.BufferedInputStream
-import java.io.IOException
-import java.io.InputStream
-import java.net.URL
-import java.net.URLConnection
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "token"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UserQueueFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserQueueFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var TOKEN: String? = null
@@ -77,6 +67,7 @@ class UserQueueFragment : Fragment() {
         }
 
         view_view.findViewById<TextView>(R.id.text_business_type).text = BUSINESS_TYPE
+        view_view.findViewById<TextView>(R.id.button_enter_queue).setOnClickListener{ startEnterQueue() }
 
         val image_view = view_view.findViewById<ImageView>(R.id.image_business_to_link)
         Picasso.get().load(IMAGE_LINK).into(image_view)
@@ -102,5 +93,44 @@ class UserQueueFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    fun startEnterQueue(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        Log.d("ANTES", CODE.toString())
+        Log.d("ANTES", TOKEN.toString())
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.enterQueue(CODE.toString(), "Bearer $TOKEN")
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    // Convert raw JSON to pretty JSON using GSON library
+
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+
+                    Log.d("TEST 1",prettyJson)
+
+//                    val fragment = UserQueueFragment()
+//                    val bundle = Bundle()
+//                    bundle.putString("token", token.drop(1))
+//                    fragment.arguments = bundle
+//                    Log.d("TEST 2", map.toString())
+//                    replaceFragment(fragment)
+
+                } else {
+                    Log.d("TEST","ERRO ERRO ")
+                }
+            }
+        }
     }
 }

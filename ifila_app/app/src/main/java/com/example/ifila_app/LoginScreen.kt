@@ -83,7 +83,7 @@ class LoginScreen : AppCompatActivity() {
                     }.toMutableMap()
                     val token = map["token"] ?: ""
                     val role = map["role"] ?: ""
-                    if(role == "user"){
+                    if(role == "usuario"){
                         loginUser(token)
                     }else{
                         loginBusiness(token)

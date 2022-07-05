@@ -137,7 +137,7 @@ class UserCodeQueueFragment : Fragment() {
 
                     val fragment = UserQueueFragment()
                     val bundle = Bundle()
-                    bundle.putString("token", token.drop(1))
+                    bundle.putString("token", token)
                     bundle.putString("codigo", code.drop(1))
                     bundle.putString("nome_estabelecimento", nome.drop(1).replace("+"," "))
                     bundle.putString("descricao", descricao.drop(1))
