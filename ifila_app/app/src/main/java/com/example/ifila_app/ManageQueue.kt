@@ -33,7 +33,6 @@ class ManageQueue : AppCompatActivity() {
         binding.buttonAtender.setOnClickListener { goToAttendNextUser() }
         binding.buttonPular.setOnClickListener { goToSkipUser() }
         binding.buttonAtender.isEnabled = false
-        binding.buttonPular.isEnabled = false
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
@@ -63,7 +62,6 @@ class ManageQueue : AppCompatActivity() {
                     Log.d("Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = false
                     binding.buttonAtender.isEnabled = false
-                    binding.buttonPular.isEnabled = true
 
                 } else {
                     Log.d("ERROR", token)
@@ -96,7 +94,6 @@ class ManageQueue : AppCompatActivity() {
                     Log.d("Attend Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = true
                     binding.buttonAtender.isEnabled = false
-                    binding.buttonPular.isEnabled = false
 
                 } else {
                     Log.d("ERROR attend", token)
@@ -129,7 +126,6 @@ class ManageQueue : AppCompatActivity() {
                     Log.d(" Skip Pretty Printed JSON :", prettyJson)
                     binding.buttonChamar.isEnabled = true
                     binding.buttonAtender.isEnabled = false
-                    binding.buttonPular.isEnabled = false
 
                 } else {
                     Log.d("ERROR skip", token)
