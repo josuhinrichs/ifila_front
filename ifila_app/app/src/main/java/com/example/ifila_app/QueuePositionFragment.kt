@@ -129,11 +129,11 @@ class QueuePositionFragment : Fragment() {
                             response.body()?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
                         )
                     )
-                    //confirmPopUpConfirm()
+                    confirmPopUpConfirm()
                     Log.d("TEST PRESENCA",prettyJson)
 
                 } else {
-                    //confirmPopUpConfirmErro()
+                    confirmPopUpConfirmErro()
                     Log.d("TEST PRESENCA","erro - estabelecimento não chamou")
 //                  binding.textCodigoInvalido.visibility = View.VISIBLE
                 }
