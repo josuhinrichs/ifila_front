@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateQueueScreen">
+
     <ImageView
         android:id="@+id/image_ifila_logo"
         android:layout_width="128dp"
         android:layout_height="48dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,8 +82,11 @@
                 android:id="@+id/editTextLimiteTempo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
                 android:inputType="number"
-                app:mask="##:##"/>
+                android:textAppearance="@style/Widget.AppCompat.EditText"
+                android:textSize="16sp"
+                app:mask="##:##" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
