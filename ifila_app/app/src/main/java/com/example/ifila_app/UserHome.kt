@@ -132,6 +132,8 @@ class UserHome : AppCompatActivity() {
                     if(map["emFila"] == "true"){
                         inQueue.set(true)
                     }
+//                    BUSINESS_NAME = map[]
+
                     Log.d("DENTRO", inQueue.toString())
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE

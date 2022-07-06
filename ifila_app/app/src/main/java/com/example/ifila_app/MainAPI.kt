@@ -46,5 +46,10 @@ interface MainAPI {
 
     @PUT("fila/confirmarpresenca")
     suspend fun confirmPresence(@Header("Authorization") auth:String): Response<ResponseBody>
-    
+
+    @GET("fila/{code}")
+    suspend fun checkQueueInfo(@Path("code") code: String, @Header("Authorization") auth:String): Response<ResponseBody>
+
+    @GET("fila/infoposicao")
+    suspend fun checkPositionInQueue(@Header("Authorization") auth:String): Response<ResponseBody>
 }

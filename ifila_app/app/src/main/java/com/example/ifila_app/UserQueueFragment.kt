@@ -1,10 +1,12 @@
 package com.example.ifila_app
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +60,7 @@ class UserQueueFragment : Fragment() {
         QUEUE_STATUS = arguments?.getString("fila_status")
         DESCRIPTION = arguments?.getString("descricao")
         IMAGE_LINK= arguments?.getString("link_imagem")
+        IMAGE_LINK = "https://$IMAGE_LINK"
         CODE= arguments?.getString("codigo")
         BUSINESS_TYPE= arguments?.getString("categoria")
         QUEUE_SIZE_PRINCIPAL = arguments?.getString("qtdPessoasPrincipal")
@@ -75,8 +78,8 @@ class UserQueueFragment : Fragment() {
         if(QUEUE_STATUS.toBoolean()){
             business_status.text = "Aberto"
             view_view.findViewById<ConstraintLayout>(R.id.layout_queue_panel).visibility = View.VISIBLE
-            business_size_principal.text = "$QUEUE_SIZE_PRINCIPAL pessoas [Padrão]"
-            business_size_priority.text = "$QUEUE_SIZE_PRIORITY pessoas [Prioridade]"
+            business_size_principal.text = "$QUEUE_SIZE_PRINCIPAL pessoa(s) - Padrão"
+            business_size_priority.text = "$QUEUE_SIZE_PRIORITY pessoas(s) - Prioridade"
         }else {
             business_status.text = "Fechado"
             business_status.setTextColor(resources.getColor(R.color.red_main))
@@ -163,6 +166,7 @@ class UserQueueFragment : Fragment() {
                     val fragment = QueuePositionFragment()
                     val bundle = Bundle()
                     bundle.putString("token", TOKEN)
+                    bundle.putString("nome_estabelecimento", BUSINESS_NAME)
                     fragment.arguments = bundle
                     replaceFragment(fragment)
 

@@ -9,10 +9,7 @@ import com.example.ifila_app.databinding.ActivityManageQueueBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.Retrofit
 
 class ManageQueue : AppCompatActivity() {
@@ -37,6 +34,62 @@ class ManageQueue : AppCompatActivity() {
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
+        goToCheckQueueInfo()
+    }
+
+    private fun goToCheckQueueInfo(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        var qtdUsuariosFilaPrincipal:String = ""
+        var qtdUsuariosFilaPrioridade:String = ""
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the POST request and get response
+            val response = service.getBusiness(business_code,"Bearer $token")
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d(" Skip Pretty Printed JSON :", prettyJson)
+
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","+")
+                        .replace("++","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+                    Log.d(" Skip Pretty Printed QTD PRIORIDADE :", qtdUsuariosFilaPrioridade)
+                    qtdUsuariosFilaPrincipal = map["qtdUsuariosFilaPrincipal"]?.drop(1)?.toInt().toString()
+                    qtdUsuariosFilaPrioridade = map["qtdUsuariosFilaPrioridade"]?.drop(1).toString()
+                    Log.d(" Skip Pretty Printed QTD PRINCIPAL :", qtdUsuariosFilaPrincipal)
+                    assignSizeText(qtdUsuariosFilaPrincipal, qtdUsuariosFilaPrioridade)
+                } else {
+                }
+            }
+        }
+    }
+
+    fun assignSizeText(qtd_principal:String,qtd_prioridade:String){
+        Log.d(" Skip Pretty Printed MAAAAAP :",qtd_principal)
+        binding.textTamFilaPrincipal.text = "Fila Padrão - $qtd_principal Pessoa(s)"
+        binding.textTamFilaPrioritaria.text = "Fila Prioridade - $qtd_prioridade Pessoa(s)"
     }
 
     private fun goToCallNextUser(){
