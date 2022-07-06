@@ -98,6 +98,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_queue_panel"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -135,19 +136,19 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/text_queue_size"
+                        android:id="@+id/text_queue_size_principal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:text="n Pessoas" />
 
                     <TextView
-                        android:id="@+id/text_queue_estimated_time"
+                        android:id="@+id/text_queue_size_priority"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Espera estimada - xx min"
-                        android:textSize="13sp" />
+                        android:text="n Pessoas"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

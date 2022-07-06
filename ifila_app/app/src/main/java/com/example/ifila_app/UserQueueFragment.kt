@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.ifila_app.databinding.FragmentUserQueueBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -35,10 +36,10 @@ class UserQueueFragment : Fragment() {
     private lateinit var binding: FragmentUserQueueBinding
 
 
-//    private var QUEUE_SIZE_PRINCIPAL: String? = null
-//    private var QUEUE_SIZE_PRIORITY: String? = null
-//    private var QUEUE_SIZE_PRINCIPAL: String? = null
-//    private var QUEUE_TIME_PRIORITY: String? = null
+    private var QUEUE_SIZE_PRINCIPAL: String? = null
+    private var QUEUE_SIZE_PRIORITY: String? = null
+    private var QUEUE_TIME_PRINCIPAL: String? = null
+    private var QUEUE_TIME_PRIORITY: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,18 +60,27 @@ class UserQueueFragment : Fragment() {
         IMAGE_LINK= arguments?.getString("link_imagem")
         CODE= arguments?.getString("codigo")
         BUSINESS_TYPE= arguments?.getString("categoria")
+        QUEUE_SIZE_PRINCIPAL = arguments?.getString("qtdPessoasPrincipal")
+        QUEUE_SIZE_PRIORITY = arguments?.getString("qtdPessoasPrioridade")
+        QUEUE_TIME_PRINCIPAL = arguments?.getString("tempoMedioPrincipal")
+        QUEUE_TIME_PRIORITY = arguments?.getString("tempoMedioPrioridade")
 
 
         val business_name = view_view.findViewById<TextView>(R.id.text_business_name)
         val business_status = view_view.findViewById<TextView>(R.id.text_business_status)
-        //val business_size = view_view.findViewById<TextView>(R.id.text_queue_size)
+        val business_size_principal = view_view.findViewById<TextView>(R.id.text_queue_size_principal)
+        val business_size_priority = view_view.findViewById<TextView>(R.id.text_queue_size_priority)
 
         business_name.text = BUSINESS_NAME
         if(QUEUE_STATUS.toBoolean()){
             business_status.text = "Aberto"
+            view_view.findViewById<ConstraintLayout>(R.id.layout_queue_panel).visibility = View.VISIBLE
+            business_size_principal.text = "$QUEUE_SIZE_PRINCIPAL pessoas [Padrão]"
+            business_size_priority.text = "$QUEUE_SIZE_PRIORITY pessoas [Prioridade]"
         }else {
             business_status.text = "Fechado"
             business_status.setTextColor(resources.getColor(R.color.red_main))
+            view_view.findViewById<ConstraintLayout>(R.id.layout_queue_panel).visibility = View.INVISIBLE
         }
 
         view_view.findViewById<TextView>(R.id.text_business_type).text = BUSINESS_TYPE

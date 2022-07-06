@@ -133,6 +133,10 @@ class UserCodeQueueFragment : Fragment() {
                     val categoria = map["categoria"] ?: ""
                     val link_imagem= map["linkImagem"] ?: ""
                     val code = map["codigo"] ?: ""
+                    var QUEUE_SIZE_PRINCIPAL= map["qtdPessoasPrincipal"] ?: ""
+                    var QUEUE_SIZE_PRIORITY= map["qtdPessoasPrioridade"] ?: ""
+                    var QUEUE_TIME_PRINCIPAL= map["tempoMedioPrincipal"] ?: ""
+                    var QUEUE_TIME_PRIORITY = map["tempoMedioPrioridade"] ?: ""
 
                     Log.d("TEST 1",prettyJson)
 
@@ -145,6 +149,10 @@ class UserCodeQueueFragment : Fragment() {
                     bundle.putString("fila_status", statusFila.drop(1))
                     bundle.putString("categoria", categoria.drop(1))
                     bundle.putString("link_imagem", link_imagem.drop(1))
+                    bundle.putString("qtdPessoasPrincipal", QUEUE_SIZE_PRINCIPAL.drop(1))
+                    bundle.putString("qtdPessoasPrioridade", QUEUE_SIZE_PRIORITY.drop(1))
+                    bundle.putString("tempoMedioPrincipal", QUEUE_TIME_PRINCIPAL.drop(1))
+                    bundle.putString("tempoMedioPrioridade", QUEUE_TIME_PRIORITY.drop(1))
                     fragment.arguments = bundle
                     Log.d("TEST 2", map.toString())
                     replaceFragment(fragment)
