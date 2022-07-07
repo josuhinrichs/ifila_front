@@ -1,16 +1,19 @@
 package com.example.ifila_app
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
-import com.example.ifila_app.databinding.ActivityCreateQueueScreenBinding
+import android.view.View
 import com.example.ifila_app.databinding.ActivityManageQueueBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
+import java.util.concurrent.atomic.AtomicReference
 
 class ManageQueue : AppCompatActivity() {
 
@@ -18,6 +21,8 @@ class ManageQueue : AppCompatActivity() {
     lateinit var token:String
     lateinit var business_name : String
     lateinit var business_code: String
+    var qtdUsuariosFilaPrincipal = AtomicReference<String>()
+    var qtdUsuariosFilaPrioridade = AtomicReference<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +39,10 @@ class ManageQueue : AppCompatActivity() {
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
+
         goToCheckQueueInfo()
+
+
     }
 
     private fun goToCheckQueueInfo(){
@@ -43,14 +51,11 @@ class ManageQueue : AppCompatActivity() {
             .build()
         val service = retrofit.create(MainAPI::class.java)
 
-        var qtdUsuariosFilaPrincipal:String = ""
-        var qtdUsuariosFilaPrioridade:String = ""
-
-        CoroutineScope(Dispatchers.IO).launch {
+        runBlocking {
             // Do the POST request and get response
             val response = service.getBusiness(business_code,"Bearer $token")
 
-            withContext(Dispatchers.Main) {
+            runBlocking {
                 if (response.isSuccessful) {
 
                     // Convert raw JSON to pretty JSON using GSON library
@@ -75,24 +80,23 @@ class ManageQueue : AppCompatActivity() {
                         val(left, right) = it.split(":")
                         left to right
                     }.toMutableMap()
-                    Log.d(" Skip Pretty Printed QTD PRIORIDADE :", qtdUsuariosFilaPrioridade)
-                    qtdUsuariosFilaPrincipal = map["qtdUsuariosFilaPrincipal"]?.drop(1)?.toInt().toString()
-                    qtdUsuariosFilaPrioridade = map["qtdUsuariosFilaPrioridade"]?.drop(1).toString()
-                    Log.d(" Skip Pretty Printed QTD PRINCIPAL :", qtdUsuariosFilaPrincipal)
-                    assignSizeText(qtdUsuariosFilaPrincipal, qtdUsuariosFilaPrioridade)
+                    Log.d("NUMERO", map.toString())
+                    qtdUsuariosFilaPrincipal.set(map["qtdPessoasPrincipal"]?.drop(1)?.toInt().toString())
+                    qtdUsuariosFilaPrioridade.set(map["qtdPessoasPrioridade"]?.drop(1).toString())
+                    return@runBlocking
                 } else {
                 }
             }
         }
-    }
-
-    fun assignSizeText(qtd_principal:String,qtd_prioridade:String){
-        Log.d(" Skip Pretty Printed MAAAAAP :",qtd_principal)
-        binding.textTamFilaPrincipal.text = "Fila Padrão - $qtd_principal Pessoa(s)"
-        binding.textTamFilaPrioritaria.text = "Fila Prioridade - $qtd_prioridade Pessoa(s)"
+        binding.textTamFilaPrincipal.text =
+            "Fila Padrão - ${qtdUsuariosFilaPrincipal.toString()} Pessoa(s)"
+        binding.textTamFilaPrioritaria.text =
+            "Fila Prioridade - ${qtdUsuariosFilaPrioridade.toString()} Pessoa(s)"
+        return
     }
 
     private fun goToCallNextUser(){
+        goToCheckQueueInfo()
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -145,6 +149,7 @@ class ManageQueue : AppCompatActivity() {
     }
 
     fun goToAttendNextUser(){
+        goToCheckQueueInfo()
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -197,6 +202,7 @@ class ManageQueue : AppCompatActivity() {
     }
 
     fun goToSkipUser(){
+        goToCheckQueueInfo()
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
