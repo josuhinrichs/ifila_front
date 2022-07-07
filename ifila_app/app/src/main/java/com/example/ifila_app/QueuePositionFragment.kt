@@ -48,7 +48,7 @@ class QueuePositionFragment : Fragment() {
         val view_view =  inflater.inflate(R.layout.fragment_queue_position, container, false)
 
         TOKEN = arguments?.getString("token")
-        BUSINESS_NAME = arguments?.getString("nomeEstabelecimento").toString()
+        BUSINESS_NAME = arguments?.getString("nome_estabelecimento").toString()
         Log.d("NOME ESTABELECIMENTO", BUSINESS_NAME)
         CODE = arguments?.getString("codigo")
 

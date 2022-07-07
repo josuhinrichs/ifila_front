@@ -53,7 +53,7 @@ class UserHome : AppCompatActivity() {
                         replaceFragment(fragment)
                     }else{
                         val fragment = QueuePositionFragment()
-                        bundle.putString("nomeEstabelecimento", BUSINESS_NAME.toString())
+                        bundle.putString("nome_estabelecimento", BUSINESS_NAME.toString())
                         bundle.putString("token", token)
                         fragment.arguments = bundle
                         replaceFragment(fragment)

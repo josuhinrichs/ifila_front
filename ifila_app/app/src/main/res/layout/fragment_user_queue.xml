@@ -111,7 +111,7 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="2dp"
                 android:elevation="10dp"
@@ -124,31 +124,59 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_queue_type"
+                        android:id="@+id/text_separator_queue_principal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="Fila de Atendimento"
+                        android:text="Fila Padrão"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/text_queue_size_principal"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:text="n Pessoas" />
 
                     <TextView
-                        android:id="@+id/text_queue_size_priority"
+                        android:id="@+id/text_avg_time_padrao"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Espera estimada - 13 min 05 s"
+                        android:textColor="@color/yellow_main"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/text_separator_queue_priority"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Fila Prioridade"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_queue_size_priority"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:text="n Pessoas"
                         android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/text_avg_time_prioridade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Espera estimada - 13 min 05 s"
+                        android:textColor="@color/yellow_main"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -156,12 +184,14 @@
                     android:id="@+id/button_enter_queue"
                     style="@style/Widget.Material3.Button.Icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="63dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="62dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="30dp"
                     android:text="Entrar na fila"
                     app:icon="@drawable/ic_baseline_arrow_forward_24" />
+
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

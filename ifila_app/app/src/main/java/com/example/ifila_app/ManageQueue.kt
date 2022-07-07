@@ -41,8 +41,6 @@ class ManageQueue : AppCompatActivity() {
         binding.textCodigoFila.text = business_code
 
         goToCheckQueueInfo()
-
-
     }
 
     private fun goToCheckQueueInfo(){
@@ -88,15 +86,23 @@ class ManageQueue : AppCompatActivity() {
                 }
             }
         }
-        binding.textTamFilaPrincipal.text =
-            "Fila Padrão - ${qtdUsuariosFilaPrincipal.toString()} Pessoa(s)"
-        binding.textTamFilaPrioritaria.text =
-            "Fila Prioridade - ${qtdUsuariosFilaPrioridade.toString()} Pessoa(s)"
+
+        if(qtdUsuariosFilaPrincipal.toString()!="null") {
+            binding.textTamFilaPrincipal.text =
+                "Fila Padrão - ${qtdUsuariosFilaPrincipal.toString()} Pessoa(s)"
+            binding.textTamFilaPrioritaria.text =
+                "Fila Prioridade - ${qtdUsuariosFilaPrioridade.toString()} Pessoa(s)"
+        }
+        else{
+            binding.textTamFilaPrincipal.text = "Fila Padrão - Fechada"
+            binding.textTamFilaPrioritaria.text = "Fila Prioridade - Fechada"
+            binding.textEstadoFila.text = "Fila Fechada"
+            binding.textEstadoFila.setTextColor(getColor(R.color.red_main))
+        }
         return
     }
 
     private fun goToCallNextUser(){
-        goToCheckQueueInfo()
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -146,10 +152,10 @@ class ManageQueue : AppCompatActivity() {
                 }
             }
         }
+        goToCheckQueueInfo()
     }
 
     fun goToAttendNextUser(){
-        goToCheckQueueInfo()
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -202,7 +208,6 @@ class ManageQueue : AppCompatActivity() {
     }
 
     fun goToSkipUser(){
-        goToCheckQueueInfo()
         val retrofit = Retrofit.Builder()
             .baseUrl(RegisterScreen2.URL_SETUP_USER)
             .build()
@@ -307,7 +312,7 @@ class ManageQueue : AppCompatActivity() {
         builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
 
         builder.setPositiveButton("Confirmar") { dialog, which ->
-
+            goToCheckQueueInfo()
         }
 
         val dialog = builder.create()
@@ -337,7 +342,7 @@ class ManageQueue : AppCompatActivity() {
         builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
 
         builder.setPositiveButton("Confirmar") { dialog, which ->
-
+            goToCheckQueueInfo()
         }
 
         val dialog = builder.create()
@@ -352,7 +357,7 @@ class ManageQueue : AppCompatActivity() {
         builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
 
         builder.setPositiveButton("Confirmar") { dialog, which ->
-
+            goToCheckQueueInfo()
         }
 
         val dialog = builder.create()

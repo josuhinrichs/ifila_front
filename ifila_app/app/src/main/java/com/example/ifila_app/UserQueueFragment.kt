@@ -54,9 +54,13 @@ class UserQueueFragment : Fragment() {
         binding = FragmentUserQueueBinding.inflate(layoutInflater)
         //binding.buttonBuscarEst.setOnClickListener { startCodRequest()}
 
-        val view_view = inflater.inflate(R.layout.fragment_user_queue, container, false)
-        TOKEN = arguments?.getString("token")
         BUSINESS_NAME = arguments?.getString("nome_estabelecimento")
+
+        val view_view = inflater.inflate(R.layout.fragment_user_queue, container, false)
+        val business_name = view_view.findViewById<TextView>(R.id.text_business_name)
+        business_name.text = BUSINESS_NAME
+        TOKEN = arguments?.getString("token")
+
         QUEUE_STATUS = arguments?.getString("fila_status")
         DESCRIPTION = arguments?.getString("descricao")
         IMAGE_LINK= arguments?.getString("link_imagem")
@@ -65,21 +69,28 @@ class UserQueueFragment : Fragment() {
         BUSINESS_TYPE= arguments?.getString("categoria")
         QUEUE_SIZE_PRINCIPAL = arguments?.getString("qtdPessoasPrincipal")
         QUEUE_SIZE_PRIORITY = arguments?.getString("qtdPessoasPrioridade")
-        QUEUE_TIME_PRINCIPAL = arguments?.getString("tempoMedioPrincipal")
-        QUEUE_TIME_PRIORITY = arguments?.getString("tempoMedioPrioridade")
+        QUEUE_TIME_PRINCIPAL = arguments?.getString("tempoMedioPrincipal")?.drop(3)
+        val queue_time_principal_min = QUEUE_TIME_PRINCIPAL?.substring(0,2)+ "min"
+        val queue_time_principal_second = QUEUE_TIME_PRINCIPAL?.substring(3) + "s"
 
+        QUEUE_TIME_PRIORITY = arguments?.getString("tempoMedioPrioridade")?.drop(3)
+        val queue_time_priority_min = QUEUE_TIME_PRIORITY?.substring(0,2)+ "min"
+        val queue_time_priority_second = QUEUE_TIME_PRIORITY?.substring(3) + "s"
 
-        val business_name = view_view.findViewById<TextView>(R.id.text_business_name)
         val business_status = view_view.findViewById<TextView>(R.id.text_business_status)
         val business_size_principal = view_view.findViewById<TextView>(R.id.text_queue_size_principal)
         val business_size_priority = view_view.findViewById<TextView>(R.id.text_queue_size_priority)
 
-        business_name.text = BUSINESS_NAME
+        val wait_time_principal = view_view.findViewById<TextView>(R.id.text_avg_time_padrao)
+        val wait_time_prioridade = view_view.findViewById<TextView>(R.id.text_avg_time_prioridade)
+
         if(QUEUE_STATUS.toBoolean()){
             business_status.text = "Aberto"
             view_view.findViewById<ConstraintLayout>(R.id.layout_queue_panel).visibility = View.VISIBLE
-            business_size_principal.text = "$QUEUE_SIZE_PRINCIPAL pessoa(s) - Padrão"
-            business_size_priority.text = "$QUEUE_SIZE_PRIORITY pessoas(s) - Prioridade"
+            business_size_principal.text = "$QUEUE_SIZE_PRINCIPAL Pessoa(s)"
+            business_size_priority.text = "$QUEUE_SIZE_PRIORITY Pessoa(s)"
+            wait_time_principal.text = "Espera estimada - $queue_time_principal_min $queue_time_principal_second"
+            wait_time_prioridade.text = "Espera estimada - $queue_time_priority_min $queue_time_priority_second"
         }else {
             business_status.text = "Fechado"
             business_status.setTextColor(resources.getColor(R.color.red_main))
