@@ -33,8 +33,11 @@ class UserSettingsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var TOKEN: String = ""
     private var USER_NAME = AtomicReference<String>()
+    private var USER_CPF = AtomicReference<String>()
     private var USER_EMAIL = AtomicReference<String>()
     private var USER_PHONE = AtomicReference<String>()
+    private var USER_BIRTH = AtomicReference<String>()
+//    private var USER_ADDRESS = AtomicReference<String>()
     private lateinit var binding: FragmentUserSettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +57,9 @@ class UserSettingsFragment : Fragment() {
         view_view.findViewById<TextView>(R.id.text_user_profile_name).text = USER_NAME.toString()
         view_view.findViewById<TextView>(R.id.text_user_profile_email).text = USER_EMAIL.toString()
         view_view.findViewById<TextView>(R.id.text_user_profile_phone).text = USER_PHONE.toString()
+        view_view.findViewById<TextView>(R.id.text_user_profile_cpf).text = USER_CPF.toString()
+        view_view.findViewById<TextView>(R.id.text_user_profile_birth).text = USER_BIRTH.toString()
+//        view_view.findViewById<TextView>(R.id.text_user_profile_phone).text = USER_ADRESS.toString()
         //view_view.findViewById<Button>(R.id.button_profile_leave_account).setOnClickListener { parentFragmentManager.onBack }
         return view_view
     }
@@ -118,9 +124,18 @@ class UserSettingsFragment : Fragment() {
                     USER_EMAIL.set(
                         map["email"]?.drop(1)?.replace("+", " ").toString()
                     )
+                    USER_CPF.set(
+                        map["cpf"]?.drop(1)?.replace("+", " ").toString()
+                    )
                     USER_PHONE.set(
                         map["numeroCelular"]?.drop(1)?.replace("+", " ").toString()
                     )
+                    USER_BIRTH.set(
+                        map["dataDeNascimento"]?.drop(1)?.replace("+", " ").toString()
+                    )
+/*                    USER_ADDRESS.set(
+                        map["endereco"]?.drop(1)?.replace("+", " ").toString()
+                    )*/
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE
                 }
