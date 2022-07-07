@@ -31,7 +31,7 @@ private const val ARG_PARAM2 = "param2"
 class QueuePositionFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var TOKEN: String? = null
-    private var BUSINESS_NAME: String? = null
+    private var BUSINESS_NAME: String=""
     private var CODE: String? = null
     private lateinit var binding: FragmentQueuePositionBinding
 
@@ -48,7 +48,8 @@ class QueuePositionFragment : Fragment() {
         val view_view =  inflater.inflate(R.layout.fragment_queue_position, container, false)
 
         TOKEN = arguments?.getString("token")
-        BUSINESS_NAME = arguments?.getString("nome_estabelecimento")
+        BUSINESS_NAME = arguments?.getString("nomeEstabelecimento").toString()
+        Log.d("NOME ESTABELECIMENTO", BUSINESS_NAME)
         CODE = arguments?.getString("codigo")
 
         val botao_confirmar_presença = view_view.findViewById<Button>(R.id.button_confirmar_presenca)
