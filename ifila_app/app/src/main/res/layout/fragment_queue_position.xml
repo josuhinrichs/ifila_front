@@ -83,22 +83,35 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_confirmar_presenca2" />
+                app:layout_constraintTop_toBottomOf="@+id/button_confirmar_presenca" />
 
             <Button
-                android:id="@+id/button_confirmar_presenca2"
+                android:id="@+id/button_confirmar_presenca"
                 android:layout_width="260dp"
                 android:layout_height="55dp"
-                android:layout_marginTop="32dp"
                 android:text="Confirmar presença"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/button_verificar_posicao" />
+
+            <Button
+                android:id="@+id/button_verificar_posicao"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="260dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="24dp"
+                android:text="Verificar Posição"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:strokeColor="@color/purple_main"
+                app:strokeWidth="1dp" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/image_person_in_queue"
                 android:layout_width="106dp"
                 android:layout_height="195dp"
                 android:layout_marginTop="32dp"
@@ -116,9 +129,10 @@
                 android:text="Erro - Você ainda não foi chamado. Tente novamente depois."
                 android:textAlignment="center"
                 android:textColor="@color/red_main"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintTop_toBottomOf="@+id/image_person_in_queue" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

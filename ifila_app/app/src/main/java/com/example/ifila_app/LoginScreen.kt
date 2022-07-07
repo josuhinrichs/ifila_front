@@ -70,7 +70,8 @@ class LoginScreen : AppCompatActivity() {
                         .replace("{","")
                         .replace("}","")
                         .replace("\"","")
-                        .replace(" ","")
+                        .replace(" ","+")
+                        .replace("++","")
 
                     val map = parts.split(",").associate {
                         val(left, right) = it.split(":")
@@ -80,11 +81,11 @@ class LoginScreen : AppCompatActivity() {
                     Log.d("TEST", map.toString())
 
                     Log.d("TEST", map.toString())
-                    if(map["statusFila"] == "true"){
+                    if(map["statusFila"]?.drop(1) == "true"){
                         statusFila.set(true)
                     }
-                    business_name = map["nome"].toString()
-                    business_code = map["codigo"].toString()
+                    business_name = map["nome"]?.drop(1)?.replace("+"," ").toString()
+                    business_code = map["codigo"]?.drop(1).toString()
                     Log.d("DENTRO", statusFila.toString())
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE

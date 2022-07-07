@@ -1,19 +1,19 @@
 package com.example.ifila_app
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
-import com.example.ifila_app.databinding.ActivityCreateQueueScreenBinding
+import android.view.View
 import com.example.ifila_app.databinding.ActivityManageQueueBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import retrofit2.Retrofit
+import java.util.concurrent.atomic.AtomicReference
 
 class ManageQueue : AppCompatActivity() {
 
@@ -21,6 +21,8 @@ class ManageQueue : AppCompatActivity() {
     lateinit var token:String
     lateinit var business_name : String
     lateinit var business_code: String
+    var qtdUsuariosFilaPrincipal = AtomicReference<String>()
+    var qtdUsuariosFilaPrioridade = AtomicReference<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,67 @@ class ManageQueue : AppCompatActivity() {
 
         binding.nomeEstabelecimento.text = business_name
         binding.textCodigoFila.text = business_code
+
+        goToCheckQueueInfo()
+    }
+
+    private fun goToCheckQueueInfo(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RegisterScreen2.URL_SETUP_USER)
+            .build()
+        val service = retrofit.create(MainAPI::class.java)
+
+        runBlocking {
+            // Do the POST request and get response
+            val response = service.getBusiness(business_code,"Bearer $token")
+
+            runBlocking {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+                    Log.d(" Skip Pretty Printed JSON :", prettyJson)
+
+                    val parts = prettyJson
+                        .replace("\n","")
+                        .replace("{","")
+                        .replace("}","")
+                        .replace("\"","")
+                        .replace(" ","+")
+                        .replace("++","")
+
+                    val map = parts.split(",").associate {
+                        val(left, right) = it.split(":")
+                        left to right
+                    }.toMutableMap()
+                    Log.d("NUMERO", map.toString())
+                    qtdUsuariosFilaPrincipal.set(map["qtdPessoasPrincipal"]?.drop(1)?.toInt().toString())
+                    qtdUsuariosFilaPrioridade.set(map["qtdPessoasPrioridade"]?.drop(1).toString())
+                    return@runBlocking
+                } else {
+                }
+            }
+        }
+
+        if(qtdUsuariosFilaPrincipal.toString()!="null") {
+            binding.textTamFilaPrincipal.text =
+                "Fila Padrão - ${qtdUsuariosFilaPrincipal.toString()} Pessoa(s)"
+            binding.textTamFilaPrioritaria.text =
+                "Fila Prioridade - ${qtdUsuariosFilaPrioridade.toString()} Pessoa(s)"
+        }
+        else{
+            binding.textTamFilaPrincipal.text = "Fila Padrão - Fechada"
+            binding.textTamFilaPrioritaria.text = "Fila Prioridade - Fechada"
+            binding.textEstadoFila.text = "Fila Fechada"
+            binding.textEstadoFila.setTextColor(getColor(R.color.red_main))
+        }
+        return
     }
 
     private fun goToCallNextUser(){
@@ -89,6 +152,7 @@ class ManageQueue : AppCompatActivity() {
                 }
             }
         }
+        goToCheckQueueInfo()
     }
 
     fun goToAttendNextUser(){
@@ -248,7 +312,7 @@ class ManageQueue : AppCompatActivity() {
         builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
 
         builder.setPositiveButton("Confirmar") { dialog, which ->
-
+            goToCheckQueueInfo()
         }
 
         val dialog = builder.create()
@@ -278,7 +342,7 @@ class ManageQueue : AppCompatActivity() {
         builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
 
         builder.setPositiveButton("Confirmar") { dialog, which ->
-
+            goToCheckQueueInfo()
         }
 
         val dialog = builder.create()
@@ -293,7 +357,7 @@ class ManageQueue : AppCompatActivity() {
         builder.setMessage("Nome do cliente: $nome\nCPF: $cpf\nNumero de Celular: $numero_celular")
 
         builder.setPositiveButton("Confirmar") { dialog, which ->
-
+            goToCheckQueueInfo()
         }
 
         val dialog = builder.create()

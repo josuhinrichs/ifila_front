@@ -17,10 +17,12 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicReference
 
 class UserHome : AppCompatActivity() {
     private lateinit var binding: ActivityUserHomeBinding
     var bundle = Bundle()
+    var BUSINESS_NAME = AtomicReference<String>()
     val role = "user"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +53,7 @@ class UserHome : AppCompatActivity() {
                         replaceFragment(fragment)
                     }else{
                         val fragment = QueuePositionFragment()
+                        bundle.putString("nome_estabelecimento", BUSINESS_NAME.toString())
                         bundle.putString("token", token)
                         fragment.arguments = bundle
                         replaceFragment(fragment)
@@ -104,8 +107,9 @@ class UserHome : AppCompatActivity() {
         inQueue.set(false)
 
         runBlocking {
+            val response = service.getUserMe("Bearer $token")
             withContext(Dispatchers.Default) {
-                val response = service.getUserMe("Bearer $token")
+
                 if (response.isSuccessful) {
                     // Convert raw JSON to pretty JSON using GSON library
 
@@ -121,7 +125,8 @@ class UserHome : AppCompatActivity() {
                         .replace("{","")
                         .replace("}","")
                         .replace("\"","")
-                        .replace(" ","")
+                        .replace(" ","+")
+                        .replace("++","")
 
                     val map = parts.split(",").associate {
                         val(left, right) = it.split(":")
@@ -129,9 +134,11 @@ class UserHome : AppCompatActivity() {
                     }.toMutableMap()
 
                     Log.d("TEST", map.toString())
-                    if(map["emFila"] == "true"){
+                    if(map["emFila"]?.drop(1) == "true"){
+                        BUSINESS_NAME.set(map["nomeEstabelecimento"]?.drop(1)?.replace("+"," ").toString())
                         inQueue.set(true)
                     }
+                    Log.d("TEST", map.toString())
                     Log.d("DENTRO", inQueue.toString())
                 } else {
                     //binding.textCodigoInvalido.visibility = View.VISIBLE

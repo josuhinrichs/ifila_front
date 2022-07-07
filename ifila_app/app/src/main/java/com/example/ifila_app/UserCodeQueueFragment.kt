@@ -25,6 +25,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
+import java.util.concurrent.atomic.AtomicReference
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,6 +42,7 @@ class UserCodeQueueFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var token: String? = null
     private var param2: String? = null
+    private var nome_estabelecimento = AtomicReference<String>()
     private lateinit var binding: FragmentUserCodeQueueBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -122,7 +124,7 @@ class UserCodeQueueFragment : Fragment() {
                         left to right
                     }.toMutableMap()
 
-                    val nome = map["nome"] ?: ""
+                    nome_estabelecimento.set(map["nome"])
                     val endereco = map["endereco"] ?: ""
                     val telefone = map["telefone"] ?: ""
                     val descricao = map["descricao"] ?: ""
@@ -133,6 +135,10 @@ class UserCodeQueueFragment : Fragment() {
                     val categoria = map["categoria"] ?: ""
                     val link_imagem= map["linkImagem"] ?: ""
                     val code = map["codigo"] ?: ""
+                    var QUEUE_SIZE_PRINCIPAL= map["qtdPessoasPrincipal"] ?: ""
+                    var QUEUE_SIZE_PRIORITY= map["qtdPessoasPrioridade"] ?: ""
+                    var QUEUE_TIME_PRINCIPAL= map["tempoMedioPrincipal"] ?: ""
+                    var QUEUE_TIME_PRIORITY = map["tempoMedioPrioridade"] ?: ""
 
                     Log.d("TEST 1",prettyJson)
 
@@ -140,11 +146,15 @@ class UserCodeQueueFragment : Fragment() {
                     val bundle = Bundle()
                     bundle.putString("token", token)
                     bundle.putString("codigo", code.drop(1))
-                    bundle.putString("nome_estabelecimento", nome.drop(1).replace("+"," "))
+                    bundle.putString("nome_estabelecimento", nome_estabelecimento.toString().drop(1).replace("+"," "))
                     bundle.putString("descricao", descricao.drop(1))
                     bundle.putString("fila_status", statusFila.drop(1))
                     bundle.putString("categoria", categoria.drop(1))
                     bundle.putString("link_imagem", link_imagem.drop(1))
+                    bundle.putString("qtdPessoasPrincipal", QUEUE_SIZE_PRINCIPAL.drop(1))
+                    bundle.putString("qtdPessoasPrioridade", QUEUE_SIZE_PRIORITY.drop(1))
+                    bundle.putString("tempoMedioPrincipal", QUEUE_TIME_PRINCIPAL.drop(1))
+                    bundle.putString("tempoMedioPrioridade", QUEUE_TIME_PRIORITY.drop(1))
                     fragment.arguments = bundle
                     Log.d("TEST 2", map.toString())
                     replaceFragment(fragment)
