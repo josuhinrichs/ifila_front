@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.example.ifila_app.databinding.FragmentUserCodeQueueBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
@@ -59,6 +60,7 @@ class UserCodeQueueFragment : Fragment() {
         // Inflate the layout for this fragment
         val view_view = inflater.inflate(R.layout.fragment_user_code_queue, container, false)
         val botao = view_view.findViewById<Button>(R.id.button_buscarEst)
+        view_view.findViewById<Button>(R.id.button_escanear).setOnClickListener { sorryPopUp() }
         botao.setOnClickListener { startCodRequest()}
         token = arguments?.getString("token")
         codeFocusListener()
@@ -83,6 +85,20 @@ class UserCodeQueueFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun sorryPopUp(){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Em desenvolvimento")
+
+        builder.setMessage("Sentimos muito pela incoveniência, estamos trabalhando duro para implementar" +
+                " novas funcionalidades e enriquecer a sua experiência no i.fila.")
+
+        builder.setPositiveButton("OK") { dialog, which ->
+        }
+        val dialog = builder.create()
+        dialog.show()
+
     }
 
     private fun startCodRequest(){
