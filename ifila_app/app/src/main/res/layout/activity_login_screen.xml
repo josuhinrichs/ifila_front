@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginScreen">
+
+    <ImageView
+        android:id="@+id/image_ifila_logo"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_primaria" />
+
+    <TextView
+        android:id="@+id/bem_vindo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/fredoka_one"
+        android:text="@string/bem_vindo"
+        android:textColor="@color/purple_main"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_ifila_logo" />
+
+    <TextView
+        android:id="@+id/define_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Faça login na sua conta"
+        android:textColor="@color/gray_main"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bem_vindo" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:elevation="0dp"
+        android:fadeScrollbars="false"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/define_text">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_field_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.33dp"
+            app:helperText="Digite o seu email"
+            android:hint="Email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="textEmailAddress"
+                android:textSize="16sp"
+                app:textInputLayoutFocusedRectEnabled="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_field_password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.33dp"
+            android:hint="Senha"
+            app:passwordToggleContentDescription="Exibir"
+            app:passwordToggleDrawable="@drawable/ic_baseline_visibility_24"
+            app:helperText="Digite a sua senha"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPasswd"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="textPassword"
+                android:textSize="14sp"
+                app:textInputLayoutFocusedRectEnabled="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_entrar"
+        android:layout_width="260dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:enabled="false"
+        android:text="Entrar"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout" />
+
+    <Button
+        android:id="@+id/button_cadastrar"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Não tem uma conta? Cadastre aqui"
+        android:textColor="@color/yellow_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_entrar" />
+
+    <TextView
+        android:id="@+id/text_loginInvalido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Login inválido - Verifique seus dados"
+        android:textColor="#E64242"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/define_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

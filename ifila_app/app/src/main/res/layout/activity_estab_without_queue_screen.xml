@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EstabWithoutQueueScreen">
+
+
+    <ImageView
+        android:id="@+id/image_ifila_logo2"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_primaria" />
+
+    <TextView
+        android:id="@+id/text_business_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/fredoka_one"
+        android:text="Nome do Local"
+        android:textColor="@color/yellow_main"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_ifila_logo2" />
+
+    <TextView
+        android:id="@+id/text_criarFilaSolicitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/fredoka_medium"
+        android:text="Seu estabelecimento, no momento,\nnão tem uma fila cadastrada."
+        android:textAlignment="center"
+        android:textColor="@color/gray_main"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_business_name2" />
+
+    <Button
+        android:id="@+id/button_criarFila"
+        android:layout_width="220dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:text="+ Criar fila"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_criarFilaSolicitation" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

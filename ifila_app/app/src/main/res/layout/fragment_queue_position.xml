@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".QueuePositionFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frame_layout_position_queue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/aguardando2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/fredoka_one"
+                android:text="Aguardando"
+                android:textColor="@color/purple_main"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/nome_estabelecimento2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/fredoka_one"
+                android:text="@string/nome_do_local"
+                android:textColor="@color/yellow_main"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aguardando2"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/text_confirm_and_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/fredoka_medium"
+                android:text="@string/confirma_presença"
+                android:textAlignment="center"
+                android:textColor="@color/gray_main"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_user_position" />
+
+            <TextView
+                android:id="@+id/text_user_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/fredoka_medium"
+                android:text="Sua posição - XX"
+                android:textSize="20sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nome_estabelecimento2" />
+
+            <Button
+                android:id="@+id/button_sair_fila2"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="220dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="16dp"
+                android:text="Sair da fila"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_confirmar_presenca" />
+
+            <Button
+                android:id="@+id/button_confirmar_presenca"
+                android:layout_width="260dp"
+                android:layout_height="55dp"
+                android:text="Confirmar presença"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_verificar_posicao" />
+
+            <Button
+                android:id="@+id/button_verificar_posicao"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="260dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="24dp"
+                android:text="Verificar Posição"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <ImageView
+                android:id="@+id/image_person_in_queue"
+                android:layout_width="106dp"
+                android:layout_height="195dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/person_queue_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_confirm_and_wait" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Erro - Você ainda não foi chamado. Tente novamente depois."
+                android:textAlignment="center"
+                android:textColor="@color/red_main"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_person_in_queue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

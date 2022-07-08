@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_prim" />
+        app:srcCompat="@drawable/logo_primaria" />
 
     <TextView
         android:id="@+id/text_error"
@@ -52,7 +52,6 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/fredoka_medium"
         android:text="Desculpe pelo transtorno"
-        android:textColor="#9C444444"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +78,6 @@
         android:fontFamily="@font/fredoka_semibold"
         android:gravity="center"
         android:text="Um erro ocorreu durante o cadastro\nPor favor, tente novamente mais tarde"
-        android:textColor="#9C444444"
         android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/button_retornar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,10 +85,9 @@
 
     <Button
         android:id="@+id/button_retornar"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:layout_marginBottom="36dp"
-        android:backgroundTint="@color/gray_main"
         android:text="Retornar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"

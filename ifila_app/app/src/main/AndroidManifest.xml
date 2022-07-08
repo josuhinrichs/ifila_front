@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ifila_app">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,7 +14,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ifila_app"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".UserHome"
+            android:exported="false" />
+        <activity
+            android:name=".ManageQueue2"
+            android:exported="false" />
+        <activity
+            android:name=".ClientPosQueue3"
+            android:exported="false" />
+        <activity
+            android:name=".ClientPosQueue2"
+            android:exported="false" />
+        <activity
+            android:name=".ClientPosQueue"
+            android:exported="false" />
+        <activity
+            android:name=".ManageQueue"
+            android:exported="false" />
+        <activity
+            android:name=".CreateQueueScreen"
+            android:exported="false" />
+        <activity
+            android:name=".EstabWithoutQueueScreen"
+            android:exported="false" />
+        <activity
+            android:name=".EnterCodeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false" />
         <activity
             android:name=".RegisterScreenFailed"
             android:exported="false" />

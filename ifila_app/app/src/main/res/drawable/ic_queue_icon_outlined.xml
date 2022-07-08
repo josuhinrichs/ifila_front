@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="22dp"
+    android:height="18dp"
+    android:viewportWidth="22"
+    android:viewportHeight="18">
+  <path
+      android:pathData="M0.75,2.647C0.75,3.702 1.594,4.544 2.619,4.544C3.644,4.544 4.488,3.702 4.488,2.647C4.488,1.592 3.644,0.75 2.619,0.75C1.594,0.75 0.75,1.592 0.75,2.647Z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="#444444"/>
+  <path
+      android:pathData="M9.131,2.647C9.131,3.702 9.975,4.544 11,4.544C12.025,4.544 12.869,3.702 12.869,2.647C12.869,1.592 12.025,0.75 11,0.75C9.975,0.75 9.131,1.592 9.131,2.647Z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="#444444"/>
+  <path
+      android:pathData="M17.512,2.647C17.512,3.702 18.356,4.544 19.381,4.544C20.406,4.544 21.25,3.702 21.25,2.647C21.25,1.592 20.406,0.75 19.381,0.75C18.356,0.75 17.512,1.592 17.512,2.647Z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="#444444"/>
+  <path
+      android:pathData="M2.619,8.162C1.545,8.162 0.75,8.973 0.75,9.882V15.53C0.75,16.439 1.545,17.25 2.619,17.25C3.693,17.25 4.488,16.439 4.488,15.53V9.882C4.488,8.973 3.693,8.162 2.619,8.162Z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="#444444"/>
+  <path
+      android:pathData="M11,8.162C9.926,8.162 9.131,8.973 9.131,9.882V15.53C9.131,16.439 9.926,17.25 11,17.25C12.074,17.25 12.869,16.439 12.869,15.53V9.882C12.869,8.973 12.074,8.162 11,8.162Z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="#444444"/>
+  <path
+      android:pathData="M19.381,8.162C18.307,8.162 17.512,8.973 17.512,9.882V15.53C17.512,16.439 18.307,17.25 19.381,17.25C20.455,17.25 21.25,16.439 21.25,15.53V9.882C21.25,8.973 20.455,8.162 19.381,8.162Z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="#444444"/>
+</vector>

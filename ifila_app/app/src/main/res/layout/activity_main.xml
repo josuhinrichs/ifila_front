@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:padding="16dp"
     tools:context=".MainActivity">
 
@@ -16,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_prim" />
+        app:srcCompat="@drawable/logo_primaria" />
 
     <ImageView
         android:id="@+id/image_illustration_rocket"
@@ -34,7 +33,7 @@
 
     <Button
         android:id="@+id/button_entrar"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:backgroundTint="@color/yellow_main"
         android:text="Entrar"
@@ -46,7 +45,7 @@
 
     <Button
         android:id="@+id/button_registrar"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:backgroundTint="@color/purple_main"
         android:text="@string/registrar"
@@ -59,7 +58,7 @@
     <Button
         android:id="@+id/button_convidado"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="55dp"
         android:layout_marginBottom="36dp"
         android:text="@string/entrar_como_convidado"

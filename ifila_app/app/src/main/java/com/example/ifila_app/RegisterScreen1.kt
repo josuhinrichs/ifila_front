@@ -1,17 +1,25 @@
 package com.example.ifila_app
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.DatePicker
+import android.widget.EditText
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import com.example.ifila_app.databinding.ActivityRegisterScreen1Binding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatter.ofPattern
 import java.util.*
 
 
@@ -28,9 +36,14 @@ class RegisterScreen1 : AppCompatActivity() {
         phoneFocusListener(binding)
         birthFocusListener(binding)
 
-        binding.buttonContinuar.setOnClickListener{ goToRegister2(binding) }
-        binding.buttonCancelar.setOnClickListener { cancel(binding) }
+        binding.buttonContinuar2.isEnabled = false
+
+        binding.buttonContinuar2.setOnClickListener{ goToRegister2(binding) }
+        binding.buttonCancelar2.setOnClickListener { cancel(binding) }
         binding.editTextPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+        val cpfMask = Mask.insert(Mask.CPF_MASK, binding.editTextCpf)
+        binding.editTextCpf.addTextChangedListener( cpfMask )
+
 
         binding.editTextBirth.inputType = InputType.TYPE_NULL;
         binding.editTextBirth.setOnClickListener{ showDatePicker(binding) }
@@ -44,9 +57,9 @@ class RegisterScreen1 : AppCompatActivity() {
 
     private fun goToRegister2(binding: ActivityRegisterScreen1Binding){
         val name = binding.editTextName.text.toString()
-        val cpf = binding.editTextName.text.toString()
-        val phoneNumber = binding.editTextPhone.toString()
-        val birth = binding.editTextBirth.toString()
+        val cpf = binding.editTextCpf.text.toString()
+        val phoneNumber = binding.editTextPhone.text.toString()
+        val birth = binding.editTextBirth.text.toString()
 
         if (binding.inputFieldName.helperText == null &&
             binding.inputFieldCpf.helperText == null &&
@@ -91,8 +104,8 @@ class RegisterScreen1 : AppCompatActivity() {
 
         val datePicker = DatePickerDialog(binding.root.context,R.style.DialogTheme,
             { _: DatePicker, mYear, mMonth, mDay ->
-                val newDay = if(day < 10) "0$mDay" else mDay.toString()
-                val newMonth = if(mMonth < 10) "0${mMonth+1}" else (mMonth+1).toString()
+                val newDay = if(mDay < 10) "0$mDay" else mDay.toString()
+                val newMonth = if(mMonth < 9) "0${mMonth+1}" else (mMonth+1).toString()
 
                 binding.editTextBirth.setText("$newDay/$newMonth/$mYear")
             }, year, month, day )
@@ -115,8 +128,10 @@ class RegisterScreen1 : AppCompatActivity() {
             ) {
                 if(binding.editTextName.text.toString() == "")
                     binding.inputFieldName.helperText = resources.getString(R.string.required)
-                else
+                else {
                     binding.inputFieldName.helperText = null
+                }
+                enableButton()
             }
         })
     }
@@ -136,13 +151,22 @@ class RegisterScreen1 : AppCompatActivity() {
                 before: Int, count: Int
             ) {
                 binding.inputFieldCpf.helperText = validCpf()
+                enableButton()
+
+                if (binding.editTextCpf.text.toString().length == 3){
+                    binding.editTextCpf.text?.append("-")
+                }
             }
         })
     }
 
     private fun validCpf(): String?
     {
-        if (binding.editTextCpf.text.toString().length < 11)
+        if(binding.editTextCpf.text.toString() == "")
+        {
+            return resources.getString(R.string.required)
+        }
+        if (binding.editTextCpf.text.toString().length < 14)
             return resources.getString(R.string.typeValidCpf)
         return null
     }
@@ -162,6 +186,7 @@ class RegisterScreen1 : AppCompatActivity() {
                 before: Int, count: Int
             ) {
                 binding.inputFieldPhone.helperText = validPhone()
+                enableButton()
             }
         })
     }
@@ -169,15 +194,16 @@ class RegisterScreen1 : AppCompatActivity() {
     private fun validPhone(): String?
     {
         val phoneText = binding.editTextPhone.text.toString()
+
+        if(phoneText == "")
+        {
+            return resources.getString(R.string.required)
+        }
         if (phoneText.length < 13)
             return resources.getString(R.string.typeValidNumber)
         if(!phoneText.matches(".*[0-9].*".toRegex()))
         {
             return resources.getString(R.string.typeOnlyDigits)
-        }
-        if(phoneText == "")
-        {
-            return resources.getString(R.string.required)
         }
         return null
     }
@@ -197,13 +223,119 @@ class RegisterScreen1 : AppCompatActivity() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                if(binding.editTextBirth.text.toString() == "")
-                    binding.inputFieldBirth.helperText = resources.getString(R.string.required)
-                else
-                    binding.inputFieldBirth.helperText = null
+                binding.inputFieldBirth.helperText = validBirth()
+
+                enableButton()
             }
         })
     }
 
+    private fun validBirth(): String?
+    {
+        if(binding.editTextBirth.text.toString() == "")
+            return resources.getString(R.string.required)
+        else{
+            val formatter = ofPattern("dd/MM/yyyy") //Formato da string recebida pela caixa de texto
+            val birthDate = LocalDate.parse(binding.editTextBirth.text.toString(), formatter) //Transformar em LocalDate
+            if (birthDate.plusYears(14).isAfter(LocalDate.now())) //Verificar se a pessoa já tem 14 anos
+                return resources.getString(R.string.invalidBirth)
+        }
+        return null
+    }
+
+    private fun enableButton(){
+        binding.buttonContinuar2.isEnabled =
+            (
+                binding.inputFieldName.helperText == null &&
+                binding.inputFieldCpf.helperText == null &&
+                binding.inputFieldPhone.helperText == null &&
+                binding.inputFieldBirth.helperText == null)
+    }
+
+}
+
+object Mask {
+    var CPF_MASK = "###.###.###-##"
+    var CELULAR_MASK = "(##) #### #####"
+    var TIME_MASK = "##:##"
+    fun unmask(s: String): String {
+        return s.replace("[.]".toRegex(), "").replace("[-]".toRegex(), "")
+            .replace("[/]".toRegex(), "").replace("[(]".toRegex(), "")
+            .replace("[)]".toRegex(), "").replace(" ".toRegex(), "")
+            .replace(",".toRegex(), "")
+    }
+
+    fun isASign(c: Char): Boolean {
+        return c == '.' || c == '-' || c == '/' || c == '(' || c == ')' || c == ',' || c == ' '
+    }
+
+    fun mask(mask: String, text: String): String {
+        var i = 0
+        var mascara = ""
+        for (m in mask.toCharArray()) {
+            if (m != '#') {
+                mascara += m
+                continue
+            }
+            mascara += try {
+                text[i]
+            } catch (e: Exception) {
+                break
+            }
+            i++
+        }
+        return mascara
+    }
+
+    fun insert(mask: String, ediTxt: EditText): TextWatcher {
+        return object : TextWatcher {
+            var isUpdating = false
+            var old = ""
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                val str = unmask(s.toString())
+                var mascara = ""
+                if (isUpdating) {
+                    old = str
+                    isUpdating = false
+                    return
+                }
+                var index = 0
+                for (i in 0 until mask.length) {
+                    val m = mask[i]
+                    if (m != '#') {
+                        if (index == str.length && str.length < old.length) {
+                            continue
+                        }
+                        mascara += m
+                        continue
+                    }
+                    mascara += try {
+                        str[index]
+                    } catch (e: Exception) {
+                        break
+                    }
+                    index++
+                }
+                if (mascara.isNotEmpty()) {
+                    var last_char = mascara[mascara.length - 1]
+                    var hadSign = false
+                    while (isASign(last_char) && str.length == old.length) {
+                        mascara = mascara.substring(0, mascara.length - 1)
+                        last_char = mascara[mascara.length - 1]
+                        hadSign = true
+                    }
+                    if (mascara.isNotEmpty() && hadSign) {
+                        mascara = mascara.substring(0, mascara.length - 1)
+                    }
+                }
+                isUpdating = true
+                ediTxt.setText(mascara)
+                ediTxt.setSelection(mascara.length)
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun afterTextChanged(s: Editable) {}
+        }
+    }
 }
 
