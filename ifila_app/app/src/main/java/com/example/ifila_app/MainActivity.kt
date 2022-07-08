@@ -36,27 +36,23 @@ class MainActivity : AppCompatActivity() {
 
     fun goToConvidado(){
         val context = binding.root.context
-        confirmPopUp()
+        upComingPopUp()
         //val intent = Intent(context, EnterCodeScreen::class.java)//Coloquei pra ir pra tela de inserir código
         //context.startActivity(intent)
     }
 
 
-    private fun confirmPopUp(){
+    private fun upComingPopUp(){
         val builder = MaterialAlertDialogBuilder(binding.root.context)
-        builder.setTitle("Confirmar entrada na fila?")
+        builder.setTitle("Função em desenvolvimento...")
+        builder.setMessage("Sentimos muito pela incoveniência, estamos trabalhando duro para implementar " +
+                "novas funcionalidades e enriquecer a sua experiência no i.fila.")
 
-        val confirmBox = arrayOf("Entrar como grupo prioritário")
-        val checkedBox = booleanArrayOf(false)
-        builder.setMultiChoiceItems(confirmBox, checkedBox) { dialog, which, isChecked ->
 
-        }
-
-        builder.setPositiveButton("Confirmar") { dialog, which ->
+        builder.setPositiveButton("Ok") { dialog, which ->
 
         }
 
-        builder.setNegativeButton("Cancelar", null)
 
         val dialog = builder.create()
         dialog.show()
