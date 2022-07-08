@@ -57,7 +57,9 @@ class QueuePositionFragment : Fragment() {
 
         view_view.findViewById<Button>(R.id.button_sair_fila2).setOnClickListener { leaveQueue() }
         view_view.findViewById<TextView>(R.id.nome_estabelecimento2).text = BUSINESS_NAME
-        botao_confirmar_presença.setOnClickListener { goToConfirmPresence() }
+        botao_confirmar_presença.setOnClickListener {
+            view_view.findViewById<Button>(R.id.button_sair_fila2).isEnabled = false
+            goToConfirmPresence() }
         view_view.findViewById<Button>(R.id.button_verificar_posicao).setOnClickListener { goToVerifyPosition() }
         return view_view
     }
@@ -195,7 +197,7 @@ class QueuePositionFragment : Fragment() {
         val builder = view?.let { MaterialAlertDialogBuilder(it.context) }
         if (builder != null) {
             builder.setTitle("Presença Confirmada")
-            view?.findViewById<Button>(R.id.button_verificar_posicao)?.isEnabled = false
+            view?.findViewById<Button>(R.id.button_confirmar_presenca)?.isEnabled = false
             builder.setMessage("Dirija-se ao local de atendimento, você já será atendido.")
 
             builder.setPositiveButton("OK") { dialog, which ->

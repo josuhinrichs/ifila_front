@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.ifila_app.databinding.FragmentQueuePositionBinding
 import com.example.ifila_app.databinding.FragmentUserSettingsBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.Dispatchers
@@ -60,7 +61,7 @@ class UserSettingsFragment : Fragment() {
         view_view.findViewById<TextView>(R.id.text_user_profile_cpf).text = USER_CPF.toString()
         view_view.findViewById<TextView>(R.id.text_user_profile_birth).text = USER_BIRTH.toString()
 //        view_view.findViewById<TextView>(R.id.text_user_profile_phone).text = USER_ADRESS.toString()
-        //view_view.findViewById<Button>(R.id.button_profile_leave_account).setOnClickListener { parentFragmentManager.onBack }
+        view_view.findViewById<Button>(R.id.button_profile_leave_account).setOnClickListener { sorryPopUp() }
         return view_view
     }
 
@@ -82,6 +83,20 @@ class UserSettingsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun sorryPopUp(){
+        val builder = MaterialAlertDialogBuilder(binding.root.context)
+        builder.setTitle("Em desenvolvimento")
+
+        builder.setMessage("Sentimos muito pela incoveniência, estamos trabalhando duro para implementar" +
+                " novas funcionalidades e enriquecer a sua experiência no i.fila.")
+
+        builder.setPositiveButton("OK") { dialog, which ->
+        }
+        val dialog = builder.create()
+        dialog.show()
+
     }
 
     fun getUserInfo() {

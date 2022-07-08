@@ -86,7 +86,7 @@
 
             <Button
                 android:id="@+id/button_chamar"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="@style/Widget.Material3.Button"
                 android:layout_width="260dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="24dp"
@@ -137,7 +137,7 @@
 
             <Button
                 android:id="@+id/button_pular"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="@style/Widget.Material3.Button"
                 android:layout_width="260dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="8dp"
